@@ -1,0 +1,157 @@
+article, footer, header, nav, section, video {
+display:block;
+}
+body {
+	margin:0;
+	padding:0;
+	font-family:Fondamento, verdana, arial, helvetica, sans-serif;
+	font-size:13px;
+}
+a:link {
+	text-decoration: none;
+}
+#container {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align:left;
+	margin-top: 50px;
+	border:5px solid #000000;
+	background-color: #11A298;	
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	border-radius: 20px 20px 20px 20px;
+	-webkit-box-shadow: rgba(0,0,0, .6) 18px 13px 6px;
+	-moz-box-shadow: rgba(0,0,0, .6) 18px 13px 6px;
+	box-shadow: rgba(0,0,0, .6) 18px 13px 6px;
+}
+header {
+	background-image:url('../images/header_logo.gif');
+	background-position:bottom;
+	height: 112px;
+	background-color: #11A298;
+	background-repeat:no-repeat;
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+	border-radius: 15px 15px 0px 0px;
+}
+nav {
+margin: 0 0 15px 0;
+padding: 25px 0 12px 10px;
+border-style: solid;
+border-width: 1px 0 0 0;
+border-color: #fff;
+overflow: hidden;
+}
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+float: left;
+}
+nav ul li {
+
+list-style: none;
+margin: 0 2.5em 0 0;
+padding: 0;
+float: left;
+font-size: 1.2em;
+}
+/* put color inside navigation buttons */
+nav ul a:link, nav ul a:visited {
+	background: rgba(92,133,195,0.5);
+}
+nav ul li a {
+	
+		padding:10px;
+		color: #000000;
+		text-align:center;
+		text-decoration:none;
+		border: 1px solid #000000;
+		margin: 5px 0px;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		border-radius: 8px;
+
+		-moz-box-shadow: rgba(0,0,0,.8) 1px 1px 3px ;
+		-webkit-box-shadow: rgba(0,0,0,.8) 1px 1px 3px ;
+		box-shadow: rgba(0,0,0,.8) 1px 1px 3px ;
+}
+/* When in hover change text colour to white  */
+nav ul li a:hover {
+color: #fff;
+}
+/* When in hover or focus states increase opacity of button colour */
+nav ul a:hover, nav ul a:active, nav ul a:focus {
+	background: rgba(92,133,195,0.9);
+}
+/* when you hover over the menu button it moves 10 pixels up */
+nav ul li:hover {
+	margin-top:-10px;
+}
+#search form{
+	padding-top: 50px;
+	font-family:verdana, arial, helvetica, sans-serif;
+	font-size:13px;
+	font-style: bold;
+}
+#content {
+	display:table;
+	width:100%;
+	border-top: 1px solid #fff;
+	text-decoration: none;
+}
+#activity_menu {
+	display:table-cell;
+	width: 15%;
+	vertical-align: top;
+	padding-top: 50px;
+	border-top: none;
+
+}
+#activity_menu ul li{
+	padding:25px 0px;
+	font-size: 0.7em;
+}	
+
+section {
+	display:table-cell;
+	vertical-align: top;
+	width:50%;
+	background-color: #11A298;
+	padding:10px;
+	font: 14px Domine,Verdana, Arial, Helvetica, sans-serif;
+
+}
+section ul li{
+	list-style-type: none;
+}
+
+article {
+	display:table-cell;
+	vertical-align: top;
+	width: 30%;
+	background-color:#5c85c3;
+	color:white;
+	font-size:14px;
+	margin:0px;
+	padding:10px;
+}
+footer {
+	height:30px;
+	padding:5px;
+	text-align:center;
+	font-size: small;
+	background-color:#9C0E0E;
+	-moz-border-radius:  0px 0px 15px 15px;
+	-webkit-border-radius: 0px 0px 15px 15px;
+	border-radius:  0px 0px 15px 15px;
+}
+
+figure {
+	float:right;
+}
+figcaption {
+		font-family:Elsie, Verdana, Arial, Helvetica, sans-serif;
+		font-size:12px;
+}

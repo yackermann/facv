@@ -1,0 +1,15 @@
+nav, header, footer, figure, video{
+	display:none;
+}
+body {
+    background: white;
+font-family: Georgia, ‘Times New Roman’, serif;
+}
+#content {
+    width: 100%
+    margin: 0px;
+background: white;
+}
+
+
+p {font-size: 12px;}
