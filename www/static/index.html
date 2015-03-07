@@ -8,8 +8,14 @@
 		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript">
 			$.getJSON('http://192.168.55.55/advert.php', function(data){
-				for(countrie of data){
-					console.log(countrie);
+                var i=0;
+				for(adv of data){
+                    i++;
+					$('body').append('<div class = item>'+
+                    '<img src="placehold.it/150x150">'+
+                    '<h1>' + adv.title + '</h1>'+
+                    '<p>' + adv.text + '</p>' +
+                    '</div>');
 				}
 			})
 		</script>
