@@ -7,9 +7,9 @@
 		<div class="text"></div>
 		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript">
-			$.getJSON('countries.json', function(data){
+			$.getJSON('http://192.168.55.55/advert.php', function(data){
 				for(countrie of data){
-					$('div.text').append('<p>' + countrie.capital + '</p>');
+					console.log(countrie);
 				}
 			})
 		</script>
