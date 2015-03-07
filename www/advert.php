@@ -1,6 +1,6 @@
 <?php
 
-	mb_internal_encoding("UTF-8");
+	
 
 	//include database connection
 	include 'includes/connect.php';
@@ -13,6 +13,9 @@
 
 
 	$content = array();
+
+	// if($_POST[''])
+
 	if($num>0){ //check if more than 0 record found
 		
 		//retrieve our table contents
