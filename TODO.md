@@ -33,6 +33,6 @@
     - Restrict folder view(no listing)
 
  - hating | I.P. (Fulton, Niemand)
-     - JavaScript | Niemand Done
-     - PHP        | Fulton Done
+     - JavaScript
+     - PHP        | Niemand Done
 
