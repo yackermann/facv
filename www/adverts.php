@@ -4,18 +4,15 @@
 
 	//include database connection
 	include 'includes/connect.php';
-		
-	$query = "SELECT id, title, text, startDate, endDate, category, image, email, phone FROM adverts";
-	$stmt = $pdo->prepare( $query );
+	include 'includes/sql_requests.php';
+
+	$stmt = $pdo->prepare( $sqlr["adverts"] );
 	$stmt->execute();
 
 	$num = $stmt->rowCount();
 
 
 	$content = array();
-
-	// if($_POST[''])
-
 	if($num>0){ //check if more than 0 record found
 		
 		//retrieve our table contents
