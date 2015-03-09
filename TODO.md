@@ -38,3 +38,4 @@
      - JavaScript
      - PHP        | Niemand Done
 
+ - localization 
