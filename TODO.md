@@ -17,8 +17,10 @@
  - JSON REST | I.P. (Niemand)
     - adverts.php | I.P. (Niemand)
         + ~~MySQL~~
+        + Categories | I.P.
+        + ~~Response Codes~~
         + Timestamp sort 
-        + caching
+        + Caching
     - post        | I.P. (Niemand)
 
  - Image

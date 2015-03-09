@@ -1,13 +1,12 @@
 SALO - The notice board
 ====
 
-## Lant
+## Vagrant
 ### Includes
-
  * Ubuntu Server 14.04.1
  * PHP 5.5.9
  * MySQL
-  * PHPMyAdmin
+    + PHPMyAdmin
  * Apache 2
 
 ### Reqiurements
@@ -29,3 +28,34 @@ SALO - The notice board
  * If you need to tweak Ubuntu server `vagrant ssh`.
  * Have fun.
 
+## API
+
+### `adverts.php`
+ + Requests: 
+ + Response:
+    + MIME: `application/json`
+    + Structure:
+    ```
+    {
+        "status": 200/404,
+        "categories": {
+            1: "a",
+            2: "b"
+            ...
+        },
+        "adverts": [
+            {
+                "id": "",
+                "title":"",
+                "text":"",
+                "startDate":"",
+                "endDate":"",
+                "category":"",
+                "image":"",
+                "email":"",
+                "phone":""
+            },
+            ...
+        ]
+    }
+    ```
