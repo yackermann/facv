@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
    if(is_uploaded_file($_FILES["filename"]["tmp_name"]))
    {
 	if($_FILES['filename']['type'] == "image/gif" 
@@ -19,4 +20,12 @@
    {
       echo("Error");
    }
+=======
+	if(is_uploaded_file($_FILES["filename"]["tmp_name"])){
+		$_FILES["filename"]["name"] = "1";
+	  	move_uploaded_file($_FILES["filename"]["tmp_name"], ".\\uploads".$_FILES["filename"]["name"]);
+	}else{
+		echo("Error");
+	}
+>>>>>>> Stashed changes
 ?>
