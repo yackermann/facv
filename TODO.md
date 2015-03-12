@@ -21,6 +21,9 @@
         + ~~Response Codes~~
         + Timestamp sort 
         + Caching
+        + Caching
+            * Pre-generate caching
+            * Cache revision number - not re-request same content.
     - post        | I.P. (Niemand)
 
  - Image
@@ -28,6 +31,9 @@
         - hashing name(MD5)
         - autoconvert($image => jpg)
 
+ - I.P. Bind
+     + Create table for ip addresses
+     + Cleanup cron
 ## General
 
  - **.htaccess**
