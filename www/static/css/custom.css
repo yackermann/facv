@@ -1,0 +1,11 @@
+.panel > h1, .panel > p{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.modal.image{
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	padding-top: 100%;
+}

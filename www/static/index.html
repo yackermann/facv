@@ -7,14 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>Foundation Template | Contact</title>
 		<link rel="stylesheet" href="css/foundation.css"/>
+		<link rel="stylesheet" href="css/custom.css"/>
 		<script src="js/vendor/modernizr.js"></script>
-		<style type="text/css">
-			.panel > h1, .panel > p{
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-		</style>
 	</head>
 	<body>
 		<nav class="top-bar" data-topbar>
@@ -66,9 +60,6 @@
 			</div>
 		</footer>
 
-
-		<div class="reveal-modal" id="itemModal"></div>
-
 		<script type="text/javascript" src="js/vendor/jquery.js"></script>
 		<script type="text/javascript" src="js/foundation.min.js"></script>
 		<script type="text/javascript" src="js/salo.jquery.js"></script>
@@ -77,11 +68,9 @@
 				$('.tabs-content').salo({
 					links: $('.tabs-nav')
 				});
-				$(document).foundation({
-					reveal : {
-						animation_speed: 500
-					}
-				});
+
+				$(document).foundation();
+
 				var doc = document.documentElement;
 				doc.setAttribute('data-useragent', navigator.userAgent);
 			})
