@@ -17,10 +17,9 @@
  - JSON REST | I.P. (Niemand)
     - adverts.php | I.P. (Niemand)
         + ~~MySQL~~
-        + Categories | I.P.
+        + ~~Categories~~
         + ~~Response Codes~~
-        + Timestamp sort 
-        + Caching
+        + ~~Timestamp sort~~
         + Caching
             * Pre-generate caching
             * Cache revision number - not re-request same content.
