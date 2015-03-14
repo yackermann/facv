@@ -7,9 +7,6 @@
 			'users' => 'SELECT id, login, password, role, name, dob, email, number FROM users',
 		);
 
-		public function test(){
-			echo var_dump();
-		}
 		private function makeSQL($request=''){
 			if($request !== ''){
 
