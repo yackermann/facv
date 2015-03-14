@@ -1,54 +1,91 @@
-	<!-- <li class="divider"></li>
-					<li class="has-dropdown">
-						<a href="#">Main Item 1</a>
-						<ul class="dropdown">
-							<li><label>Section Name</label></li>
-							<li class="has-dropdown">
-								<a href="#" class="">Has Dropdown, Level 1</a>
-								<ul class="dropdown">
-									<li><a href="#">Dropdown Options</a></li>
-									<li><a href="#">Dropdown Options</a></li>
-									<li><a href="#">Level 2</a></li>
-									<li><a href="#">Subdropdown Option</a></li>
-									<li><a href="#">Subdropdown Option</a></li>
-									<li><a href="#">Subdropdown Option</a></li>
-								</ul>
-							</li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li class="divider"></li>
-							<li><label>Section Name</label></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li class="divider"></li>
-							<li><a href="#">See all &rarr;</a></li>
-						</ul>
-					</li>
-					<li class="divider"></li>
-					<li><a href="#">Main Item 2</a></li>
-					<li class="divider"></li>
-					<li class="has-dropdown">
-						<a href="#">Main Item 3</a>
-						<ul class="dropdown">
-							<li><a href="#">Dropdown Option</a></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li><a href="#">Dropdown Option</a></li>
-							<li class="divider"></li>
-							<li><a href="#">See all &rarr;</a></li>
-						</ul>
-					</li> -->	
 
-					<div class="content active" id="panel1">
-						<p>This is the first panel of the basic tab example. You can place all sorts of content here including a grid.</p>
-						<div class="large-12 columns items"></div>
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Foundation Template | Contact</title>
+		<link rel="stylesheet" href="css/foundation.css"/>
+		<script src="js/vendor/modernizr.js"></script>
+		<style type="text/css">
+			.panel > h1, .panel > p{
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="top-bar" data-topbar>
+			<ul class="title-area">
+				<li class="name"><h1><a href="#">Top Bar Title</a></h1></li>
+				<li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<ul class="right">
+				
+				</ul>
+			</section>
+		</nav>
+
+		<div class="large-12 columns">
+			<div class="large-2 columns">
+				<ul class="side-nav categories tabs-nav" data-tab>
+					<li class="tab-title active" role="presentational" ><a href="#main" role="tab" tabindex="0" aria-selected="true" controls="main">Back to main</a></li>
+				</ul>
+			</div>
+			<div class="large-10 columns">
+				<!-- TABS SECTION -->
+				<div class="tabs-content">
+					<section role="tabpanel" aria-hidden="false" class="content active" id="main">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula bibendum arcu vitae fringilla. Vivamus condimentum, elit nec malesuada consequat, ex arcu elementum nibh, a feugiat leo arcu sed lorem. Nam diam mauris, dictum ut eros id, dignissim egestas ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris elit nunc, pharetra non urna a, mattis porta eros. Integer consequat turpis vel placerat porttitor. Donec nec sapien lectus. Curabitur posuere odio diam, a blandit felis molestie sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam a mi auctor, mollis elit vel, egestas nisi.</p>
+					</section>
+				</div>
+			</div>
+
+		</div>
+
+
+		<footer class="row">
+			<div class="large-12 columns">
+				<hr/>
+				<div class="row">
+					<div class="large-6 columns">
+						<p>&copy; Copyright no one at all. Go to town.</p>
 					</div>
-					<div class="content" id="panel2">
-						<p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+					<div class="large-6 columns">
+						<ul class="inline-list right">
+							<!-- <li><a href="#">Link 1</a></li>
+							<li><a href="#">Link 2</a></li>
+							<li><a href="#">Link 3</a></li>
+							<li><a href="#">Link 4</a></li> -->
+						</ul>
 					</div>
-					<div class="content" id="panel3">
-						<p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
-					</div>
-					<div class="content" id="panel4">
-						<p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
-					</div>
+				</div>
+			</div>
+		</footer>
+
+
+		<div class="reveal-modal" id="itemModal"></div>
+
+		<script type="text/javascript" src="js/vendor/jquery.js"></script>
+		<script type="text/javascript" src="js/foundation.min.js"></script>
+		<script type="text/javascript" src="js/salo.jquery.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('.tabs-content').salo({
+					links: $('.tabs-nav')
+				});
+				$(document).foundation({
+					reveal : {
+						animation_speed: 500
+					}
+				});
+				var doc = document.documentElement;
+				doc.setAttribute('data-useragent', navigator.userAgent);
+			})
+			
+		</script>
+	</body>
+</html>
