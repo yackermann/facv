@@ -1,6 +1,8 @@
 <?php
 	include 'includes/connect.php';
+
 	class SQLRequests{
+		//List of SQL requests
 		private $sqlr = array(
 			'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts',
 			'categories' => 'SELECT id, loc_ru, loc_ua, loc_en FROM categories',
@@ -46,5 +48,4 @@
 			return $advert;
 		}
 	}
-
 ?>

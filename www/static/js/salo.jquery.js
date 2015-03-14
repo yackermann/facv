@@ -2,10 +2,14 @@
 	$.fn.salo = function(orguments){
 		var options = $.extend({}, orguments);
 		var todo = this;
+
+		//Cache. OMG LOL
 		var cache = {
 			adverts: {},
 			categories: {}
 		};
+
+		//Models for Adverts, Categories and Modal window.
 		var models = {
 			advert: function(data){
 				return '<div class="large-3 columns item" data-id="' + data.id + '">' +
@@ -42,21 +46,28 @@
 
 			// console.log(todo);
 			todo.each(function(){
+
+				//Iteration through the categories
 				for(category of data.categories){
 
 					//Save category to cache
 					cache.categories[category.id] = category;
 
 					var catappend = models.category(category.id, category.loc_ru);
+
 					//Create tab
 					$(this).append(catappend.tab);
+
 					//Create tab-link
 					$(options.links).append(catappend.link);
 				};
 
+				//Iteration through the categories
 				for(advert of data.adverts){
+
 					//Save advert to cache
 					cache.adverts[advert.id] = advert;
+
 					//Add item
 					$('section#cat-' + advert.categoryId + ' > .items', this).append(models.advert(advert));
 				};
@@ -66,10 +77,19 @@
 		}).fail(function(e){
 			console.log("ERROR: " + e);
 		});
+
+		//Event handler for modal windows
 		$(document).on('click', '.modal-reveal', function(){
+			//Get items id
 			var id = $(this).data('id');
+
+			//Retrieves advert from cache
 			var info = cache.adverts[id];
+
+			//Generates new modal
 			var modal = models.modal(info)
+
+			//Reveals modal
 			$(modal).foundation('reveal', 'open');
 		})
 	}
