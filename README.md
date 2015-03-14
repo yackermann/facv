@@ -35,25 +35,29 @@ SALO - The notice board
  + Response:
     + MIME: `application/json`
     + Structure:
-    ```
+    ```js
     {
         "status": 200/404,
-        "categories": {
-            1: "a",
-            2: "b"
+        "categories": [
+            {
+                "id": Integer,
+                "loc_ru": String,
+                "loc_ua": String,
+                "loc_en": String
+            }
             ...
-        },
+        ],
         "adverts": [
             {
-                "id": "",
-                "title":"",
-                "text":"",
-                "startDate":"",
-                "endDate":"",
-                "category":"",
-                "image":"",
-                "email":"",
-                "phone":""
+                "id": Integer,
+                "title": String,
+                "text": String,
+                "startDate": Date,
+                "endDate": Date,
+                "category": Integer,
+                "image": String,
+                "email": String,
+                "phone": String
             },
             ...
         ]
