@@ -4,7 +4,7 @@
 	class SQLRequests{
 		//List of SQL requests
 		private $sqlr = array(
-			'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts',
+			'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
 			'categories' => 'SELECT id, loc_ru, loc_ua, loc_en FROM categories',
 			'users' => 'SELECT id, login, password, role, name, dob, email, number FROM users'
 		);

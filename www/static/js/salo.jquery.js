@@ -32,7 +32,7 @@
 								'<div class="modal image" style="background-image: url(\'' + 'http://placehold.it/1000x1000&amp;text=Thumbnail' + '\');"> </div>' +
 							'</div>' +
 							'<div class="large-8 columns">' +
-								'<small>Published on ' + data.startDate + '</small><br/>' +
+								'<small>Published on ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
 								'<h1>' + data.title + '</h1><br/>' +
 								'<p>' + data.text + '</p>' +
 							'</div>' +
@@ -43,7 +43,6 @@
 
 		$.getJSON(options.source).done(function(data){
 				
-
 			// console.log(todo);
 			todo.each(function(){
 
@@ -65,11 +64,19 @@
 				//Iteration through the categories
 				for(advert of data.adverts){
 
-					//Save advert to cache
-					cache.adverts[advert.id] = advert;
 
-					//Add item
-					$('section#cat-' + advert.categoryId + ' > .items', this).append(models.advert(advert));
+					// //Checks if advert is not outdated. 
+					console.log(Date.parse(advert.endDate) > Date.now());
+
+					if(Date.parse(advert.endDate) > Date()){
+
+						//Save advert to cache
+						cache.adverts[advert.id] = advert;
+
+						//Add item
+						$('section#cat-' + advert.categoryId + ' > .items', this).append(models.advert(advert));
+					}
+					
 				};
 
 			})
@@ -80,6 +87,7 @@
 
 		//Event handler for modal windows
 		$(document).on('click', '.modal-reveal', function(){
+
 			//Get items id
 			var id = $(this).data('id');
 
