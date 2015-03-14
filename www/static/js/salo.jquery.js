@@ -37,7 +37,7 @@
 			}
 		};
 
-		$.getJSON('http://192.168.55.55/adverts.php').done(function(data){
+		$.getJSON(options.source).done(function(data){
 				
 
 			// console.log(todo);
