@@ -43,15 +43,23 @@
 			// console.log(todo);
 			todo.each(function(){
 				for(category of data.categories){
+
+					//Save category to cache
 					cache.categories[category.id] = category;
+
 					var catappend = models.category(category.id, category.loc_ru);
+					//Create tab
 					$(this).append(catappend.tab);
+					//Create tab-link
 					$(options.links).append(catappend.link);
-				}
+				};
+
 				for(advert of data.adverts){
+					//Save advert to cache
 					cache.adverts[advert.id] = advert;
-					$('section#cat-' + advert.id + ' > .items', this).append(models.advert(advert));
-				}
+					//Add item
+					$('section#cat-' + advert.categoryId + ' > .items', this).append(models.advert(advert));
+				};
 
 			})
 

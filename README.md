@@ -54,7 +54,7 @@ SALO - The notice board
                 "text": String,
                 "startDate": Date,
                 "endDate": Date,
-                "category": Integer,
+                "categoryId": Integer,
                 "image": String,
                 "email": String,
                 "phone": String
