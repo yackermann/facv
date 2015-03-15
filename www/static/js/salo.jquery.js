@@ -9,14 +9,6 @@
 				categories: {}
 			},
 
-			render = {},
-
-			messages = {
-				empty: 'The field is empty.',
-				category: 'Category not exists',
-
-			},
-
 			validate = {
 				email: function( value ) {
 					return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test( value );
@@ -83,10 +75,6 @@
 								'<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
 							'</div>';
 				}
-				// },
-				// newAdvert: function(){
-
-				// }
 			};
 
 		$.getJSON( options.source ).done(function( data ){
@@ -187,10 +175,31 @@
 			}).promise().done(function(){
 				if(ok){
 					console.log(post);
+					$('#newAdvert').foundation('reveal', 'close');
 				}
 			});
 		});
 		/*----------HANDLERS ENDS----------*/
+
+		$('.endDatePicker').fdatepicker({
+			onRender: function (date) {
+				return date.valueOf() <= Date.now() ? 'disabled' : '';
+			}
+		});
+
+		$(document).foundation({
+			reveal: {
+				close_on_background_click: false,
+			}
+		});
+
+		$(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
+			var modal = $(this);
+			$( 'input, select, textarea', modal ).each(function(){
+				$(this).val('');
+			});
+		});
+		
 
 	}
 })(jQuery)
