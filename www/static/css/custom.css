@@ -3,9 +3,21 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
 .modal.image{
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
 	padding-top: 100%;
+}
+
+.tr{
+	text-align: right;
+}
+
+.alert-div{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 25%;
 }

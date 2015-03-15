@@ -1,6 +1,10 @@
 (function($){
 	$.fn.salo = function( orguments ){
-		var options = $.extend({}, orguments),
+		var o = $.extend({
+				datepicker: '.endDatePicker',
+				modal: '#newAdvert'
+			}, orguments),
+
 			todo = this,
 
 			//Cache. OMG LOL
@@ -39,8 +43,7 @@
 				},
 
 				category:  function( value ) {
-					// return cache.categories[ value ] !== undefined;
-					return true;
+					return cache.categories[ value ] !== undefined;
 				}
 			},
 
@@ -77,42 +80,51 @@
 				}
 			};
 
-		$.getJSON( options.source ).done(function( data ){
+
+			render = {
+				categories: function( parent, data ){
+						//Iteration through the categories
+					for( category of data ){
+
+						//Save category to cache
+						cache.categories[category.id] = category;
+
+						var catappend = models.category( category.id, category.loc_ru );
+
+						//Create tab
+						$(parent).append( catappend.tab );
+
+						//Create tab-link
+						$( o.links ).append( catappend.link );
+
+						//Add categories to options in modal form
+						$( 'select', o.modal).append('<option value="' + category.id + '">' + category.loc_ru + '</option>');
+					};
+				},
+				adverts: function( parent, data ){
+					//Iteration through the categories
+					for( advert of data ){
+
+
+						// //Checks if advert is not outdated. 
+						if( Date.parse(advert.endDate) > Date.now() ){
+
+							//Save advert to cache
+							cache.adverts[advert.id] = advert;
+
+							//Add item
+							$( 'section#cat-' + advert.categoryId + ' > .items', parent ).append( models.advert(advert) );
+						}
+						
+					};
+				}
+			},
+		$.getJSON( o.source ).done(function( data ){
 				
 			// console.log(todo);
 			todo.each(function(){
-
-				//Iteration through the categories
-				for( category of data.categories ){
-
-					//Save category to cache
-					cache.categories[category.id] = category;
-
-					var catappend = models.category( category.id, category.loc_ru );
-
-					//Create tab
-					$(this).append( catappend.tab );
-
-					//Create tab-link
-					$( options.links ).append( catappend.link );
-				};
-
-				//Iteration through the categories
-				for( advert of data.adverts ){
-
-
-					// //Checks if advert is not outdated. 
-					if( Date.parse(advert.endDate) > Date.now() ){
-
-						//Save advert to cache
-						cache.adverts[advert.id] = advert;
-
-						//Add item
-						$( 'section#cat-' + advert.categoryId + ' > .items', this ).append( models.advert(advert) );
-					}
-					
-				};
-
+				render.categories(this, data.categories);
+				render.adverts(this, data.adverts);
 			})
 
 		}).fail(function( e ){
@@ -175,13 +187,13 @@
 			}).promise().done(function(){
 				if(ok){
 					console.log(post);
-					$('#newAdvert').foundation('reveal', 'close');
+					$( o.modal ).foundation('reveal', 'close');
 				}
 			});
 		});
 		/*----------HANDLERS ENDS----------*/
 
-		$('.endDatePicker').fdatepicker({
+		$( o.datepicker ).fdatepicker({
 			onRender: function (date) {
 				return date.valueOf() <= Date.now() ? 'disabled' : '';
 			}
@@ -189,14 +201,16 @@
 
 		$(document).foundation({
 			reveal: {
-				close_on_background_click: false,
+				close_on_background_click: false
 			}
 		});
 
 		$(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
 			var modal = $(this);
+			$( 'small.error', modal ).remove();
 			$( 'input, select, textarea', modal ).each(function(){
 				$(this).val('');
+				$(this).removeClass('error');
 			});
 		});
 		

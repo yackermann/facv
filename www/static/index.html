@@ -10,11 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="css/custom.css"/>
 		<link rel="stylesheet" type="text/css" href="css/foundation-datepicker.css">
 		<script src="js/vendor/modernizr.js"></script>
-		<style type="text/css tabindex="0"">
-			.tr{
-				text-align: right;
-			}
-		</style>
 	</head>
 	<body>
 		<nav class="top-bar" data-topbar>
@@ -47,8 +42,7 @@
 			</div>
 		</div>
 
-
-		<div id="newAdvert" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+		<div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 			<fieldset>
 				<legend>New advert</legend>
 				<div class="large-5 columns">
@@ -82,10 +76,6 @@
 					<div class="large-9 columns">
 						<select data-type="category" name="Category" data-sid="categoryId">
 							<option></option>
-							<option value="husker">Husker</option>
-							<option value="starbuck">Starbuck</option>
-							<option value="hotdog">Hot Dog</option>
-							<option value="apollo">Apollo</option>
 						</select>
 					</div>
 
@@ -106,6 +96,13 @@
 				</div>
 				<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 			</fieldset>
+		</div>
+
+		<div class="alert-div">
+			<!-- <div data-alert class="alert-box alert">
+				ALERT!
+				<a href="#" class="close">&times;</a>
+			</div> -->
 		</div>
 
 		<footer class="row">
@@ -135,7 +132,7 @@
 		<script>
 			$(document).ready(function(){
 				$('.tabs-content').salo({
-					links: $('.tabs-nav'),
+					links: '.tabs-nav',
 					source: 'http://192.168.55.55/adverts.php'
 				});
 
