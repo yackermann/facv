@@ -2,7 +2,8 @@
 	$.fn.salo = function( orguments ){
 		var o = $.extend({
 				datepicker: '.endDatePicker',
-				modal: '#newAdvert'
+				modal: '#newAdvert',
+				alert: '.alert-div'
 			}, orguments),
 
 			todo = this,
@@ -12,6 +13,17 @@
 				adverts: {},
 				categories: {}
 			},
+			
+			m = {
+				alert: function(msg){
+					$( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
+					$(document).foundation('alert', 'reflow');
+				},
+				success: function(msg){
+					$( o.alert ).append('<div data-alert class="alert-box success">' + msg + '<a href="#" class="close">&times;</a></div>');
+					$(document).foundation('alert', 'reflow');
+				}
+			}
 
 			validate = {
 				email: function( value ) {
@@ -186,8 +198,12 @@
 				
 			}).promise().done(function(){
 				if(ok){
-					console.log(post);
 					$( o.modal ).foundation('reveal', 'close');
+					$.post( o.source, post, function( data ){
+						m.success( 'Success ' + data );
+					}).fail(function(){
+						m.alert('Failed to send request. Please try later again');
+					})
 				}
 			});
 		});
