@@ -3,14 +3,16 @@
 ## Frontend
 
 - Layout | I.P. (Niemand)
-    + categories tabs
-    + new item form(anonymous)
+    + ~~categories tabs~~
+    + ~~new item form(anonymous)~~
+    + ~~alerts~~
 
 - App    | I.P. (Niemand)
-    + app layout
-    + json structure
-    + models
-    + post
+    + ~~app layout~~
+    + ~~json structure~~
+    + ~~models~~
+    + ~~post~~
+    + ~~validation~~
 
 ## Backend
 
