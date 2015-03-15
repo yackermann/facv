@@ -30,22 +30,22 @@
 						}
 						return $temp;
 				}else{
+					// Return empty array
 					return array();
 				}
 
 			}else{
+				//Return empty array
 				return array();
 			}
 		}
 			
 		public function getCategories(){
-			$categories = $this -> makeSQL('categories');
-			return $categories;
+			return $this -> makeSQL('categories');
 		}
 
 		public function getAdverts(){
-			$advert = $this -> makeSQL('adverts');
-			return $advert;
+			return $this -> makeSQL('adverts');
 		}
 	}
 ?>
