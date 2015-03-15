@@ -1,7 +1,5 @@
 <?php
-
-	
-	//UNCOMMENT FOR DEBUG
+	// UNCOMMENT FOR DEBUG
 	// error_reporting(E_ALL); 
 	// ini_set( 'display_errors','1');
 
@@ -11,17 +9,24 @@
 	//Add SQL methods
 	include 'includes/sql_requests.php';
 
-	//Initialize new SQLRequests object
-	$SQLReq = new SQLRequests();
+	if (!$_POST) {
 
-	//Getting info
-	$content = array(
-		'status' 	 =>  '',
-		'categories' =>  $SQLReq -> getCategories(),
-		'adverts' 	 =>  $SQLReq -> getAdverts()
-	);
+		//Initialize new SQLRequests object
+		$SQLReq = new getSQLRequests();
 
-	//Returning JSON
-	echo json_encode($content);
-	
+		//Getting info
+		$content = array(
+			'status' 	 =>  '',
+			'categories' =>  $SQLReq -> getCategories(),
+			'adverts' 	 =>  $SQLReq -> getAdverts()
+		);
+
+		//Returning JSON
+		echo json_encode($content);
+	}else{
+		
+		//Initialize new SQLRequests object
+		$SQLReq = new setSQLRequests();
+		echo json_encode($SQLReq -> newAdvert());
+	}
 ?>

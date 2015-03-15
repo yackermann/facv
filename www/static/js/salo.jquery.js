@@ -3,7 +3,8 @@
 		var o = $.extend({
 				datepicker: '.endDatePicker',
 				modal: '#newAdvert',
-				alert: '.alert-div'
+				alert: '.alert-div',
+				debug: false
 			}, orguments),
 
 			todo = this,
@@ -200,9 +201,13 @@
 				if(ok){
 					$( o.modal ).foundation('reveal', 'close');
 					$.post( o.source, post, function( data ){
-						m.success( 'Success ' + data );
-					}).fail(function(){
-						m.alert('Failed to send request. Please try later again');
+						var msg = o.debug ? '<br>' + data : ''
+
+						m.success( 'Successfully added item' + msg );
+					}).fail(function( error ){
+						var err = o.debug ? '<br>' + error.responseText : ''
+
+						m.alert('Failed to send request. Please try later again.' + err);
 					})
 				}
 			});
@@ -212,7 +217,8 @@
 		$( o.datepicker ).fdatepicker({
 			onRender: function (date) {
 				return date.valueOf() <= Date.now() ? 'disabled' : '';
-			}
+			},
+			format: 'yyyy-mm-dd'
 		});
 
 		$(document).foundation({
