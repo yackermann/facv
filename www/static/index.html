@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Foundation Template | Contact</title>
+		<title>Salo</title>
 		<link rel="stylesheet" type="text/css" href="css/foundation.css"/>
 		<link rel="stylesheet" type="text/css" href="css/custom.css"/>
 		<link rel="stylesheet" type="text/css" href="css/foundation-datepicker.css">
@@ -19,12 +19,14 @@
 	<body>
 		<nav class="top-bar" data-topbar>
 			<ul class="title-area">
-				<li class="name"><h1><a href="#">Top Bar Title</a></h1></li>
-				<li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+				<li class="name"><h1><a href="#">SALO</a></h1></li>
 			</ul>
 			<section class="top-bar-section">
 				<ul class="right">
-				
+					<li class="divider"></li>
+					<li><a href="#" data-reveal-id="newAdvert">New Advert</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Login</a></li>
 				</ul>
 			</section>
 		</nav>
@@ -45,9 +47,9 @@
 			</div>
 		</div>
 
-		<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-		<fieldset>
-			<legend>New advert</legend>
+		<div id="newAdvert" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+			<fieldset>
+				<legend>New advert</legend>
 				<div class="large-5 columns">
 					<div class="modal image" style="background-image: url('http://placehold.it/1000x1000&amp;text=Upload image');"> </div>
 				</div>
@@ -105,11 +107,6 @@
 			</fieldset>
 		</div>
 
-	<!-- 		<h2 id="modalTitle">Awesome. I have it.</h2>
-			<p class="lead">Your couch.  It is mine.</p>
-			<p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p> -->
-		</div>
-
 		<footer class="row">
 			<div class="large-12 columns">
 				<hr/>
@@ -146,8 +143,6 @@
 						return date.valueOf() <= Date.now() ? 'disabled' : '';
 					}
 				});
-				
-				$('#myModal').foundation('reveal', 'open');
 
 				$(document).foundation();
 
