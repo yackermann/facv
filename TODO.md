@@ -9,10 +9,20 @@
 
 - App    | I.P. (Niemand)
     + ~~app layout~~
-    + ~~json structure~~
+    + ~~JSON API~~
     + ~~models~~
-    + ~~post~~
-    + ~~validation~~
+    + New advert submit
+        * ~~Form~~
+        * ~~Fields~~
+        * ~~Client-side validation~~
+        * Image upload
+        * ~~POST sender~~
+        * ~~Alerts~~
+
+- Localization
+    + Language detection
+    + Language set
+    + Tranlation arrays (JSON)
 
 ## Backend
 
@@ -25,7 +35,11 @@
         + Caching
             * Pre-generate caching
             * Cache revision number - not re-request same content.
+    
     - post        | I.P. (Niemand)
+        + ~~POST Handler~~
+        + ~~SQL `add` class~~
+        + Server side validation
 
  - Image
     - uploading | I.P. (Fulton)
@@ -35,6 +49,7 @@
  - I.P. Bind
      + Create table for ip addresses
      + Cleanup cron
+
 ## General
 
  - **.htaccess**
@@ -44,5 +59,3 @@
  - hating | I.P. (Fulton, Niemand)
      - JavaScript
      - PHP        | Niemand Done
-
- - localization 
