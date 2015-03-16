@@ -1,7 +1,12 @@
 <?php
+	namespace SQLRequests;
+
 	include 'includes/connect.php';
 
-	class getSQLRequests{
+	//Gets PDO class from Global namespace
+	use \PDO as PDO;
+
+	class Get{
 		//List of SQL requests
 		private $sqlr = array(
 			'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :id LIMIT 0,1',
@@ -48,27 +53,28 @@
 			}
 		}
 			
-		public function getCategories(){
+		public function categories(){
 			return $this -> makeSQL('categories');
 		}
 
-		public function getAdverts(){
+		public function adverts(){
 			return $this -> makeSQL('adverts');
 		}
 
-		public function getAdvert($id){
+		public function advert($id){
 			return $this -> makeSQL('advert', $id);
 		}
+
 	}
 
-	class setSQLRequests{
+	class Add{
 		//List of SQL requests
 
 		private $sqlr = array(
 			'add' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate'
 		);
 
-		public function newAdvert(){
+		public function advert(){
 			try{
 		   		//Connect $pdo variable from connect.php
 				global $pdo;
@@ -89,14 +95,12 @@
 
 				$stmt -> execute();
 				
-				$itemID = $pdo -> lastInsertId();
-				$SQLReq = new getSQLRequests();
-
-				return array('status' => 200, 'advert' => $SQLReq -> getAdvert($itemID)[0]);
+				return array('status' => 200, 'id' => $pdo -> lastInsertId());
 
 			}catch(PDOException $exception){ //to handle error
-				return array('status' => 500);
+				return array('status' => 418, 'errorMessage' => 'I\'m a teapot!');
 			}
 		}
 	}
+
 ?>

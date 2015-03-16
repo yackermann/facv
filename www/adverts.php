@@ -1,7 +1,7 @@
 <?php
-	// UNCOMMENT FOR DEBUG
-	error_reporting(E_ALL); 
-	ini_set( 'display_errors','1');
+	// // // UNCOMMENT FOR DEBUG
+	// error_reporting(E_ALL); 
+	// ini_set( 'display_errors','1');
 
 	//Set header to JSON
 	header('Content-Type: application/json');
@@ -9,24 +9,32 @@
 	//Add SQL methods
 	include 'includes/sql_requests.php';
 
+	$SQLGet = new SQLRequests\Get();
+	$SQLAdd = new SQLRequests\Add();
+
 	if (!$_POST) {
 
 		//Initialize new SQLRequests object
-		$SQLReq = new getSQLRequests();
 
 		//Getting info
 		$content = array(
 			'status' 	 =>  '',
-			'categories' =>  $SQLReq -> getCategories(),
-			'adverts' 	 =>  $SQLReq -> getAdverts()
+			'categories' =>  $SQLGet -> categories(),
+			'adverts' 	 =>  $SQLGet -> adverts()
 		);
 
 		//Returning JSON
 		echo json_encode($content);
+		
 	}else{
 		
-		//Initialize new SQLRequests object
-		$SQLReq = new setSQLRequests();
-		echo json_encode($SQLReq -> newAdvert());
+		//Set gets response
+		$responce = $SQLAdd -> advert();
+
+		if($responce['status'] !== 418){
+			$responce['advert'] = $SQLGet -> advert($responce['id']);
+		}
+
+		echo json_encode($responce);
 	}
 ?>

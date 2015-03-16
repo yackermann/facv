@@ -221,8 +221,9 @@
 						var err = '';
 						if(o.debug){
 							err = '<br>' + error.responseText;
-							console.log('POST ERROR: ', err);
 						}
+						
+						console.log('POST ERROR: ', error);
 						m.alert('Failed to send request. Please try later again.' + err);
 					})
 				}
