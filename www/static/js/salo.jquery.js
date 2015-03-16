@@ -126,10 +126,15 @@
 							cache.adverts[advert.id] = advert;
 
 							//Add item
-							$( 'section#cat-' + advert.categoryId + ' > .items', parent ).append( models.advert(advert) );
+							this.addAdvert(parent, advert);
+							
 						}
 						
 					};
+				},
+				addAdvert: function( parent, data ){
+					$( 'section#cat-' + data.categoryId + ' > .items', parent ).append( models.advert(data) );
+					$(document).foundation('reveal', 'reflow');
 				}
 			},
 		$.getJSON( o.source ).done(function( data ){
@@ -201,12 +206,23 @@
 				if(ok){
 					$( o.modal ).foundation('reveal', 'close');
 					$.post( o.source, post, function( data ){
-						var msg = o.debug ? '<br>' + data : ''
+						var msg = '';
 
+						cache.adverts[data.advert.id] = data.advert;
+						render.addAdvert($(todo)[0], data.advert);
+
+						if(o.debug){
+							msg = '<br>' + data;
+							console.log('GET SUCCESS: ', err);
+						}
 						m.success( 'Successfully added item' + msg );
-					}).fail(function( error ){
-						var err = o.debug ? '<br>' + error.responseText : ''
 
+					}).fail(function( error ){
+						var err = '';
+						if(o.debug){
+							err = '<br>' + error.responseText;
+							console.log('POST ERROR: ', err);
+						}
 						m.alert('Failed to send request. Please try later again.' + err);
 					})
 				}
@@ -236,6 +252,5 @@
 			});
 		});
 		
-
 	}
 })(jQuery)
