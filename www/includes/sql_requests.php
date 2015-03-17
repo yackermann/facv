@@ -66,9 +66,8 @@
 		}
 
 	}
-
+	
 	class Add{
-		//List of SQL requests
 
 		private $sqlr = array(
 			'add' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate'

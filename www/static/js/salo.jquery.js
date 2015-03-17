@@ -208,14 +208,18 @@
 					$.post( o.source, post, function( data ){
 						var msg = '';
 
-						cache.adverts[data.advert.id] = data.advert;
-						render.addAdvert($(todo)[0], data.advert);
-
 						if(o.debug){
 							msg = '<br>' + data;
-							console.log('GET SUCCESS: ', data);
+							console.log('POST SUCCESS: ', data);
 						}
-						m.success( 'Successfully added item' + msg );
+
+						if(data.status === 200){
+							cache.adverts[data.advert.id] = data.advert;
+							render.addAdvert($(todo)[0], data.advert);
+							m.success( 'Successfully added item' + msg );
+						}else{
+							m.alert( data.errorMessage );
+						}
 
 					}).fail(function( error ){
 						var err = '';
@@ -229,6 +233,7 @@
 				}
 			});
 		});
+
 		/*----------HANDLERS ENDS----------*/
 
 		$( o.datepicker ).fdatepicker({

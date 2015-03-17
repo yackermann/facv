@@ -9,12 +9,11 @@
 	//Add SQL methods
 	include 'includes/sql_requests.php';
 
+	/* Initializing new SQLGet and SQLSet objects. */
 	$SQLGet = new SQLRequests\Get();
 	$SQLAdd = new SQLRequests\Add();
 
 	if (!$_POST) {
-
-		//Initialize new SQLRequests object
 
 		//Getting info
 		$content = array(
