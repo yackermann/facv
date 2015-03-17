@@ -18,6 +18,7 @@
         * Image upload
         * ~~POST sender~~
         * ~~Alerts~~
+    + Front end search 
 
 - Localization
     + Language detection
