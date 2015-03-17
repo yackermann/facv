@@ -25,14 +25,14 @@
 
 		//Returning JSON
 		echo json_encode($content);
-		
+
 	}else{
 		
 		//Set gets response
 		$responce = $SQLAdd -> advert();
 
 		if($responce['status'] !== 418){
-			$responce['advert'] = $SQLGet -> advert($responce['id']);
+			$responce['advert'] = $SQLGet -> advert($responce['id'])[0];
 		}
 
 		echo json_encode($responce);

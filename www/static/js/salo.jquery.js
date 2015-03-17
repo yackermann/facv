@@ -213,7 +213,7 @@
 
 						if(o.debug){
 							msg = '<br>' + data;
-							console.log('GET SUCCESS: ', err);
+							console.log('GET SUCCESS: ', data);
 						}
 						m.success( 'Successfully added item' + msg );
 
@@ -222,7 +222,7 @@
 						if(o.debug){
 							err = '<br>' + error.responseText;
 						}
-						
+
 						console.log('POST ERROR: ', error);
 						m.alert('Failed to send request. Please try later again.' + err);
 					})
