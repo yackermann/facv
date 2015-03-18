@@ -16,10 +16,10 @@
 		public function date( $value ){
 			return preg_match($this -> regexps['date'], $value);
 		}
-		public function dateISO( $value ){
+		public function endDate( $value ){
 			return preg_match($this -> regexps['dateISO'], $value);
 		}
-		public function number( $value ){
+		public function phone( $value ){
 			return preg_match($this -> regexps['number'], $value);
 		}
 		public function title( $value ){

@@ -13,7 +13,8 @@
 	$SQLGet = new SQLRequests\Get();
 	$SQLAdd = new SQLRequests\Add();
 
-	if (!$_POST) {
+	if (!$_POST) { //IF GET
+		
 
 		//Getting info
 		$content = array(
@@ -25,7 +26,8 @@
 		//Returning JSON
 		echo json_encode($content);
 
-	}else{
+	}else{ 
+	//IF POST
 		
 		//Set gets response
 		$responce = $SQLAdd -> advert();
