@@ -9,68 +9,81 @@
 	class Get{
 		//List of SQL requests
 		private $sqlr = array(
-			'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :id LIMIT 0,1',
+			'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :sp LIMIT 0,1',
 			'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
 			'categories' => 'SELECT id, loc_ru, loc_ua, loc_en FROM categories',
-			'users' => 'SELECT id, login, password, role, name, dob, email, number FROM users'
+			'users' => 'SELECT id, login, password, role, name, dob, email, number FROM users',
+			'ip' => 'SELECT COUNT(*) FROM ips WHERE ip = :sp AND timestamp > (NOW() - INTERVAL 1 DAY)'
 		);
 
-		private function makeSQL($request='', $getID=''){
-			if($request !== ''){
+		private function execSQL($request='', $secondParam=''){
+			try{
 
-				//Connect $pdo variable from connect.php
-				global $pdo;
+				if($request !== ''){
 
-				//Making PDO SQL request
+					//Connect $pdo variable from connect.php
+					global $pdo;
 
-				$stmt = $pdo -> prepare($this -> sqlr[$request]);
+					//Making PDO SQL request
 
-				if($getID !== ''){ 
-					$getID = intval($getID);
-					$stmt -> bindParam( ':id', $getID, PDO::PARAM_STR ); 
-				}
+					$stmt = $pdo -> prepare($this -> sqlr[$request]);
 
-				$stmt -> execute();
+					if($secondParam !== ''){ 
+						// $getID = intval($getID);
+						$stmt -> bindParam( ':sp', $secondParam, PDO::PARAM_STR ); 
+					}
 
-				//Temp array
-				$temp = array();
+					$stmt -> execute();
 
-				if($stmt -> rowCount() > 0){ //check if more than 0 record found
-						
-						//Iterate through the SQL Answer
-						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-							array_push($temp, $row);
-						}
-						return $temp;
+					//Temp array
+					$temp = array();
+
+					if($stmt -> rowCount() > 0){ //check if more than 0 record found
+							
+							//Iterate through the SQL Answer
+							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+								array_push($temp, $row);
+							}
+							return $temp;
+					}else{
+						// Return empty array
+						return array();
+					}
+
 				}else{
-					// Return empty array
+					//Return empty array
 					return array();
 				}
 
-			}else{
-				//Return empty array
-				return array();
+			}catch(PDOException $exception){ //to handle error
+				return array('status' => 418, 'errorMessage' => 'I\'m a teapot!');
 			}
+
 		}
 			
 		public function categories(){
-			return $this -> makeSQL('categories');
+			return $this -> execSQL('categories');
 		}
 
 		public function adverts(){
-			return $this -> makeSQL('adverts');
+			return $this -> execSQL('adverts');
 		}
 
 		public function advert($id){
-			return $this -> makeSQL('advert', $id);
+			return $this -> execSQL('advert', $id);
 		}
+
+		public function ip($ip){
+			return $this -> execSQL('ip', $ip)[0]["COUNT(*)"];
+		}	
 
 	}
 	
 	class Add{
 
 		private $sqlr = array(
-			'add' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate'
+			'advert' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate',
+			'ip' => 'INSERT INTO ips SET ip = :ip'
 		);
 
 		public function advert(){
@@ -79,7 +92,7 @@
 				global $pdo;
 
 				//Making PDO SQL request
-				$stmt = $pdo -> prepare($this -> sqlr['add']);
+				$stmt = $pdo -> prepare($this -> sqlr['advert']);
 				$now = date('Y-m-d');
 
 				/*---------- PDO BIND PARAMS ----------*/
@@ -99,6 +112,18 @@
 			}catch(PDOException $exception){ //to handle error
 				return array('status' => 418, 'errorMessage' => 'I\'m a teapot!');
 			}
+		}
+
+		public function ip($ip){
+		   		//Connect $pdo variable from connect.php
+				global $pdo;
+
+				//Making PDO SQL request
+				$stmt = $pdo -> prepare($this -> sqlr['ip']);
+
+				$stmt -> bindParam( ':ip', $ip, PDO::PARAM_STR );
+
+				$stmt -> execute();
 		}
 	}
 

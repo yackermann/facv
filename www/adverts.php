@@ -1,11 +1,11 @@
 <?php
-	// // // UNCOMMENT FOR DEBUG
-	// error_reporting(E_ALL); 
-	// ini_set( 'display_errors','1');
+	// UNCOMMENT FOR DEBUG
+	error_reporting(E_ALL); 
+	ini_set( 'display_errors','1');
 
 	//Set header to JSON
 	header('Content-Type: application/json');
-
+	$maxRequestPerDay = 5;
 	//Add SQL methods
 	include 'includes/sql_requests.php';
 
@@ -28,14 +28,26 @@
 
 	}else{ 
 	//IF POST
-		
+		include 'includes/ip.php';
+
+		$IP = new IP();
+
 		//Set gets response
-		$responce = $SQLAdd -> advert();
+		if($SQLGet -> ip($IP -> get()) < $maxRequestPerDay){
 
-		if($responce['status'] !== 418){
-			$responce['advert'] = $SQLGet -> advert($responce['id'])[0];
+			$SQLAdd -> ip($IP -> get());
+
+			$responce = $SQLAdd -> advert();
+
+
+			if($responce['status'] !== 418){
+				$responce['advert'] = $SQLGet -> advert($responce['id'])[0];
+			}
+
+			echo json_encode($responce);
+			
+		}else{
+			echo json_encode(array('status' => 418, 'errorMessage' => 'You have reached maximum of your advert per day'));
 		}
-
-		echo json_encode($responce);
 	}
 ?>
