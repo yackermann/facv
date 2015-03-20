@@ -47,9 +47,10 @@
         - hashing name(MD5)
         - autoconvert($image => jpg)
 
- - I.P. Bind
-     + Create table for ip addresses
-     + Cleanup cron
+ - ~~I.P. Bind~~
+     + ~~Create table for ip addresses~~
+     + ~~Create IP class~~
+     + ~~Add restriction~~
 
 ## General
 
