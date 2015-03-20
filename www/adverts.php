@@ -32,27 +32,19 @@
 		include 'includes/validate.php';
 
 		$IP = new IP();
-		$Validate = new Validate();
 
-		$valid = True;
-		$valErrorMessage = "";
+		$ValidatePOST = new Validate\POST();
+		$ValidateRESP = $ValidatePOST -> advert();
 
-		foreach ($_POST as $key => $value) {
-			if($key != 'categoryId'){
-				if(!$Validate -> $key($value)){
-
-					$valid = False;
-					$valErrorMessage = $valErrorMessage.ucfirst($key)." can not be validated.\n";
-				}
-			}
-		}
-		if($valid){
+		if( $ValidateRESP['valid'] ){
 
 			//Set gets response
 			if($SQLGet -> ip($IP -> get()) < $maxRequestPerDay){
-			
+				
+				//Add ip to DB
 				$SQLAdd -> ip($IP -> get());
 
+				//Add advert to DB
 				$responce = $SQLAdd -> advert();
 
 
@@ -60,14 +52,16 @@
 					$responce['advert'] = $SQLGet -> advert($responce['id'])[0];
 				}
 
-				echo json_encode($responce);
+				echo json_encode( $responce );
 				
 			}else{
-				echo json_encode(array('status' => 418, 'errorMessage' => 'You have reached maximum of your advert per day'));
+
+				echo json_encode( array( 'status' => 418, 'errorMessage' => 'You have reached maximum of your advert per day' ) );
+
 			}
 
 		}else{
-			echo json_encode(array('status' => 418, 'errorMessage' => $valErrorMessage));
+			echo json_encode( array( 'status' => 418, 'errorMessage' => $ValidateRESP['messages'] ) );
 		}
 	}
 ?>

@@ -40,7 +40,7 @@
     - post        | I.P. (Niemand)
         + ~~POST Handler~~
         + ~~SQL `add` class~~
-        + Server side validation
+        + ~~Server side validation~~
 
  - Image
     - uploading | I.P. (Fulton)
@@ -48,9 +48,15 @@
         - autoconvert($image => jpg)
 
  - ~~I.P. Bind~~
-     + ~~Create table for ip addresses~~
-     + ~~Create IP class~~
+     + ~~Create table for ip addresses~~m     + ~~Create IP class~~
      + ~~Add restriction~~
+
+ - Error Codes
+    + Validation error
+    + SQL Error
+    + Too many adverts error
+
+ - Central config
 
 ## General
 
