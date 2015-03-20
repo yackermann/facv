@@ -23,7 +23,7 @@
 - Localization
     + Language detection
     + Language set
-    + Tranlation arrays (JSON)
+    + Translation arrays (JSON)
 
 ## Backend
 
