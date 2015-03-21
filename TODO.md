@@ -55,6 +55,7 @@
     + Validation error
     + SQL Error
     + Too many adverts error
+    + MySQL connect error
 
  - Central config
 
