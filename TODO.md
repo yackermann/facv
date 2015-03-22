@@ -51,6 +51,17 @@
      + ~~Create table for ip addresses~~m     + ~~Create IP class~~
      + ~~Add restriction~~
 
+ - Authentication
+     + Login
+         * Client
+             - HASH(Salt, Password) POST
+         * Server 
+             - Login form
+             - ~~Password table~~
+             - ~~SQL~~
+             - ~~HASH~~
+     + Registration
+
  - Error Codes
     + Validation error
     + SQL Error
