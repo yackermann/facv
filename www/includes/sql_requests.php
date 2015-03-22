@@ -12,7 +12,7 @@
 			'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :sp LIMIT 0,1',
 			'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
 			'categories' => 'SELECT id, loc_ru, loc_ua, loc_en FROM categories',
-			'users' => 'SELECT id, login, password, role, name, dob, email, number FROM users',
+			'login' => 'SELECT username, hash FROM passwords WHERE username = :sp',
 			'ip' => 'SELECT COUNT(*) FROM ips WHERE ip = :sp AND timestamp > (NOW() - INTERVAL 1 DAY)'
 		);
 
@@ -75,7 +75,11 @@
 
 		public function ip($ip){
 			return $this -> execSQL('ip', $ip)[0]["COUNT(*)"];
-		}	
+		}
+
+		public function login($username){
+			return $this -> execSQL('login', $username)[0]
+		}
 
 	}
 	
@@ -120,10 +124,12 @@
 
 				//Making PDO SQL request
 				$stmt = $pdo -> prepare($this -> sqlr['ip']);
-
 				$stmt -> bindParam( ':ip', $ip, PDO::PARAM_STR );
-
 				$stmt -> execute();
+		}
+
+		public function user($user){
+
 		}
 	}
 
