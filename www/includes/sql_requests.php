@@ -78,7 +78,7 @@
         }
 
         public function login($username){
-            return $this -> execSQL('login', $username)[0]
+            return $this -> execSQL('login', $username)[0];
         }
 
     }
