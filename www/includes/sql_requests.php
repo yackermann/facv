@@ -11,7 +11,7 @@
         private $sqlr = array(
             'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :sp LIMIT 0,1',
             'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
-            'categories' => 'SELECT id, loc_ru, loc_ua, loc_en FROM categories',
+            'categories' => 'SELECT id, loc_ru FROM categories',
             'login' => 'SELECT username, hash FROM passwords WHERE username = :sp',
             'ip' => 'SELECT COUNT(*) FROM ips WHERE ip = :sp AND timestamp > (NOW() - INTERVAL 1 DAY)'
         );
@@ -36,7 +36,7 @@
                     $stmt -> execute();
 
                     //Temp array
-                    $temp = array('status' => 200);
+                    $temp = array();
 
                     if($stmt -> rowCount() > 0){ //check if more than 0 record found
                             
