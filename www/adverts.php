@@ -48,7 +48,7 @@
                 $responce = $SQLAdd -> advert();
 
 
-                if($responce['status'] !== 418){
+                if($responce['status'] === 200){
                     $responce['advert'] = $SQLGet -> advert($responce['id'])[0];
                 }
 
@@ -56,12 +56,12 @@
                 
             }else{
 
-                echo json_encode( array( 'status' => 418, 'errorMessage' => 'You have reached maximum of your advert per day' ) );
+                echo json_encode( array( 'status' => 429, 'errorMessage' => 'You have reached maximum of your advert per day' ) );
 
             }
 
         }else{
-            echo json_encode( array( 'status' => 418, 'errorMessage' => $ValidateRESP['messages'] ) );
+            echo json_encode( array( 'status' => 412, 'errorMessage' => $ValidateRESP['messages'] ) );
         }
     }
 ?>

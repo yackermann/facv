@@ -63,3 +63,20 @@ SALO - The notice board
         ]
     }
     ```
+
+### Server API responses 
+
+#### General responses
+ + 200 - OK
+
+#### Adverts responses
+ + 412 - Validation failed
+ + 429 - Client reached maximum adverts per day
+ 
+#### Authentication
+ + 511 - Username and/or password is wrong
+
+#### Server errors
+##### SQL
+ + 500 - SQL error
+ + 503 - Error while connecting to SQL server

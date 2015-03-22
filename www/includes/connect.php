@@ -11,7 +11,7 @@
 
     }catch (PDOException $e){
 
-        echo 'Unable to connect to the database server.';
+        echo json_encode( array( 'status' => 503, 'errorMessage' => $e ) );
         exit;   
 
     }

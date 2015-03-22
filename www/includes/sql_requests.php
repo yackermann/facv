@@ -36,7 +36,7 @@
                     $stmt -> execute();
 
                     //Temp array
-                    $temp = array();
+                    $temp = array('status' => 200);
 
                     if($stmt -> rowCount() > 0){ //check if more than 0 record found
                             
@@ -47,16 +47,16 @@
                             return $temp;
                     }else{
                         // Return empty array
-                        return array();
+                        return array('status' => 404, 'errorMessage' => 'No adverts were found.');
                     }
 
                 }else{
                     //Return empty array
-                    return array();
+                    return array('status' => 418, 'errorMessage' => 'No SQL were provided.');
                 }
 
             }catch(PDOException $exception){ //to handle error
-                return array('status' => 418, 'errorMessage' => 'I\'m a teapot!');
+                return array('status' => 500, 'errorMessage' => $exception);
             }
 
         }
@@ -114,7 +114,7 @@
                 return array('status' => 200, 'id' => $pdo -> lastInsertId());
 
             }catch(PDOException $exception){ //to handle error
-                return array('status' => 418, 'errorMessage' => 'I\'m a teapot!');
+                return array('status' => 500, 'errorMessage' => $exception);
             }
         }
 
