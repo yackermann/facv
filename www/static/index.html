@@ -2,147 +2,158 @@
 <!doctype html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
 <html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
-	<head>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<title>Salo</title>
-		<link rel="stylesheet" type="text/css" href="css/foundation.css"/>
-		<link rel="stylesheet" type="text/css" href="css/custom.css"/>
-		<link rel="stylesheet" type="text/css" href="css/foundation-datepicker.css">
-		<script src="js/vendor/modernizr.js"></script>
-	</head>
-	<body>
-		<nav class="top-bar" data-topbar>
-			<ul class="title-area">
-				<li class="name"><h1><a href="#">SALO</a></h1></li>
-			</ul>
-			<section class="top-bar-section">
-				<ul class="right">
-					<li class="divider"></li>
-					<li><a href="#" data-reveal-id="newAdvert">New Advert</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Login</a></li>
-				</ul>
-			</section>
-		</nav>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Salo</title>
+        <link rel="stylesheet" type="text/css" href="css/foundation.css"/>
+        <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+        <link rel="stylesheet" type="text/css" href="css/foundation-datepicker.css">
+        <script src="js/vendor/modernizr.js"></script>
+    </head>
+    <body>
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name"><h1><a href="#">SALO</a></h1></li>
+            </ul>
+            <section class="top-bar-section">
+                <ul class="right">
+                    <!-- <li class="has-dropdown">
+                        <a href="#"><input type="text" placeholder="Search..."></a>
+                        <ul class="dropdown">
+                            <li><a href="#">Dropdown Option</a></li>
+                            <li><a href="#">Dropdown Option</a></li>
+                            <li><a href="#">Dropdown Option</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">See all &rarr;</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="divider"></li>
+                    <li><a href="#" data-reveal-id="newAdvert">New Advert</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </section>
+        </nav>
 
-		<div class="large-12 columns">
-			<div class="large-2 columns">
-				<ul class="side-nav categories tabs-nav" data-tab>
-					<li class="tab-title active" role="presentational" ><a href="#main" role="tab" tabindex="0" aria-selected="true" controls="main">Back to main</a></li>
-					<!--Adverts goes here-->
-				</ul>
-			</div>
-			<div class="large-10 columns">
-				<!-- TABS SECTION -->
-				<div class="tabs-content">
-					<section role="tabpanel" aria-hidden="false" class="content active" id="main">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula bibendum arcu vitae fringilla. Vivamus condimentum, elit nec malesuada consequat, ex arcu elementum nibh, a feugiat leo arcu sed lorem. Nam diam mauris, dictum ut eros id, dignissim egestas ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris elit nunc, pharetra non urna a, mattis porta eros. Integer consequat turpis vel placerat porttitor. Donec nec sapien lectus. Curabitur posuere odio diam, a blandit felis molestie sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam a mi auctor, mollis elit vel, egestas nisi.</p>
-					</section>
-				</div>
-			</div>
-		</div>
+        <div class="large-12 columns">
+            <div class="large-2 columns">
+                <ul class="side-nav categories tabs-nav" data-tab>
+                    <li class="tab-title active" role="presentational" ><a href="#main" role="tab" tabindex="0" aria-selected="true" controls="main">Back to main</a></li>
+                    <!--Adverts goes here-->
+                </ul>
+            </div>
+            <div class="large-10 columns">
+                <!-- TABS SECTION -->
+                <div class="tabs-content">
+                    <section role="tabpanel" aria-hidden="false" class="content active" id="main">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula bibendum arcu vitae fringilla. Vivamus condimentum, elit nec malesuada consequat, ex arcu elementum nibh, a feugiat leo arcu sed lorem. Nam diam mauris, dictum ut eros id, dignissim egestas ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris elit nunc, pharetra non urna a, mattis porta eros. Integer consequat turpis vel placerat porttitor. Donec nec sapien lectus. Curabitur posuere odio diam, a blandit felis molestie sed. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam a mi auctor, mollis elit vel, egestas nisi.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
 
 
-		<!--Modal NEW ADVERT form-->
-		<div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-			<fieldset>
-				<legend>New advert</legend>
-				<div class="large-5 columns">
-					<div class="modal image" style="background-image: url('http://placehold.it/1000x1000&amp;text=Upload image');"> </div>
-				</div>
-				<div class="large-7 columns">
+        <!--Modal NEW ADVERT form-->
+        <div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <fieldset>
+                <legend>New advert</legend>
+                <div class="large-5 columns">
+                    <div class="modal image" style="background-image: url('http://placehold.it/1000x1000&amp;text=Upload image');"> </div>
+                </div>
+                <div class="large-7 columns">
 
-					<div class="large-3 columns tr">Title</div>
-					<div class="large-9 columns">
-						<input type="text" tabindex="0" autocomplete="off" name="Title"  data-type="title" data-sid="title" placeholder="Title">
-					</div>
+                    <div class="large-3 columns tr">Title</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Title"  data-type="title" data-sid="title" placeholder="Title">
+                    </div>
 
-					<div class="large-3 columns tr">Description</div>
-					<div class="large-9 columns">
-						<textarea tabindex="0" data-type="text" name="Description" data-sid="text" placeholder="Description"></textarea>
-					</div>
+                    <div class="large-3 columns tr">Description</div>
+                    <div class="large-9 columns">
+                        <textarea tabindex="0" data-type="text" name="Description" data-sid="text" placeholder="Description"></textarea>
+                    </div>
 
-					<div class="large-3 columns tr">End Date</div>
-					<div class="large-9 columns">
-						<div class="row collapse postfix-radius">
-							<div class="small-9 columns">
-								<input type="text" tabindex="0" class="endDatePicker" autocomplete="off" name="End Date" data-type="date" data-sid="endDate" placeholder="Offer end date" readonly>
-							</div>
-							<div class="small-3 columns">
-								<span class="postfix">Date</span>
-							</div>
-						</div>
-					</div>
+                    <div class="large-3 columns tr">End Date</div>
+                    <div class="large-9 columns">
+                        <div class="row collapse postfix-radius">
+                            <div class="small-9 columns">
+                                <input type="text" tabindex="0" class="endDatePicker" autocomplete="off" name="End Date" data-type="date" data-sid="endDate" placeholder="Offer end date" readonly>
+                            </div>
+                            <div class="small-3 columns">
+                                <span class="postfix">Date</span>
+                            </div>
+                        </div>
+                    </div>
 
-					<div class="large-3 columns tr">Category</div>
-					<div class="large-9 columns">
-						<select data-type="category" name="Category" data-sid="categoryId">
-							<option></option>
-						</select>
-					</div>
+                    <div class="large-3 columns tr">Category</div>
+                    <div class="large-9 columns">
+                        <select data-type="category" name="Category" data-sid="categoryId">
+                            <option></option>
+                        </select>
+                    </div>
 
-					<div class="large-3 columns tr">Email</div>
-					<div class="large-9 columns">
-						<input type="text" tabindex="0" autocomplete="off" name="Email" data-type="email" data-sid="email" placeholder="Email address">
-					</div>
+                    <div class="large-3 columns tr">Email</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Email" data-type="email" data-sid="email" placeholder="Email address">
+                    </div>
 
-					<div class="large-3 columns tr">Phone</div>
-					<div class="large-9 columns">
-						<input type="text" tabindex="0" autocomplete="off" name="Number" data-type="number" data-sid="phone" placeholder="Phone number">
-					</div>
+                    <div class="large-3 columns tr">Phone</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Number" data-type="number" data-sid="phone" placeholder="Phone number">
+                    </div>
 
-					<div class="large-3 columns tr"></div>
-					<div class="large-9 columns">
-						<a href="#" tabindex="0" class="sbmt button expand success">Submit</a>
-					</div>
-				</div>
-				<a class="close-reveal-modal" aria-label="Close">&#215;</a>
-			</fieldset>
-		</div>
+                    <div class="large-3 columns tr"></div>
+                    <div class="large-9 columns">
+                        <a href="#" tabindex="0" class="sbmt button expand success">Submit</a>
+                    </div>
+                </div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </fieldset>
+        </div>
 
-		<div class="alert-div">
-			<!-- <div data-alert class="alert-box alert">
-				ALERT!
-				<a href="#" class="close">&times;</a>
-			</div> -->
-		</div>
+        <div class="alert-div">
+            <!-- <div data-alert class="alert-box alert">
+                ALERT!
+                <a href="#" class="close">&times;</a>
+            </div> -->
+        </div>
 
-		<footer class="row">
-			<div class="large-12 columns">
-				<hr/>
-				<div class="row">
-					<div class="large-6 columns">
-						<p>&copy; Copyright no one at all. Go to town.</p>
-					</div>
-					<div class="large-6 columns">
-						<ul class="inline-list right">
-							<!-- <li><a href="#">Link 1</a></li>
-							<li><a href="#">Link 2</a></li>
-							<li><a href="#">Link 3</a></li>
-							<li><a href="#">Link 4</a></li> -->
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
+        <footer class="row">
+            <div class="large-12 columns">
+                <hr/>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p>&copy; Copyright no one at all. Go to town.</p>
+                    </div>
+                    <div class="large-6 columns">
+                        <ul class="inline-list right">
+                            <!-- <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                            <li><a href="#">Link 4</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-		<script type="text/javascript" src="js/vendor/jquery.js"></script>
-		<script type="text/javascript" src="js/foundation.min.js"></script>
-		<script type="text/javascript" src="js/foundation-datepicker.js"></script>
-		<script type="text/javascript" src="js/salo.jquery.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.js"></script>
+        <script type="text/javascript" src="js/foundation.min.js"></script>
+        <script type="text/javascript" src="js/foundation-datepicker.js"></script>
+        <script type="text/javascript" src="js/defiant.min.js"></script>
+        <script type="text/javascript" src="js/salo.jquery.js"></script>
 
-		<script>
-			$(document).ready(function(){
-				$('.tabs-content').salo({
-					links: '.tabs-nav',
-					source: 'http://192.168.55.55/adverts.php'
-				});
+        <script>
+            $(document).ready(function(){
+                $('.tabs-content').salo({
+                    links: '.tabs-nav',
+                    source: 'http://192.168.55.55/adverts.php'
+                });
 
-				var doc = document.documentElement;
-				doc.setAttribute('data-useragent', navigator.userAgent);
-			})
-			
-		</script>
-	</body>
+                var doc = document.documentElement;
+                doc.setAttribute('data-useragent', navigator.userAgent);
+            })
+            
+        </script>
+    </body>
 </html>
