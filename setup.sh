@@ -37,50 +37,5 @@ sudo chown -R vagrant:vagrant /var/www/html
 #Creates index.php if it is not exists
 if [ ! -f /var/www/html/index.php ] ; then echo "<?php phpinfo(); ?>" > /var/www/html/index.php; fi
 
-#UGLY Apache fixed config
-sudo mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf_old
-sudo cat <<ACF > /etc/apache2/apache2.conf
-#I know its ugly... Please... Hate me...
-Mutex file:${APACHE_LOCK_DIR} default
-PidFile ${APACHE_PID_FILE}
-Timeout 300
-KeepAlive On
-MaxKeepAliveRequests 100
-KeepAliveTimeout 5
-User ${APACHE_RUN_USER}
-Group ${APACHE_RUN_GROUP}
-HostnameLookups Off
-ErrorLog ${APACHE_LOG_DIR}/error.log
-LogLevel warn
-IncludeOptional mods-enabled/*.load
-IncludeOptional mods-enabled/*.conf
-Include ports.conf
-<Directory />
-	Options FollowSymLinks
-	AllowOverride None
-	Require all denied
-</Directory>
-<Directory /usr/share>
-	AllowOverride None
-	Require all granted
-</Directory>
-<Directory /var/www/>
-	Options Indexes FollowSymLinks
-	AllowOverride All
-	Require all granted
-</Directory>
-AccessFileName .htaccess
-<FilesMatch "^\.ht">
-	Require all denied
-</FilesMatch>
-LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" vhost_combined
-LogFormat "%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
-LogFormat "%h %l %u %t \"%r\" %>s %O" common
-LogFormat "%{Referer}i -> %U" referer
-LogFormat "%{User-agent}i" agent
-IncludeOptional conf-enabled/*.conf
-IncludeOptional sites-enabled/*.conf
-ACF
-
 #Apache restart
 sudo /etc/init.d/apache2 restart
