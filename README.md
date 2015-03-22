@@ -74,7 +74,7 @@ SALO - The notice board
  + 429 - Client reached maximum adverts per day
  
 #### Authentication
- + 511 - Username and/or password is wrong
+ + 511 - Username and/or password are wrong
 
 #### Server errors
 ##### SQL
