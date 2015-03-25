@@ -133,4 +133,31 @@
         }
     }
 
+    class Delete{
+         private $sqlr = array(
+            'advert' => 'DELETE FROM adverts WHERE id  = :id',
+            'user' => ''
+        );
+
+        public function user($id){
+            try{
+                global $pdo;
+
+                $stmt = $pdo -> prepare($this -> sqlr['advert']);
+                $stmt -> bindParam( ':id', $id, PDO::PARAM_STR );
+                $stmt -> execute();
+                
+                return array('status' => 200, 'id' => 'Successfully deleted '.$id);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
+        }
+
+        public function advert($id){
+
+        }
+
+    }
+
 ?>
