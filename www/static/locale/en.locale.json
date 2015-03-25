@@ -1,0 +1,30 @@
+{
+    "locale": "English",
+    "categories": [
+        {   "id": 0, "name": "Home electronics"         },
+        {   "id": 1, "name": "Gardening"                },
+        {   "id": 2, "name": "Automotive"               },
+        {   "id": 3, "name": "Kids toys"                },
+        {   "id": 4, "name": "Pets"                     },
+        {   "id": 5, "name": "Computers"                },
+        {   "id": 6, "name": "Fashion"                  },
+        {   "id": 7, "name": "Help needed"              },
+        {   "id": 8, "name": "Work"                     },
+        {   "id": 9, "name": "Services"                 },
+        {   "id": 10, "name": "Hobby"                   }
+    ],
+    "frontend": {
+        "newAdvert": "New Advert",
+        "login": "Login",
+        "register": "Register"
+    },
+    "errors": {
+        "200" : "OK",
+        "412" : "Form can not be validated",
+        "429" : "You have reached maximum of your advert per day.",
+        "511" : "Username and/or password are wrong.",
+        "500" : "SQL Error.",
+        "503" : "Error while connecting to SQL server."
+    }
+
+}
