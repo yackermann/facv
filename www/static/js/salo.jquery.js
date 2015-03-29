@@ -4,6 +4,10 @@
                 datepicker: '.endDatePicker',
                 modal: '#newAdvert',
                 alert: '.alert-div',
+                locale: {
+                    selected: localStorage.getItem('lang') || 'en',
+                    tclass: 'translateMe'
+                },
                 debug: false
             }, orguments),
 
@@ -15,6 +19,8 @@
                 categories: {}
             },
             
+            locale = {},
+
             m = {
                 alert: function(msg){
                     $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
@@ -102,7 +108,7 @@
                         //Save category to cache
                         cache.categories[category.id] = category;
 
-                        var catappend = models.category( category.id, category.loc_ru );
+                        var catappend = models.category( category.id, category.name );
 
                         //Create tab
                         $(parent).append( catappend.tab );
@@ -111,7 +117,7 @@
                         $( o.links ).append( catappend.link );
 
                         //Add categories to options in modal form
-                        $( 'select', o.modal).append('<option value="' + category.id + '">' + category.loc_ru + '</option>');
+                        $( 'select', o.modal).append('<option value="' + category.id + '">' + category.name + '</option>');
                     };
                 },
                 adverts: function( parent, data ){
@@ -138,16 +144,27 @@
                 }
             };
 
-        $.getJSON( o.source ).done(function( data ){
-                
+        $.getJSON( 'locale/' + o.locale.selected + '.locale.json' ).done(function( l ){
+            locale = l;
+            cache.categories = locale.categories;
             todo.each(function(){
-                render.categories(this, data.categories);
-                render.adverts(this, data.adverts);
+                render.categories(this, locale.categories);
             })
+
+            $.getJSON( o.source ).done(function( data ){
+                
+                todo.each(function(){
+                    render.adverts(this, data.adverts);
+                })
+
+            }).fail(function( e ){
+                console.log('ERROR: ' + e);
+            });
 
         }).fail(function( e ){
             console.log('ERROR: ' + e);
         });
+       
 
 
         /*----------HANDLERS----------*/
@@ -191,7 +208,7 @@
                     if(!validate[field.type](field.value)){
                         ok = false;
                         $(this).addClass( 'error' );
-                        $(this).after( '<small class="error">The ' + item.name + ' can not be validated</small>' );
+                        $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
                     }else{
                         post[field.sid] = field.value;
                     }
@@ -199,7 +216,7 @@
                 }else{
                     ok = false;
                     $(this).addClass( 'error' );
-                    $(this).after( '<small class="error">The field is empty</small>' );
+                    $(this).after( '<small class="error">' + locale.errors.client.emptyField + '</small>' );
                 }
                 
             }).promise().done(function(){
@@ -217,7 +234,7 @@
                         if(data.status === 200){
                             cache.adverts[data.advert.id] = data.advert;
                             render.addAdvert($(todo)[0], data.advert);
-                            m.success( 'Successfully added item' + msg );
+                            m.success( locale.errors.client.successAdded + msg );
                         }else{
                             m.alert( data.errorMessage );
                         }
@@ -229,7 +246,7 @@
                         }
 
                         console.log( 'POST ERROR: ', error.responseText );
-                        m.alert( 'Failed to send request. Please try later again.' + err );
+                        m.alert( locale.errors.client.failedSend + err );
                     })
                 }
             });
@@ -244,8 +261,6 @@
                 ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
                      return 'disabled';
                 }
-                
-               
             },
             format: 'yyyy-mm-dd'
         });
