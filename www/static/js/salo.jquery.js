@@ -6,10 +6,17 @@
                 alert: '.alert-div',
                 locale: {
                     selected: localStorage.getItem('lang') || 'ru',
-                    class: 'translateMe'
+                    class: 'translateMe',
+                    avalable: {
+                        'ru': 'Русский',
+                        'ua': 'Українська',
+                        'en': 'English'
+                    }
                 },
                 debug: false
             }, orguments),
+
+        
 
             todo = this,
 
@@ -147,6 +154,12 @@
                         var tid = $(this).data('tid');
                         $(this).text(locale.frontend[tid]);
                     })
+                    $('.loading').remove()
+                },
+                languages: function(){
+                    for(key of Object.keys(o.locale.avalable)){
+                        $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.avalable[key] + '</a></li>')
+                    }
                 }
             };
 
@@ -162,6 +175,7 @@
                 todo.each(function(){
                     render.adverts(this, data.adverts);
                     render.locale();
+                    render.languages();
                 })
 
             }).fail(function( e ){
@@ -285,6 +299,16 @@
                 $(this).val('');
                 $(this).removeClass('error');
             });
+        });
+        
+         $(document).on('click', '.lang', function () {
+            var newLang = $(this).data('lang');
+            if(o.locale.avalable[newLang]){
+                o.locale.selected = newLang;
+                localStorage.setItem('lang', newLang);
+            }
+            location.reload();
+            
         });
         
     }
