@@ -19,12 +19,20 @@
         "register": "Register"
     },
     "errors": {
-        "200" : "OK",
-        "412" : "Form can not be validated",
-        "429" : "You have reached maximum of your advert per day.",
-        "511" : "Username and/or password are wrong.",
-        "500" : "SQL Error.",
-        "503" : "Error while connecting to SQL server."
+        "server":{
+            "200" : "OK",
+            "412" : "Form can not be validated",
+            "429" : "You have reached maximum of your advert per day.",
+            "511" : "Username and/or password are wrong.",
+            "500" : "SQL Error.",
+            "503" : "Error while connecting to SQL server."
+        },
+        "client":{
+            "emptyFild":        "Field blank.",
+            "failedValidate":   "The %field% can not be validated",
+            "successAdded":     "Successfully added item",
+            "failedSend":       "Failed to send request. Please try later again."
+        }
     }
 
 }
