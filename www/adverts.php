@@ -19,7 +19,6 @@
         //Getting info
         $content = array(
             'status'     =>  200,
-            'categories' =>  $SQLGet -> categories(),
             'adverts'    =>  $SQLGet -> adverts()
         );
 

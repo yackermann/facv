@@ -38,15 +38,6 @@ SALO - The notice board
     ```js
     {
         "status": 200/404,
-        "categories": [
-            {
-                "id": Integer,
-                "loc_ru": String,
-                "loc_ua": String,
-                "loc_en": String
-            }
-            ...
-        ],
         "adverts": [
             {
                 "id": Integer,
