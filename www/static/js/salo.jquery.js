@@ -180,20 +180,20 @@
             $( '.error', st ).removeClass('error');
 
             $( 'input, select, textarea', st ).each(function(){
-                var item = {
+                var field = {
                     value: $(this).val(),
                     type: $(this).data('type'),
                     name: $(this).attr('name'),
                     sid: $(this).data('sid')
                 }
 
-                if(item.value){
-                    if(!validate[item.type](item.value)){
+                if(field.value){
+                    if(!validate[field.type](field.value)){
                         ok = false;
                         $(this).addClass( 'error' );
                         $(this).after( '<small class="error">The ' + item.name + ' can not be validated</small>' );
                     }else{
-                        post[item.sid] = item.value;
+                        post[field.sid] = field.value;
                     }
 
                 }else{
