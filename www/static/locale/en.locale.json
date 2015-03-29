@@ -21,7 +21,7 @@
     "errors": {
         "server":{
             "200" : "OK",
-            "412" : "Form can not be validated",
+            "412" : "Form can not be validated.",
             "429" : "You have reached maximum of your advert per day.",
             "511" : "Username and/or password are wrong.",
             "500" : "SQL Error.",
@@ -34,5 +34,4 @@
             "failedSend":       "Failed to send request. Please try later again."
         }
     }
-
 }
