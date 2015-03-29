@@ -146,7 +146,7 @@
             })
 
         }).fail(function( e ){
-            console.log("ERROR: " + e);
+            console.log('ERROR: ' + e);
         });
 
 
@@ -228,8 +228,8 @@
                             err = '<br>' + error.responseText;
                         }
 
-                        console.log('POST ERROR: ', error.responseText);
-                        m.alert('Failed to send request. Please try later again.' + err);
+                        console.log( 'POST ERROR: ', error.responseText );
+                        m.alert( 'Failed to send request. Please try later again.' + err );
                     })
                 }
             });
@@ -239,7 +239,13 @@
 
         $( o.datepicker ).fdatepicker({
             onRender: function (date) {
-                return date.valueOf() <= Date.now() ? 'disabled' : '';
+                // console.log(date);
+                if( Date.parse(date) <= Date.now()
+                ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
+                     return 'disabled';
+                }
+                
+               
             },
             format: 'yyyy-mm-dd'
         });
