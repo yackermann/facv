@@ -16,7 +16,18 @@
     "frontend": {
         "newAdvert": "Новое объявление",
         "login": "Войти",
-        "register": "Зарегистрироваться"
+        "register": "Зарегистрироваться",
+        "backToMain":   "На главную",
+        "footer":       "Copyright no one at all. Go to town.",
+
+        "title":        "Название",
+        "description":  "Описание",
+        "endDate":      "Конец объявления",
+        "date":         "Дата",
+        "category":     "Категория",
+        "email":        "Имейл",
+        "phone":        "Номер телефона",
+        "submit":       "Добавить"
     },
     "errors": {
         "server":{
@@ -28,7 +39,7 @@
             "503" : "Ошибка подключения к SQL серверу."
         },
         "client":{
-            "emptyFild":        "Поле не заполненно.",
+            "emptyField":       "Поле не заполненно.",
             "failedValidate":   "Поле %field% не может быть ратифицировано.",
             "successAdded":     "Объявление успешно добавлено.",
             "failedSend":       "Ошибка при попытке добавить объявления."

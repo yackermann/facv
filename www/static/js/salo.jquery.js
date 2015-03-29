@@ -5,8 +5,8 @@
                 modal: '#newAdvert',
                 alert: '.alert-div',
                 locale: {
-                    selected: localStorage.getItem('lang') || 'en',
-                    tclass: 'translateMe'
+                    selected: localStorage.getItem('lang') || 'ru',
+                    class: 'translateMe'
                 },
                 debug: false
             }, orguments),
@@ -141,6 +141,12 @@
                 addAdvert: function( parent, data ){
                     $( 'section#cat-' + data.categoryId + ' > .items', parent ).append( models.advert(data) );
                     $(document).foundation('reveal', 'reflow');
+                },
+                locale: function(){
+                    $('.' + o.locale.class).each(function(){
+                        var tid = $(this).data('tid');
+                        $(this).text(locale.frontend[tid]);
+                    })
                 }
             };
 
@@ -155,6 +161,7 @@
                 
                 todo.each(function(){
                     render.adverts(this, data.adverts);
+                    render.locale();
                 })
 
             }).fail(function( e ){

@@ -14,9 +14,20 @@
         {   "id": 10, "name": "Hobby"                   }
     ],
     "frontend": {
-        "newAdvert": "New Advert",
-        "login": "Login",
-        "register": "Register"
+        "newAdvert":    "New Advert",
+        "login":        "Login",
+        "register":     "Register",
+        "backToMain":   "Back to main",
+        "footer":       "Copyright no one at all. Go to town.",
+
+        "title":        "Title",
+        "description":  "Description",
+        "endDate":      "End Date",
+        "date":         "Date",
+        "category":     "Category",
+        "email":        "Email",
+        "phone":        "Phone",
+        "submit":       "Submit"
     },
     "errors": {
         "server":{
@@ -28,7 +39,7 @@
             "503" : "Error while connecting to SQL server."
         },
         "client":{
-            "emptyFild":        "Field blank.",
+            "emptyField":       "Field blank.",
             "failedValidate":   "The %field% can not be validated",
             "successAdded":     "Successfully added item",
             "failedSend":       "Failed to send request. Please try later again."

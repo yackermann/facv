@@ -16,7 +16,18 @@
     "frontend": {
         "newAdvert": "Нове оголошення",
         "login": "Ввійти",
-        "register": "Реєстрація"
+        "register": "Реєстрація",
+        "backToMain":   "На главную",
+        "footer":       "Copyright no one at all. Go to town.",
+
+        "title":        "Название",
+        "description":  "Описание",
+        "endDate":      "Конец объявления",
+        "date":         "Дата",
+        "category":     "Категория",
+        "email":        "Имейл",
+        "phone":        "Номер телефона",
+        "submit":       "Добавить"
     },
     "errors": {
         "server":{
@@ -28,7 +39,7 @@
             "503" : "Помилка підключення до SQL сервера."
         },
         "client":{
-            "emptyFild":        "Поле не заповнене.",
+            "emptyField":       "Поле не заповнене.",
             "failedValidate":   "Поле %field% не може бути ратифіковане.",
             "successAdded":     "Оголошення успішно додано.",
             "failedSend":       "Помилка при спробі додати оголошення."
