@@ -18,12 +18,14 @@
         * Image upload
         * ~~POST sender~~
         * ~~Alerts~~
+        * Captcha
+    
     + Front end search 
 
-- Localization
-    + Language detection
-    + Language set
-    + Translation arrays (JSON)
+- ~~Localization | I.P. (Niemand)~~
+    + ~~Language detection~~
+    + ~~Language set~~
+    + ~~Translation arrays (JSON)~~
 
 ## Backend
 
@@ -33,9 +35,9 @@
         + ~~Categories~~
         + ~~Response Codes~~
         + ~~Timestamp sort~~
-        + Caching
-            * Pre-generate caching
-            * Cache revision number - not re-request same content.
+        + ~~Caching~~ CANCELED
+            * ~~Pre-generate caching~~
+            * ~~Cache revision number - not re-request same content.~~
     
     - post        | I.P. (Niemand)
         + ~~POST Handler~~
@@ -52,7 +54,7 @@
      + ~~Add restriction~~
 
  - Authentication
-     + Login
+     + Login | Challenge-Response
          * Client
              - HASH(Salt, Password) POST
          * Server 
@@ -60,13 +62,9 @@
              - ~~Password table~~
              - ~~SQL~~
              - ~~HASH~~
-     + Registration
+     + ~~Registration~~ | Canceled
 
- - Error Codes
-    + Validation error
-    + SQL Error
-    + Too many adverts error
-    + MySQL connect error
+ - ~~Error Codes~~
 
  - Central config
 
