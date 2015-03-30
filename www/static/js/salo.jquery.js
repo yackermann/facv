@@ -3,10 +3,11 @@
         var o = $.extend({
                 datepicker: '.endDatePicker',
                 modal: '#newAdvert',
+                login: '#loginModal',
                 alert: '.alert-div',
                 locale: {
                     selected: localStorage.getItem('lang') || 'ru',
-                    class: 'translateMe',
+                    class: '.translateMe',
                     avalable: {
                         'ru': 'Русский',
                         'ua': 'Українська',
@@ -27,7 +28,52 @@
             },
             
             locale = {},
+            handlers = {
+                postError: function( error ){
+                    var err = '';
+                    if(o.debug){
+                        err = '<br>' + error.responseText;
+                    }
 
+                    console.log( 'POST ERROR: ', error.responseText );
+                    m.alert( locale.errors.client.failedSend + err );
+                }
+            },
+            animate = {
+                  loading: function( target, text ){
+                    var original = $(target).html();
+                    var i = 0;
+                    var A;
+
+                    function startFun(){
+                        A = setInterval(function(){
+                            var display = text;
+                            for(n=0; n < i; n++){
+                                display += '.';
+                            }
+                            i = i < 3 ? i + 1 : 0;
+                            $(target).html(display);
+                        }, 300);
+                    }
+                        
+                    return {
+                        start: function(){
+                            startFun();
+                        },
+                        stop: function(){
+                            window.clearInterval(A);
+                        },
+                        update: function(text){
+                            window.clearInterval(A);
+                            $(target).html(text);
+                        },
+                        reset: function(){
+                            window.clearInterval(A);
+                            $(target).html(original);
+                        }
+                    }
+                }
+            },
             m = {
                 alert: function(msg){
                     $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
@@ -150,7 +196,7 @@
                     $(document).foundation('reveal', 'reflow');
                 },
                 locale: function(){
-                    $('.' + o.locale.class).each(function(){
+                    $(o.locale.class).each(function(){
                         var tid = $(this).data('tid');
                         $(this).text(locale.frontend[tid]);
                     })
@@ -243,7 +289,6 @@
             }).promise().done(function(){
                 if(ok){
                     $( o.modal ).foundation('reveal', 'close');
-                    console.log(post);
                     $.post( o.source, post, function( data ){
                         var msg = '';
 
@@ -260,19 +305,69 @@
                             m.alert( data.errorMessage );
                         }
 
-                    }).fail(function( error ){
-                        var err = '';
-                        if(o.debug){
-                            err = '<br>' + error.responseText;
-                        }
-
-                        console.log( 'POST ERROR: ', error.responseText );
-                        m.alert( locale.errors.client.failedSend + err );
-                    })
+                    }).fail(handlers.postError)
                 }
             });
         });
+        /*----- LOGIN Challenge-Response -----*/
+        $(document).on( 'click', '.login', function(){
 
+            var ok = true;
+            var post = {};
+            var st = $(this).parents().eq(1);
+            var Super = this;
+            
+
+            //Resets errors
+            $( 'small.error', st ).remove();
+            $( '.error', st ).removeClass('error');
+
+            $( 'input', st ).each(function(){
+                var field = {
+                    value: $(this).val(),
+                    name: $(this).attr('name')
+                }
+
+                if(!field.value){
+                    ok = false;
+                    $(this).addClass( 'error' );
+                    $(this).after( '<small class="error">' + locale.errors.client.emptyField + '</small>' );
+                }
+
+                post[field.name] = field.value;
+
+            }).promise().done(function(){
+                if(ok){
+                    var animation = animate.loading(Super, 'Loading');
+
+                    animation.start();
+
+                    $.post('http://192.168.55.55/login.php', {'username': post.username}, function( challenge ){
+
+                        var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+
+                        $.post('http://192.168.55.55/login.php', {'response': response}, function( status ){
+                            animation.stop();
+
+                            if(status.authorized === true){
+                                animation.update('Success');
+                            }else{
+                                animation.update('Failed');
+                            }
+
+                            setTimeout(function(){
+                                animation.reset();
+                                if(status.authorized){
+                                    $( o.login ).foundation('reveal', 'close');
+
+                                }
+                            }, 1500);
+
+                        }).fail(handlers.postError)
+                    }).fail(handlers.postError)
+                }
+            });
+        });
         /*----------HANDLERS ENDS----------*/
 
         $( o.datepicker ).fdatepicker({
