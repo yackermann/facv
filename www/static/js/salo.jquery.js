@@ -8,13 +8,14 @@
                 locale: {
                     selected: localStorage.getItem('lang') || 'ru',
                     class: '.translateMe',
-                    avalable: {
+                    available: {
                         'ru': 'Русский',
                         'ua': 'Українська',
                         'en': 'English'
                     }
                 },
-                debug: false
+                debug: false,
+                loginAddress: 'http://192.168.55.55/login.php'
             }, orguments),
 
         
@@ -203,8 +204,8 @@
                     $('.loading').remove()
                 },
                 languages: function(){
-                    for(key of Object.keys(o.locale.avalable)){
-                        $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.avalable[key] + '</a></li>')
+                    for(key of Object.keys(o.locale.available)){
+                        $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.available[key] + '</a></li>')
                     }
                 }
             };
@@ -342,11 +343,11 @@
 
                     animation.start();
 
-                    $.post('http://192.168.55.55/login.php', {'username': post.username}, function( challenge ){
+                    $.post(o.loginAddress, {'username': post.username}, function( challenge ){
 
                         var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
 
-                        $.post('http://192.168.55.55/login.php', {'response': response}, function( status ){
+                        $.post( o.loginAddress, {'response': response}, function( status ){
                             animation.stop();
 
                             if(status.authorized === true){
