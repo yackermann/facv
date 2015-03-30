@@ -46,7 +46,6 @@
         }
 
         public function authorize($response){
-            echo $response;
             if( !empty( $this -> u ) ){
                 if(crypt($response, $this -> u['hash']) === $this -> u['hash']){
                     return TRUE;
