@@ -34,7 +34,7 @@
                     <li class="divider"></li>
                     <li><a href="#" class="translateMe" data-tid="newAdvert" data-reveal-id="newAdvert">New Advert</a></li>
                     <li class="divider"></li>
-                    <li><a href="#" class="translateMe" data-tid="login">Login</a></li>
+                    <li><a href="#" class="translateMe" data-tid="login" data-reveal-id="loginModal">Login</a></li>
                      <li class="divider"></li>
                      <li class="has-dropdown">
                         <a href="#"><img src="img/globe.png"></a>
@@ -115,6 +115,31 @@
                         <a href="#" tabindex="0" class="sbmt button expand success translateMe" data-tid="submit">Submit</a>
                     </div>
                 </div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </fieldset>
+        </div>
+
+        <!--Modal NEW ADVERT form-->
+        <div id="loginModal" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <fieldset>
+                <legend class="translateMe" data-tid="login">Login</legend>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="text" name="login">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="username">Username</span>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="password" name="password">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="password">Password</span>
+                    </div>
+                </div>
+                <a href="#" tabindex="0" class="login button expand success translateMe" data-tid="login">Login</a>
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </fieldset>
         </div>

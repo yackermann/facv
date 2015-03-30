@@ -20,6 +20,9 @@
         "backToMain":   "На главную",
         "footer":       "Copyright no one at all. Go to town.",
 
+        "username":     "Имя пользователя",
+        "password":     "Пароль",
+
         "title":        "Название",
         "description":  "Описание",
         "endDate":      "Конец объявления",
