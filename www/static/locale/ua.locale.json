@@ -15,22 +15,22 @@
     ],
     "frontend": {
         "newAdvert": "Нове оголошення",
-        "login": "Ввійти",
+        "login": "Вхід",
         "register": "Реєстрація",
         "backToMain":   "На главную",
         "footer":       "Copyright no one at all. Go to town.",
 
-        "username":     "Имя пользователя",
+        "username":     "Ім'я користувача",
         "password":     "Пароль",
 
-        "title":        "Название",
-        "description":  "Описание",
-        "endDate":      "Конец объявления",
+        "title":        "Назва",
+        "description":  "Опис",
+        "endDate":      "Кінець оголошення",
         "date":         "Дата",
-        "category":     "Категория",
-        "email":        "Имейл",
-        "phone":        "Номер телефона",
-        "submit":       "Добавить"
+        "category":     "Категорія",
+        "email":        "Електронна пошта",
+        "phone":        "Номер телефону",
+        "submit":       "Додати"
     },
     "errors": {
         "server":{
