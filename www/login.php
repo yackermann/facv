@@ -8,6 +8,8 @@
 		require __DIR__.'/includes/auth.php';
 
 		$auth;
+		
+		sleep(1);
 
 		if(isset($_POST['username'])){
 
@@ -20,6 +22,8 @@
 		}else if( isset($_SESSION['auth']) && isset($_POST['response']) ){
 
 			$auth = unserialize($_SESSION['auth']);
+
+			
 
 			if($auth -> authorize($_POST['response'])){
 
