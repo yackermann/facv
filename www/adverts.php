@@ -5,9 +5,11 @@
 
     //Set header to JSON
     header('Content-Type: application/json');
+    
     $maxRequestPerDay = 5;
+
     //Add SQL methods
-    include 'includes/sql_requests.php';
+    include __DIR__.'/includes/sql_requests.php';
 
     /* Initializing new SQLGet and SQLSet objects. */
     $SQLGet = new SQLRequests\Get();
