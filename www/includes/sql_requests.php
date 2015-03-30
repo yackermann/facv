@@ -1,7 +1,7 @@
 <?php
     namespace SQLRequests;
 
-    include 'includes/connect.php';
+    require __DIR__.'/connect.php';
 
     //Gets PDO class from Global namespace
     use \PDO as PDO;
@@ -12,7 +12,7 @@
             'advert'  => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE id = :sp LIMIT 0,1',
             'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
             'categories' => 'SELECT id, loc_ru FROM categories',
-            'login' => 'SELECT username, hash FROM passwords WHERE username = :sp',
+            'cred' => 'SELECT username, hash, challenge FROM users WHERE username = :sp',
             'ip' => 'SELECT COUNT(*) FROM ips WHERE ip = :sp AND timestamp > (NOW() - INTERVAL 1 DAY)'
         );
 
@@ -47,12 +47,14 @@
                             return $temp;
                     }else{
                         // Return empty array
-                        return array('status' => 404, 'errorMessage' => 'No adverts were found.');
+                        // return array('status' => 404, 'errorMessage' => 'No `'.$request.'` were found.');
+                        return array();
                     }
 
                 }else{
                     //Return empty array
-                    return array('status' => 418, 'errorMessage' => 'No SQL were provided.');
+                    // return array('status' => 418, 'errorMessage' => 'No SQL were provided.');
+                    return array();
                 }
 
             }catch(PDOException $exception){ //to handle error
@@ -77,17 +79,17 @@
             return $this -> execSQL('ip', $ip)[0]["COUNT(*)"];
         }
 
-        public function login($username){
-            return $this -> execSQL('login', $username)[0];
+        public function cred($username){
+            return $this -> execSQL('cred', $username);
         }
-
     }
     
     class Add{
 
         private $sqlr = array(
             'advert' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate',
-            'ip' => 'INSERT INTO ips SET ip = :ip'
+            'ip' => 'INSERT INTO ips SET ip = :ip',
+            'user' => 'INSERT INTO users SET username = :username, hash = :hash, challenge = :challenge'
         );
 
         public function advert(){
@@ -119,17 +121,45 @@
         }
 
         public function ip($ip){
+            try{
+
                 //Connect $pdo variable from connect.php
                 global $pdo;
 
                 //Making PDO SQL request
                 $stmt = $pdo -> prepare($this -> sqlr['ip']);
+
                 $stmt -> bindParam( ':ip', $ip, PDO::PARAM_STR );
+
                 $stmt -> execute();
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
+                
         }
 
-        public function user($user){
+        public function user($username, $hash, $challenge){
+            try{
+                //Connect $pdo variable from connect.php
+                global $pdo;
 
+                //Making PDO SQL request
+                $stmt = $pdo -> prepare($this -> sqlr['user']);
+
+                /*---------- PDO BIND PARAMS ----------*/
+                $stmt -> bindParam( ':username', $username, PDO::PARAM_STR );
+                $stmt -> bindParam( ':hash', $hash, PDO::PARAM_STR );
+                $stmt -> bindParam( ':challenge', $challenge, PDO::PARAM_STR );
+                /*-------- PDO BIND PARAMS ENDS --------*/
+
+                $stmt -> execute();
+                
+                return array('status' => 200);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
         }
     }
 
@@ -140,22 +170,9 @@
         );
 
         public function user($id){
-            try{
-                global $pdo;
-
-                $stmt = $pdo -> prepare($this -> sqlr['advert']);
-                $stmt -> bindParam( ':id', $id, PDO::PARAM_STR );
-                $stmt -> execute();
-                
-                return array('status' => 200, 'id' => 'Successfully deleted '.$id);
-
-            }catch(PDOException $exception){ //to handle error
-                return array('status' => 500, 'errorMessage' => $exception);
-            }
         }
 
         public function advert($id){
-
         }
 
     }
