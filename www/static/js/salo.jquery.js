@@ -15,7 +15,7 @@
                     }
                 },
                 debug: false,
-                loginAddress: 'http://192.168.55.55/login.php'
+                loginAddress: 'http://192.168.55.55/server/login.php'
             }, orguments),
 
         
