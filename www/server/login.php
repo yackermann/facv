@@ -12,6 +12,8 @@
 		sleep(1);
 
 		if(isset($_POST['username'])){
+			
+			//Stage one, get challenge
 
 			$auth = new \Auth\Auth($_POST['username']);
 
@@ -19,7 +21,9 @@
 
 			echo json_encode(array('challenge' => $auth -> challenge()));
 
-		}else if( isset($_SESSION['auth']) && isset($_POST['response']) ){
+		}else if( isset($_SESSION['auth']) && isset($_POST['response']) ){ 
+			
+			//Stage two verify the response
 
 			$auth = unserialize($_SESSION['auth']);
 
@@ -29,12 +33,19 @@
 
 				echo json_encode(array( 'authorized' => True));
 
+				$_SESSION['logged'] =  True;
+
 			}else{
 
 				echo json_encode(array( 'authorized' => False));
 
 			}
 			
+		}
+		
+	}else if($_GET){
+		if(isset($_GET['logout'])){
+			session_unset();
 		}
 	}
 ?>
