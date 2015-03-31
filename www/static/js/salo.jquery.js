@@ -38,6 +38,9 @@
 
                     console.log( 'POST ERROR: ', error.responseText );
                     m.alert( locale.errors.client.failedSend + err );
+                },
+                getError: function( error ){
+                    console.log('ERROR: ', error.responseText);
                 }
             },
             animate = {
@@ -225,13 +228,9 @@
                     render.languages();
                 })
 
-            }).fail(function( e ){
-                console.log('ERROR: ' + e);
-            });
+            }).fail(handlers.getError);
 
-        }).fail(function( e ){
-            console.log('ERROR: ' + e);
-        });
+        }).fail(handlers.getError);
        
 
 
@@ -273,6 +272,7 @@
                 }
 
                 if(field.value){
+
                     if(!validate[field.type](field.value)){
                         ok = false;
                         $(this).addClass( 'error' );
@@ -398,8 +398,11 @@
         });
         
          $(document).on('click', '.lang', function () {
+
             var newLang = $(this).data('lang');
-            if(o.locale.avalable[newLang]){
+
+            if(o.locale.available[newLang]){
+                
                 o.locale.selected = newLang;
                 localStorage.setItem('lang', newLang);
             }
