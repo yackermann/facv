@@ -42,10 +42,14 @@
 			}
 			
 		}
-		
+
 	}else if($_GET){
+
 		if(isset($_GET['logout'])){
+
 			session_unset();
+
 		}
+		
 	}
 ?>
