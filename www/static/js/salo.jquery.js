@@ -204,7 +204,7 @@
                         var tid = $(this).data('tid');
                         $(this).text(locale.frontend[tid]);
                     })
-                    $('.loading').remove()
+                    $('.loading').remove();
                 },
                 languages: function(){
                     for(key of Object.keys(o.locale.available)){
