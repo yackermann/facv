@@ -44,10 +44,11 @@
             "503" : "Error while connecting to SQL server."
         },
         "client":{
-            "emptyField":       "Field blank.",
-            "failedValidate":   "The %field% can not be validated",
-            "successAdded":     "Successfully added item",
-            "failedSend":       "Failed to send request. Please try later again."
+            "emptyField"        :    "Field blank.",
+            "failedValidate"    :    "The %field% can not be validated",
+            "successAdded"      :    "Successfully added item",
+            "failedSend"        :    "Failed to send request. Please try later again.",
+            "imageOnly"         :    "Images only allowed."
         }
     }
 }
