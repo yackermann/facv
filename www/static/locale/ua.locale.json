@@ -31,6 +31,7 @@
         "category"      :    "Категорія",
         "email"         :    "Електронна пошта",
         "phone"         :    "Номер телефону",
+        "dropzone"      :    "Drop image here",
         "submit"        :    "Додати"
     },
     "errors": {
