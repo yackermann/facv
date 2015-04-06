@@ -1,0 +1,5 @@
+Options All -Indexes
+AddDefaultCharset utf-8
+
+RewriteEngine On
+RewriteRule ^(.*)$ static/$1 [L]

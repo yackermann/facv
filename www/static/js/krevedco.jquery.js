@@ -15,8 +15,8 @@
                     }
                 },
                 debug: false,
-                loginAddress: 'http://192.168.55.55/server/login.php',
-                source: 'http://192.168.55.55/server/adverts.php'
+                loginAddress: 'server/login.php',
+                source: 'server/adverts.php'
             }, orguments),
 
             _uploadImage = '';
