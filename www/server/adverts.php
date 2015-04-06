@@ -1,7 +1,7 @@
 <?php
-    // // UNCOMMENT FOR DEBUG
-    // error_reporting(E_ALL); 
-    // ini_set( 'display_errors','1');
+    // UNCOMMENT FOR DEBUG
+    error_reporting(E_ALL); 
+    ini_set( 'display_errors','1');
 
     //Set header to JSON
     header('Content-Type: application/json');
@@ -14,7 +14,7 @@
     /* Initializing new SQLGet and SQLSet objects. */
     $SQLGet = new SQLRequests\Get();
     $SQLAdd = new SQLRequests\Add();
-
+    
     if (!$_POST) { //IF GET
         
 
@@ -29,9 +29,11 @@
 
     }else{ 
     //IF POST
-        include 'includes/ip.php';
-        include 'includes/validate.php';
-
+        include __DIR__.'/includes/ip.php';
+        include __DIR__.'/includes/validate.php';
+        include __DIR__.'/includes/upload.php';
+        
+        $upload = new \Upload\Upload();
         $IP = new IP();
 
         $ValidatePOST = new Validate\POST();
@@ -45,9 +47,13 @@
                 //Add ip to DB
                 $SQLAdd -> ip($IP -> get());
 
-                //Add advert to DB
-                $responce = $SQLAdd -> advert();
+                $image = '';
 
+                if(isset($_POST['image'])){
+                    $image = $upload -> upload($_POST['image']);
+                }
+
+                $responce = $SQLAdd -> advert($image);
 
                 if($responce['status'] === 200){
                     $responce['advert'] = $SQLGet -> advert($responce['id'])[0];

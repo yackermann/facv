@@ -87,12 +87,12 @@
     class Add{
 
         private $sqlr = array(
-            'advert' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate',
+            'advert' => 'INSERT INTO adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate, image = :image',
             'ip' => 'INSERT INTO ips SET ip = :ip',
             'user' => 'INSERT INTO users SET username = :username, hash = :hash, challenge = :challenge'
         );
 
-        public function advert(){
+        public function advert($image){
             try{
                 //Connect $pdo variable from connect.php
                 global $pdo;
@@ -100,15 +100,16 @@
                 //Making PDO SQL request
                 $stmt = $pdo -> prepare($this -> sqlr['advert']);
                 $now = date('Y-m-d');
-
+                
                 /*---------- PDO BIND PARAMS ----------*/
-                $stmt -> bindParam( ':startDate', $now, PDO::PARAM_STR );
-                $stmt -> bindParam( ':title', $_POST['title'], PDO::PARAM_STR );
-                $stmt -> bindParam( ':text', $_POST['text'], PDO::PARAM_STR );
-                $stmt -> bindParam( ':endDate', $_POST['endDate'], PDO::PARAM_STR );
-                $stmt -> bindParam( ':categoryId', $_POST['categoryId'], PDO::PARAM_STR );
-                $stmt -> bindParam( ':email', $_POST['email'], PDO::PARAM_STR );
-                $stmt -> bindParam( ':phone', $_POST['phone'], PDO::PARAM_STR );
+                $stmt -> bindParam( ':startDate'    ,    $now                   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':title'        ,    $_POST['title']        ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':text'         ,    $_POST['text']         ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':endDate'      ,    $_POST['endDate']      ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':image'        ,    $image                 ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':email'        ,    $_POST['email']        ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':phone'        ,    $_POST['phone']        ,    PDO::PARAM_STR );
                 /*-------- PDO BIND PARAMS ENDS --------*/
 
                 $stmt -> execute();
