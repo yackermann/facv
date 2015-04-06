@@ -31,3 +31,39 @@
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }
+
+
+/*----------FILE DROPZONE----------*/
+.dropzone.parent {
+	background-size: cover;
+	background-repeat: no-repeat;
+    border: 2px dashed #bbb;
+    text-align: center;
+    font: 20pt bold 'Vollkorn';
+    color: #bbb;
+    white-space: nowrap;
+}
+.dropzone > span{
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	background-color:white;
+	padding: 0.5em;
+}
+
+.dropzone.parent:before {
+    content: '';
+    display: inline-block;
+    padding-top: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
+
+.dropzone.centered {
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
+}
