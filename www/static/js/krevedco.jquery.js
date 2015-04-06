@@ -271,24 +271,27 @@
                     value: $(this).val(),
                     type: $(this).data('type'),
                     name: $(this).attr('name'),
+                    validate: $(this).data('eval'),
                     sid: $(this).data('sid')
                 }
+                if(!field.validate === 'false'){
+                    if(field.value){
 
-                if(field.value){
+                        if(!validate[field.type](field.value)){
+                            ok = false;
+                            $(this).addClass( 'error' );
+                            $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
+                        }else{
+                            post[field.sid] = field.value;
+                        }
 
-                    if(!validate[field.type](field.value)){
+                    }else{
                         ok = false;
                         $(this).addClass( 'error' );
-                        $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
-                    }else{
-                        post[field.sid] = field.value;
+                        $(this).after( '<small class="error">' + locale.errors.client.emptyField + '</small>' );
                     }
-
-                }else{
-                    ok = false;
-                    $(this).addClass( 'error' );
-                    $(this).after( '<small class="error">' + locale.errors.client.emptyField + '</small>' );
                 }
+                
                 
             }).promise().done(function(){
                 if(ok){
