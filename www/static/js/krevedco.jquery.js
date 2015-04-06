@@ -129,7 +129,7 @@
             //Models for Adverts, Categories and Modal window.
             models = {
                 advert: function( data ){
-                    var img = data.image ? '/server/uploads/' + data.image : 'img/placeholder.png';
+                    var img = data.image ? 'uploads/' + data.image : 'img/placeholder.png';
                     return '<a href="#" class="modal-reveal" data-id="' + data.id + '">' + 
                                 '<div class="large-3 columns item" data-id="' + data.id + '">' +
                                     '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
@@ -146,7 +146,7 @@
                     }
                 },
                 modal: function( data ){
-                    var img = data.image ? '/server/uploads/' + data.image : 'img/placeholder.png';
+                    var img = data.image ? 'uploads/' + data.image : 'img/placeholder.png';
                     return  '<div id="myModal" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">' +
                                 '<div class="large-4 columns">' +
                                     '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
