@@ -1,5 +1,5 @@
 (function($){
-    $.fn.salo = function( orguments ){
+    $.fn.krevedco = function( orguments ){
         var o = $.extend({
                 datepicker: '.endDatePicker',
                 modal: '#newAdvert',

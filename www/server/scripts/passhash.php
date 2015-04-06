@@ -18,5 +18,5 @@
 	$response = $cryp -> blowfish( $cryp -> H( $creds['password'], $creds['challenge'] ) );
 
 	echo 'Responce(TEST ONLY): '. $cryp ->H( $creds['password'], $creds['challenge'] )."\n";
-	echo "INSERT INTO `salo`.`users` (`id`, `hash`, `username`, `challenge`) VALUES (NULL, '" . $response . "', '" . $creds['username'] . "', '" . $creds['challenge'] . "');";
+	echo "INSERT INTO `krevedco`.`users` (`id`, `hash`, `username`, `challenge`) VALUES (NULL, '" . $response . "', '" . $creds['username'] . "', '" . $creds['challenge'] . "');";
 ?>

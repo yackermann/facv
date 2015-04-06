@@ -1,4 +1,4 @@
-#SALO
+#Kreved.co
 The MIT License (MIT)
 
 Copyright (c) 2015 Ackermann Yuriy, Vyacheslav Sharley
@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 #Zurb Foundation
-
 The MIT License (MIT)
 
 Copyright (c) Zurb

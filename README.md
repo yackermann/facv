@@ -1,4 +1,4 @@
-SALO - The notice board
+Kreved.co - The notice board
 ====
 
 ## Vagrant

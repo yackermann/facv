@@ -71,7 +71,7 @@
  - Central config
 
 ## General
- - ** RENAME TO kreved.co
+ - ~~RENAME TO kreved.co~~
 
  - **.htaccess**
     - Request rewrite
