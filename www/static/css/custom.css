@@ -67,3 +67,9 @@
     vertical-align: middle;
     width: 300px;
 }
+
+.thumb{
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding-top: 100%;
+}
