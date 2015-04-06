@@ -64,8 +64,11 @@
         <div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
             <fieldset>
                 <legend class="translateMe" data-tid="newAdvert">New advert</legend>
-                <div class="large-5 columns">
-                    <div class="modal image" style="background-image: url('http://placehold.it/1000x1000&amp;text=Upload image');"> </div>
+                <div class="large-5 columns drop-file">
+
+                    <!-- <div class="modal image" style="background-image: url('http://placehold.it/1000x1000&amp;text=Select photo');"> </div> -->
+                    <div id="drop_zone" class="drop-file-centered"><span class="dropzone text translateMe" data-tid="dropzone">Drop your files here</span></div>
+                    <input type="file" class="dropzone" data-eval="false" style="opacity:0"> 
                 </div>
                 <div class="large-7 columns">
 
@@ -162,7 +165,6 @@
                 </div>
             </div>
         </footer>
-
         <script type="text/javascript" src="js/vendor/jquery.js"></script>
         <script type="text/javascript" src="js/foundation.min.js"></script>
         <script type="text/javascript" src="js/foundation-datepicker.js"></script>
@@ -172,14 +174,12 @@
         <script>
             $(document).ready(function(){
                 $('.tabs-content').krevedco({
-                    links: '.tabs-nav',
-                    source: 'http://192.168.55.55/server/adverts.php'
+                    links: '.tabs-nav'
                 });
 
                 var doc = document.documentElement;
                 doc.setAttribute('data-useragent', navigator.userAgent);
             })
-            
         </script>
     </body>
 </html>
