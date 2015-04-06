@@ -49,7 +49,7 @@
 
                 $image = '';
 
-                if(isset($_POST['image'])){
+                if(isset($_POST['image']) && $_POST['image'] !== ''){
                     $image = $upload -> upload($_POST['image']);
                 }
 
