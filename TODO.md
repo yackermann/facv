@@ -46,8 +46,10 @@
 
  - Image
     - uploading | I.P. (Fulton)
-        - hashing name(MD5)
-        - autoconvert($image => jpg)
+        - IMG to base64 -> JSON
+        - base64 to IMG
+        - size check (lim 250kb)
+        - name md5 filename + timestamp
 
  - ~~I.P. Bind~~
      + ~~Create table for ip addresses~~m     + ~~Create IP class~~
@@ -56,9 +58,9 @@
  - Authentication
      + Login | Challenge-Response
          * Client
-             - HASH(Salt, Password) POST
+             - ~~HASH(Salt, Password) POST~~
          * Server 
-             - Login form
+             - ~~Login form~~
              - ~~Password table~~
              - ~~SQL~~
              - ~~HASH~~
@@ -69,6 +71,7 @@
  - Central config
 
 ## General
+ - ** RENAME TO kreved.co
 
  - **.htaccess**
     - Request rewrite
