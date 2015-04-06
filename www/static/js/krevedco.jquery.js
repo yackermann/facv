@@ -15,10 +15,11 @@
                     }
                 },
                 debug: false,
-                loginAddress: 'http://192.168.55.55/server/login.php'
+                loginAddress: 'http://192.168.55.55/server/login.php',
+                source: 'http://192.168.55.55/server/adverts.php'
             }, orguments),
 
-        
+            _uploadImage = '';
 
             todo = this,
 
@@ -128,9 +129,10 @@
             //Models for Adverts, Categories and Modal window.
             models = {
                 advert: function( data ){
+                    var img = data.image ? '/server/uploads/' + data.image : 'img/placeholder.png';
                     return '<a href="#" class="modal-reveal" data-id="' + data.id + '">' + 
                                 '<div class="large-3 columns item" data-id="' + data.id + '">' +
-                                    '<img src="http://placehold.it/1000x1000&amp;text=Thumbnail">' +
+                                    '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
                                     '<div class="panel">' +
                                         '<h5>' + data.title  + '</h5>' +
                                         '<p>' + data.text + '</p>' +
@@ -144,9 +146,10 @@
                     }
                 },
                 modal: function( data ){
+                    var img = data.image ? '/server/uploads/' + data.image : 'img/placeholder.png';
                     return  '<div id="myModal" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">' +
                                 '<div class="large-4 columns">' +
-                                    '<div class="modal image" style="background-image: url(\'' + 'http://placehold.it/1000x1000&amp;text=Thumbnail' + '\');"> </div>' +
+                                    '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
                                 '</div>' +
                                 '<div class="large-8 columns">' +
                                     '<small>Published on ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
@@ -273,7 +276,8 @@
                     validate: $(this).data('eval'),
                     sid: $(this).data('sid')
                 }
-                if(!field.validate === 'false'){
+                console.log(field.validate);
+                if(field.validate !== false){
                     if(field.value){
 
                         if(!validate[field.type](field.value)){
@@ -282,6 +286,7 @@
                             $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
                         }else{
                             post[field.sid] = field.value;
+                            console.log(post[field.sid]);
                         }
 
                     }else{
@@ -294,6 +299,7 @@
                 
             }).promise().done(function(){
                 if(ok){
+                    post['image'] = _uploadImage;
                     $( o.modal ).foundation('reveal', 'close');
                     $.post( o.source, post, function( data ){
                         var msg = '';
@@ -379,6 +385,8 @@
 
         $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
             var modal = $(this);
+            // console.log( $('.dropzone.parent', modal))y
+            $('.dropzone.parent', modal).css('background-image', '');
             $( 'small.error', modal ).remove();
             $( 'input, select, textarea', modal ).each(function(){
                 $(this).val('');
@@ -400,8 +408,53 @@
         });
 
         $(document).on('click', '.modal.image', function(){
-
         })
+
+        /*----------Drag'n'Drop/File select----------*/
+        function handleFileSelect(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            var files = evt.dataTransfer ? evt.dataTransfer.files : evt.target.files; //Tweak for filedrop and click;
+            // files is a FileList of File objects. List some properties.
+            var output = [];
+            var reader = new FileReader();
+            for (var i = 0, f; f = files[i]; i++) {
+                if (!f.type.match('image.*')) {
+                    m.alert(locale.errors.client.imageOnly);
+                    continue;
+                }
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        _uploadImage = e.target.result;
+                        console.log({'image': e.target.result.toString()})
+                        $('.dropzone.parent').css('background-image', 'url(' + e.target.result + ')');
+                    };
+                })(f);
+
+                // Read in the image file as a data URL.
+                reader.readAsDataURL(f);
+            }
+
+           
+        }
+
+        function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+        }
+
+        // Setup the dnd listeners.
+        var dropZone = document.getElementById('drop_zone');
+        dropZone.addEventListener('dragover', handleDragOver, false);
+        dropZone.addEventListener('drop', handleFileSelect, false);
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+        
+        $("#drop_zone").click(function(e){
+            e.preventDefault();
+            $("#files").trigger('click');
+        });
         /*----------HANDLERS ENDS----------*/
 
         $( o.datepicker ).fdatepicker({
@@ -413,14 +466,6 @@
                 }
             },
             format: 'yyyy-mm-dd'
-        });
-
-        $(document).foundation({
-            reveal: {
-                close_on_background_click: false
-            }
-        });
-
-        
+        });        
     }
 })(jQuery)
