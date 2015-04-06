@@ -31,13 +31,17 @@
             $data = base64_decode(explode(',', $base64_string)[1]);
             $ext = $this -> getImageMimeType($data);
             if($ext){
-                $filename = md5($base64_string.time()).'.'.$ext;
-                $output_file = $_SERVER['DOCUMENT_ROOT'].'/server/uploads/'.$filename;
+                try {
+                    $filename = md5($base64_string.time()).'.'.$ext;
+                    $output_file = $_SERVER['DOCUMENT_ROOT'].'/server/uploads/'.$filename;
 
-                $ifp = fopen( $output_file, "wb" ); 
-                fwrite( $ifp, $data ); 
-                fclose( $ifp ); 
-                return $filename; 
+                    $ifp = fopen( $output_file, "wb" ); 
+                    fwrite( $ifp, $data ); 
+                    fclose( $ifp ); 
+                    return $filename; 
+                } catch (Exception $e) {
+                    return NULL;
+                }
             }
             return NULL;
         }
