@@ -221,14 +221,13 @@
             todo.each(function(){
                 render.categories(this, locale.categories);
                 render.locale();
-
+                render.languages();
             })
 
             $.getJSON( o.source ).done(function( data ){
                 if(data.status === 200){
                     todo.each(function(){
-                        render.adverts(this, data.adverts);
-                        render.languages();
+                        render.adverts(this, data.adverts);  
                     })
                 }else m.alert(locale.errors.server[data.status]);
             }).fail(handlers.getError);
