@@ -15,7 +15,7 @@
         * ~~Form~~
         * ~~Fields~~
         * ~~Client-side validation~~
-        * Image upload
+        * ~~Image upload~~
         * ~~POST sender~~
         * ~~Alerts~~
         * Captcha
@@ -46,10 +46,10 @@
 
  - Image
     - uploading | I.P. (Fulton)
-        - IMG to base64 -> JSON
-        - base64 to IMG
-        - size check (lim 250kb)
-        - name md5 filename + timestamp
+        - ~~IMG to base64 -> JSON~~
+        - ~~base64 to IMG~~
+        - ~~size check (lim 250kb)~~
+        - ~~name md5 filename + timestamp~~
 
  - ~~I.P. Bind~~
      + ~~Create table for ip addresses~~m     + ~~Create IP class~~
