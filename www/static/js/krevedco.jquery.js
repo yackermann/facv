@@ -39,10 +39,12 @@
                     console.log( 'POST ERROR: ', error.responseText );
                     m.alert( locale.errors.client.failedSend + err );
                 },
+
                 getError: function( error ){
                     console.log('ERROR: ', error.responseText);
                 }
             },
+
             animate = {
                   loading: function( target, text ){
                     var original = $(target).html();
@@ -218,16 +220,17 @@
             cache.categories = locale.categories;
             todo.each(function(){
                 render.categories(this, locale.categories);
+                render.locale();
+
             })
 
             $.getJSON( o.source ).done(function( data ){
-                
-                todo.each(function(){
-                    render.adverts(this, data.adverts);
-                    render.locale();
-                    render.languages();
-                })
-
+                if(data.status === 200){
+                    todo.each(function(){
+                        render.adverts(this, data.adverts);
+                        render.languages();
+                    })
+                }else m.alert(locale.errors.server[data.status]);
             }).fail(handlers.getError);
 
         }).fail(handlers.getError);
@@ -303,13 +306,14 @@
                             render.addAdvert($(todo)[0], data.advert);
                             m.success( locale.errors.client.successAdded + msg );
                         }else{
-                            m.alert( data.errorMessage );
+                            m.alert( locale.errors.server[data.status] );
                         }
 
                     }).fail(handlers.postError)
                 }
             });
         });
+
         /*----- LOGIN Challenge-Response -----*/
         $(document).on( 'click', '.login', function(){
 
@@ -369,6 +373,33 @@
                 }
             });
         });
+
+
+        $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
+            var modal = $(this);
+            $( 'small.error', modal ).remove();
+            $( 'input, select, textarea', modal ).each(function(){
+                $(this).val('');
+                $(this).removeClass('error');
+            });
+        });
+        
+        $(document).on('click', '.lang', function () {
+
+            var newLang = $(this).data('lang');
+
+            if(o.locale.available[newLang]){
+                
+                o.locale.selected = newLang;
+                localStorage.setItem('lang', newLang);
+
+            }
+            location.reload();
+        });
+
+        $(document).on('click', '.modal.image', function(){
+
+        })
         /*----------HANDLERS ENDS----------*/
 
         $( o.datepicker ).fdatepicker({
@@ -388,27 +419,6 @@
             }
         });
 
-        $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
-            var modal = $(this);
-            $( 'small.error', modal ).remove();
-            $( 'input, select, textarea', modal ).each(function(){
-                $(this).val('');
-                $(this).removeClass('error');
-            });
-        });
-        
-         $(document).on('click', '.lang', function () {
-
-            var newLang = $(this).data('lang');
-
-            if(o.locale.available[newLang]){
-                
-                o.locale.selected = newLang;
-                localStorage.setItem('lang', newLang);
-            }
-            location.reload();
-            
-        });
         
     }
 })(jQuery)
