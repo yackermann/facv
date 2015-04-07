@@ -6,7 +6,7 @@
                 login: '#loginModal',
                 alert: '.alert-div',
                 locale: {
-                    selected: localStorage.getItem('lang') || 'ru',
+                    selected: localStorage.getItem('lang') || 'ua',
                     class: '.translateMe',
                     available: {
                         'ru': 'Русский',
@@ -47,7 +47,7 @@
             },
 
             animate = {
-                  loading: function( target, text ){
+                loading: function( target, text ){
                     var original = $(target).html();
                     var i = 0;
                     var A;
@@ -276,7 +276,7 @@
                     validate: $(this).data('eval'),
                     sid: $(this).data('sid')
                 }
-                console.log(field.validate);
+
                 if(field.validate !== false){
                     if(field.value){
 
@@ -286,7 +286,6 @@
                             $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
                         }else{
                             post[field.sid] = field.value;
-                            console.log(post[field.sid]);
                         }
 
                     }else{
@@ -302,6 +301,7 @@
                     post['image'] = _uploadImage;
                     $( o.modal ).foundation('reveal', 'close');
                     $.post( o.source, post, function( data ){
+                        _uploadImage = '';
                         var msg = '';
 
                         if(o.debug){
@@ -314,7 +314,7 @@
                             render.addAdvert($(todo)[0], data.advert);
                             m.success( locale.errors.client.successAdded + msg );
                         }else{
-                            m.alert( locale.errors.server[data.status] );
+                            m.alert( locale.errors.server[data.status] + msg );
                         }
 
                     }).fail(handlers.postError)
@@ -385,7 +385,6 @@
 
         $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
             var modal = $(this);
-            // console.log( $('.dropzone.parent', modal))y
             $('.dropzone.parent', modal).css('background-image', '');
             $( 'small.error', modal ).remove();
             $( 'input, select, textarea', modal ).each(function(){
@@ -407,9 +406,6 @@
             location.reload();
         });
 
-        $(document).on('click', '.modal.image', function(){
-        })
-
         /*----------Drag'n'Drop/File select----------*/
         function handleFileSelect(evt) {
             evt.stopPropagation();
@@ -417,6 +413,7 @@
 
             var files = evt.dataTransfer ? evt.dataTransfer.files : evt.target.files; //Tweak for filedrop and click;
             // files is a FileList of File objects. List some properties.
+
             var output = [];
             var reader = new FileReader();
             for (var i = 0, f; f = files[i]; i++) {
