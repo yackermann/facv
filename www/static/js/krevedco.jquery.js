@@ -165,7 +165,7 @@
             render = {
                 categories: function( parent, data ){
                         //Iteration through the categories
-                    for( category of data ){
+                    for (var i = 0, f; category = data[i]; i++) {
 
                         //Save category to cache
                         cache.categories[category.id] = category;
@@ -184,7 +184,7 @@
                 },
                 adverts: function( parent, data ){
                     //Iteration through the categories
-                    for( advert of data ){
+                    for (var i = 0, f; advert = data[i]; i++) {
 
 
                         // //Checks if advert is not outdated. 
@@ -212,7 +212,7 @@
                     $('.loading').remove();
                 },
                 languages: function(){
-                    for(key of Object.keys(o.locale.available)){
+                    for (var i = 0, f; key = Object.keys(o.locale.available)[i]; i++) {
                         $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.available[key] + '</a></li>')
                     }
                 }
