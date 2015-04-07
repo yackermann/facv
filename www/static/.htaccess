@@ -1,5 +1,7 @@
 RewriteEngine On
-RewriteRule ^server/(.*) ../server/$1
-RewriteRule ^uploads/(.*) ../server/uploads/$1
+
+RewriteRule ^server/(.*) ../server/$1 [R=301,L]
+RewriteRule ^uploads/(.*) ../server/uploads/$1 [R=301,L]
+
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^([^.]+)$ $1.html [NC,L]
