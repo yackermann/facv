@@ -1,110 +1,101 @@
 <?php
-//Check to see if user logged in 
-include 'includes/session.php';
-//include database connection
-include 'includes/connect.php';
+    error_reporting(E_ALL); 
+    ini_set( 'display_errors','1');
+    include __DIR__.'/includes/session.php';
+    include __DIR__.'/includes/sql_requests.php';
+    $SQLGet = new SQLRequests\Get();
+
+    $templates = array(
+        'table' => '<div class="row"><div class="large-12 columns"><table role="grid">%content%</table></div></div>',
+        'users' => '<thead><tr><th width="600">Username</th><th width="200">Edit</th><th width="200">Delete</th></tr></thead><tbody>%tableitems%</tbody>',
+        'adverts' => '<thead><tr><th width="125">Title</th><th width="125">Description</th><th width="125">End date</th><th width="125">Category</th><th width="125">Email</th><th width="125">Phone</th><th width="125"></th><th width="125"></th></tr></thead><tbody>%tableitems%</tbody>'
+    );
+    $content = '';
+    $cdir = '';
+
+    if($_GET && isset($_GET['open']) && in_array($_GET['open'], ['users', 'adverts'])){
+        if( $_GET['open'] === 'users' ){
+            $cdir = 'Users';
+            $content = str_replace( '%content%' , $templates['users'] , $templates['table'] );
+            foreach ($SQLGet -> users() as $value) {
+                extract($value);
+                $item = "<tr>
+                            <td>$username</td>
+                            <td><a href=\"#$id\" class=\"medium expand success button\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button\">Delete</a></td>
+                        </tr>%tableitems%";
+                $content = str_replace( '%tableitems%' , $item , $content );
+            }
+            $content =  str_replace( '%tableitems%' , '' , $content );
+        }else if( $_GET['open'] === 'adverts' ){
+            $cdir = 'Adverts';
+            $content = str_replace( '%content%' , $templates['adverts'] , $templates['table'] );
+            foreach ($SQLGet -> adverts() as $value) {
+                extract($value);
+                $item = "<tr>
+                            <td>$title</td>
+                            <td>$text</td>
+                            <td>$endDate</td>
+                            <td>$categoryId</td>
+                            <td>$email</td>
+                            <td>$phone</td>
+                            <td><a href=\"#$id\" class=\"medium expand success button\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button\">Delete</a></td>
+                        </tr>%tableitems%";
+                $content = str_replace( '%tableitems%' , $item , $content );
+            }
+            $content =  str_replace( '%tableitems%' , '' , $content );
+        }
+
+    }else{
+        $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users">Users</a> || <a href="?open=adverts">Adverts</a></h2></div></div>';
+    }
 ?>
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
     <head>
-        <title>Admin Page</title>
-        
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin<?php if($cdir !== '') echo ' | '.$cdir; ?></title>
+        <link rel="stylesheet" href="/css/foundation.css" />
+        <script src="/js/vendor/modernizr.js"></script>
+        <style>
+            table{
+                table-layout:fixed;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        </style>
     </head>
-<body>
+    <body>
+        <div class="row">
+            <div class="large-12 columns">
+                <a href="admin"><h1>Admin</h1></a>
+            </div>
+        </div>
 
-<!-- SESSION_ID = <?php echo $_SESSION['id']; ?> -->
-<?php
-//isset($_POST['action'] checks to see if when the form was 
-// submitted that the parameter action was passed, if so $action will 
-// contain the value that has been passed otherwise set $action to Null ""
-$action = isset($_GET['action']) ? $_GET['action']: "";
+        <?php echo $content; ?>
 
-if($action=='delete'){ //if the user clicked ok, run our delete query
-    try {
-    
-        $query = "DELETE FROM activities WHERE id = :id";
-        $stmt = $pdo->prepare($query);
-        $stmt->bindParam(':id', $_GET['id']);
-        
-        $result = $stmt->execute();
-        echo "<div>Record was deleted.</div>";
-        
-    }catch(PDOException $exception){ //to handle error
-        echo "Error: " . $exception->getMessage();
-    }
-    
-}
-   
-//select all data 
-$query = "SELECT id, activity, theme, description, website, image, tourguide_id FROM activities";
-$stmt = $pdo->prepare( $query );
-$stmt->execute();
-
-//this is how to get number of rows returned
-$num = $stmt->rowCount();
-echo "".'<br />';
-
-echo "<a href='bureau.php'>Add Record</a>"." || "."<a href='user.php'>Users</a>"." || "."<a href='login.php?u=1'>Logout</a>";;
-if($num>0){ //check if more than 0 record found
-
-    echo "<table border='1'>";//start table
-    
-        //creating our table heading
-        echo "<tr>";
-            echo "<th>Activity</th>";
-            echo "<th>Theme</th>";
-            echo "<th>Description</th>";
-            echo "<th>Website</th>";
-            echo "<th>Image</th>";
-             echo "<th>Tourguide_id</th>";
-            echo "<th>Action</th>";
-        echo "</tr>";
-        
-        //retrieve our table contents
-        //fetch() is faster than fetchAll()
-        //http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            //extract row
-            //this will make $row['firstname'] to
-            //just $firstname only
-            extract($row);
-            
-            //creating new table row per record
-            echo "<tr>";
-                echo "<td>{$activity}</td>";
-                echo "<td>{$theme}</td>";
-                echo "<td>{$description}</td>";
-                echo "<td>{$website}</td>";
-                echo "<td>{$image}</td>";
-                 echo "<td>{$tourguide_id}</td>";
-                echo "<td>";
-                    //we will use this links on next part of this post
-                     echo "<a href='bureau.php?e={$id}'>Edit</a>";
-                    echo " / ";
-                    //we will use this links on next part of this post
-                    echo "<a href='#' onclick='delete_record( {$id} );'>Delete</a>";
-                echo "</td>";
-            echo "</tr>";
-        }
-        
-    echo "</table>";//end table
-    
-}else{ //if no records found
-    echo "No records found.";
-}
-
-?>
-
-<script type='text/javascript'>
-    
-    function delete_record( id ){
-        var answer = confirm('Are you sure?');
-        if (answer){ //if user clicked ok
-            //redirect to url with action as delete and id to the record to be deleted
-            window.location = 'admin.php?action=delete&id=' + id;
-        } 
-    }
-</script>
-
-</body>
+        <footer class="row">
+            <div class="large-12 columns">
+                <hr>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p>© Copyright no one at all. Go to town.</p>
+                    </div>
+                    <div class="large-6 columns">
+                        <ul class="inline-list right">
+                            <li><a href="?open=users">Users</a></li>
+                            <li><a href="?open=adverts">Adverts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="/js/vendor/jquery.js"></script>
+        <script src="/js/foundation.min.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
 </html>

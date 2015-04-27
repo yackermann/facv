@@ -13,6 +13,7 @@
             'adverts' => 'SELECT id, title, text, startDate, endDate, categoryId, image, email, phone FROM adverts WHERE endDate > CURDATE()',
             'categories' => 'SELECT id, loc_ru FROM categories',
             'cred' => 'SELECT username, hash, challenge FROM users WHERE username = :sp',
+            'users' => 'SELECT id, username FROM users',
             'ip' => 'SELECT COUNT(*) FROM ips WHERE ip = :sp AND timestamp > (NOW() - INTERVAL 1 DAY)'
         );
 
@@ -81,6 +82,10 @@
 
         public function cred($username){
             return $this -> execSQL('cred', $username);
+        }
+
+        public function users(){
+            return $this -> execSQL('users');
         }
     }
     
