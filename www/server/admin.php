@@ -16,7 +16,9 @@
     if($_GET && isset($_GET['open']) && in_array($_GET['open'], ['users', 'adverts'])){
         if( $_GET['open'] === 'users' ){
             $cdir = 'Users';
+
             $content = str_replace( '%content%' , $templates['users'] , $templates['table'] );
+
             foreach ($SQLGet -> users() as $value) {
                 extract($value);
                 $item = "<tr>
@@ -26,10 +28,15 @@
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
+
             $content =  str_replace( '%tableitems%' , '' , $content );
+
         }else if( $_GET['open'] === 'adverts' ){
+
             $cdir = 'Adverts';
+
             $content = str_replace( '%content%' , $templates['adverts'] , $templates['table'] );
+
             foreach ($SQLGet -> adverts() as $value) {
                 extract($value);
                 $item = "<tr>
@@ -44,6 +51,7 @@
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
+
             $content =  str_replace( '%tableitems%' , '' , $content );
         }
 
@@ -51,6 +59,7 @@
         $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users">Users</a> || <a href="?open=adverts">Adverts</a></h2></div></div>';
     }
 ?>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <head>
