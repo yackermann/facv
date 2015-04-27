@@ -371,7 +371,9 @@
                             setTimeout(function(){
                                 animation.reset();
                                 if(status.authorized){
+                                    
                                     $( o.login ).foundation('reveal', 'close');
+                                    window.location.replace('server/admin');
 
                                 }
                             }, 1500);

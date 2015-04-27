@@ -2,7 +2,6 @@
 	session_start();
 
 	header('Content-Type: application/json');
-
 	if ($_POST){
 
 		require __DIR__.'/includes/auth.php';
@@ -48,8 +47,11 @@
 		if(isset($_GET['logout'])){
 
 			session_unset();
+			header('Location: /');
 
 		}
 		
+	}else{
+		header('Location: /');
 	}
 ?>
