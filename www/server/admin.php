@@ -1,14 +1,39 @@
 <?php
     error_reporting(E_ALL); 
     ini_set( 'display_errors','1');
-    include __DIR__.'/includes/session.php';
+    require __DIR__.'/includes/session.php';
     include __DIR__.'/includes/sql_requests.php';
     $SQLGet = new SQLRequests\Get();
 
     $templates = array(
-        'table' => '<div class="row"><div class="large-12 columns"><table role="grid">%content%</table></div></div>',
-        'users' => '<thead><tr><th width="600">Username</th><th width="200">Edit</th><th width="200">Delete</th></tr></thead><tbody>%tableitems%</tbody>',
-        'adverts' => '<thead><tr><th width="125">Title</th><th width="125">Description</th><th width="125">End date</th><th width="125">Category</th><th width="125">Email</th><th width="125">Phone</th><th width="125"></th><th width="125"></th></tr></thead><tbody>%tableitems%</tbody>'
+        'table' => '<div class="row">
+                        <div class="large-12 columns">
+                            <table role="grid">%content%</table>
+                        </div>
+                    </div>',
+
+        'users' => '<thead>
+                        <tr>
+                            <th width="600">Username</th>
+                            <th width="200">Edit</th>
+                            <th width="200">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>%tableitems%</tbody>',
+
+        'adverts' => '<thead>
+                        <tr>
+                            <th width="125">Title</th>
+                            <th width="125">Description</th>
+                            <th width="125">End date</th>
+                            <th width="125">Category</th>
+                            <th width="125">Email</th>
+                            <th width="125">Phone</th>
+                            <th width="125"></th>
+                            <th width="125"></th>
+                        </tr>
+                    </thead>
+                    <tbody>%tableitems%</tbody>'
     );
     $content = '';
     $cdir = '';
