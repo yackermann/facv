@@ -60,7 +60,7 @@
         }
 
         public function challenge(){
-            if( !empty( $this -> u )){
+            if( $this -> exist() ){
                 return $this -> u['challenge'];
             }else{
                 return $this -> genFake();
