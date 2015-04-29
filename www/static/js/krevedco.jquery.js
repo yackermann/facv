@@ -426,7 +426,6 @@
                 reader.onload = (function(theFile) {
                     return function(e) {
                         _uploadImage = e.target.result;
-                        console.log({'image': e.target.result.toString()})
                         $('.dropzone.parent').css('background-image', 'url(' + e.target.result + ')');
                     };
                 })(f);
