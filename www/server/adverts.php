@@ -1,7 +1,10 @@
 <?php
-    // UNCOMMENT FOR DEBUG
-    error_reporting(E_ALL); 
-    ini_set( 'display_errors','1');
+    // // UNCOMMENT FOR DEBUG
+    // error_reporting(E_ALL); 
+    // ini_set( 'display_errors','1');
+
+    //Starts session
+    session_start();
 
     //Set header to JSON
     header('Content-Type: application/json');
@@ -16,7 +19,6 @@
     $SQLAdd = new SQLRequests\Add();
     
     if (!$_POST) { //IF GET
-        
 
         //Getting info
         $content = array(
@@ -42,7 +44,7 @@
         if( $ValidateRESP['valid'] ){
 
             //Set gets response
-            if($SQLGet -> ip($IP -> get()) < $maxRequestPerDay){
+            if($SQLGet -> ip($IP -> get()) < $maxRequestPerDay || ( isset( $_SESSION['logged'] ) && $_SESSION['logged'] ) ){
                 
                 //Add ip to DB
                 $SQLAdd -> ip($IP -> get());
