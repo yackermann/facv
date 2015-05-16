@@ -257,6 +257,22 @@
             $(modal).foundation( 'reveal', 'open' );
         });
 
+        //Event handler for searching
+        $(document).change('.find-stuff', function(){
+            var stuff = $(this).data('value');
+            $('.content').removeClass('active');
+            $('#search').toggleClass('active');
+            cache.adverts.each(function(){
+                if (this.contains(stuff))
+                {
+                    var outAdvert = models.advert( this );
+                    $('#search').append(outAdvert);
+                }
+            });
+
+        });
+
+
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){
 
