@@ -258,10 +258,15 @@
         });
 
         //Event handler for searching
-        $(document).change('.find-stuff', function(){
-            var stuff = $(this).data('value');
+        $('input[name=search]').on('input', function(){
+            //Get input value
+            var stuff = $(this).val();
+
+            //Open search results tab
             $('.content').removeClass('active');
             $('#search').toggleClass('active');
+
+            //Perform search
             cache.adverts.each(function(){
                 if (this.contains(stuff))
                 {
