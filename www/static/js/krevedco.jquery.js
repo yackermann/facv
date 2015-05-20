@@ -268,25 +268,16 @@
 
             //Perform search
 
-           var keys = Object.keys(cache.adverts);
+            var keys = Object.keys(cache.adverts);
 
-           keys.forEach(function(item,i,arr){
-               var buf = (cache.adverts[item]);
-               var patt = new RegExp('/'+stuff+'/ig');
-               if (patt.test(buf))
-               {
-                   var outAdvert = models.advert(buf );
-                   $('#search').append(outAdvert);
-               }
-           });
-            /*cache.adverts.each(function(){
-                if (this.contains(stuff))
-                {
-                    var outAdvert = models.advert( this );
-                    $('#search').append(outAdvert);
+            keys.forEach(function(item,i,arr){
+                var buf = (cache.adverts[item]);
+                var patt = new RegExp('/'+stuff+'/ig');
+                if (patt.test(buf)){
+                    var outAdvert = models.advert( buf );
+                    $('#search').append( outAdvert );
                 }
-            });*/
-
+            });
         });
 
 
