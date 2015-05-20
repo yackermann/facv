@@ -28,20 +28,23 @@
         }
 
         private function base64_to_img($base64_string) {
-            $data = base64_decode(explode(',', $base64_string)[1]);
-            $ext = $this -> getImageMimeType($data);
-            if($ext){
-                try {
-                    $filename = md5($base64_string.time()).'.'.$ext;
-                    $output_file = $_SERVER['DOCUMENT_ROOT'].'/server/uploads/'.$filename;
+            if(preg_match('/^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/i', $base64_string)){
+                $data = base64_decode(explode(',', $base64_string)[1]);
+                $ext = $this -> getImageMimeType($data);
+                if($ext){
+                    try {
+                        $filename = md5($base64_string.time()).'.'.$ext;
+                        $output_file = $_SERVER['DOCUMENT_ROOT'].'/server/uploads/'.$filename;
 
-                    $ifp = fopen( $output_file, "wb" ); 
-                    fwrite( $ifp, $data ); 
-                    fclose( $ifp ); 
-                    return $filename; 
-                } catch (Exception $e) {
-                    return NULL;
+                        $ifp = fopen( $output_file, "wb" ); 
+                        fwrite( $ifp, $data ); 
+                        fclose( $ifp ); 
+                        return $filename; 
+                    } catch (Exception $e) {
+                        return NULL;
+                    }
                 }
+                return NULL;
             }
             return NULL;
         }
