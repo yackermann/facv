@@ -258,7 +258,7 @@
         });
 
         //Event handler for searching
-        $('input[name=search]').on('input', function(){
+       $('input[name=search]').on('input', function(){
             //Get input value
             var stuff = $(this).val();
 
@@ -267,13 +267,23 @@
             $('#search').toggleClass('active');
 
             //Perform search
-            cache.adverts.each(function(){
+
+           var keys = Object.keys(cache.adverts);
+
+           keys.forEach(function(){
+               if (cache.adverts[this].test('/'+stuff+'/ig'))
+               {
+                   var outAdvert = models.advert( cache.adverts[this] );
+                   $('#search').append(outAdvert);
+               }
+           });
+            /*cache.adverts.each(function(){
                 if (this.contains(stuff))
                 {
                     var outAdvert = models.advert( this );
                     $('#search').append(outAdvert);
                 }
-            });
+            });*/
 
         });
 
