@@ -112,7 +112,7 @@
                 $stmt -> bindParam( ':text'         ,    $_POST['text']         ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':endDate'      ,    $_POST['endDate']      ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':image'        ,    $_POST['imageURL']     ,    PDO::PARAM_STR );
-                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_INT );
                 $stmt -> bindParam( ':email'        ,    $_POST['email']        ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':phone'        ,    $_POST['phone']        ,    PDO::PARAM_STR );
                 /*-------- PDO BIND PARAMS ENDS --------*/
@@ -189,10 +189,10 @@
                 $stmt -> bindParam( ':text'         ,    $_POST['text']         ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':endDate'      ,    $_POST['endDate']      ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':image'        ,    $_POST['imageURL']     ,    PDO::PARAM_STR );
-                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_INT );
                 $stmt -> bindParam( ':email'        ,    $_POST['email']        ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':phone'        ,    $_POST['phone']        ,    PDO::PARAM_STR );
-                $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_INT );
 
                 /*-------- PDO BIND PARAMS ENDS --------*/
 
@@ -209,14 +209,30 @@
     }
     class Delete{
         private $sqlr = array(
-            'advert' => 'DELETE FROM adverts WHERE id  = :id',
+            'advert' => 'DELETE FROM adverts WHERE id = :id',
             'user' => ''
         );
 
-        public function user($id){
-        }
+        public function user($id){}
 
-        public function advert($id){
+        public function advert(){
+            try{
+                global $pdo;
+
+                $stmt = $pdo -> prepare($this -> sqlr['advert']);
+
+                /*---------- PDO BIND PARAMS ----------*/
+                $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_INT );   
+
+                /*-------- PDO BIND PARAMS ENDS --------*/
+                
+                $stmt -> execute();
+
+                return array('status' => 200);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
         }
 
     }

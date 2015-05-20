@@ -1,7 +1,7 @@
 <?php
     require __DIR__.'/includes/session.php';
     include __DIR__.'/includes/sql_requests.php';
-    
+
     header('Content-Type: application/json');
     
     if($_POST && isset($_POST['method'])){
@@ -64,6 +64,10 @@
 
         }else if($_POST['method'] === 'delete'){
 
+            $SQLDelete = new SQLRequests\Delete();
+            
+            if( isset($_POST['id']) )
+                echo json_encode( $SQLDelete -> advert() );
         }
 
     }
