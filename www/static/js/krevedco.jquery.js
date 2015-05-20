@@ -202,7 +202,7 @@
 
                                 return string;
                             })(advert)
-                            
+
                             //Add item
                             this.addAdvert(parent, advert);
                             
@@ -270,7 +270,6 @@
         //Event handler for searching
        $('input[name=search]').on('input', function(){
             //Get input value
-            console.log(cache.search);
             var stuff = $(this).val();
 
             //Open search results tab
@@ -280,9 +279,11 @@
             //Perform search
 
             var keys = Object.keys(cache.adverts);
-
+            $('#search').html('')
             keys.forEach(function( item, i ){
-                var patt = new RegExp('/' + stuff + '/ig');
+                console.log(cache.search[item])
+                var patt = new RegExp(stuff, 'i');
+                console.log(patt);
                 // console.log(cache.search[item]);
                 if (patt.test(cache.search[item])){
                     var outAdvert = models.advert( cache.adverts[item] );
