@@ -55,13 +55,13 @@
                     $image = $upload -> upload($_POST['image']);
                 }
 
-                $responce = $SQLAdd -> advert($image);
+                $response = $SQLAdd -> advert($image);
 
-                if($responce['status'] === 200){
-                    $responce['advert'] = $SQLGet -> advert($responce['id'])[0];
+                if($response['status'] === 200){
+                    $response['advert'] = $SQLGet -> advert($response['id'])[0];
                 }
 
-                echo json_encode( $responce );
+                echo json_encode( $response );
                 
             }else{
 
