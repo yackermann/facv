@@ -278,15 +278,17 @@
             $('#search').toggleClass('active');
 
             //Perform search
+            var keys = Object.keys( cache.adverts );
 
-            var keys = Object.keys(cache.adverts);
+            //Clean search space
             $('#search').html('')
+
             keys.forEach(function( item, i ){
-                console.log(cache.search[item])
-                var patt = new RegExp(stuff, 'i');
-                console.log(patt);
+                //Generate regexp.
+                var patt = new RegExp( stuff, 'i' );
+
                 // console.log(cache.search[item]);
-                if (patt.test(cache.search[item])){
+                if (patt.test( cache.search[item] )){
                     var outAdvert = models.advert( cache.adverts[item] );
                     $('#search').append( outAdvert );
                 }
