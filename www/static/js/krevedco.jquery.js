@@ -157,7 +157,7 @@
                                     '<h1>' + data.title + '</h1><br/>' +
                                     '<p>' + data.text + '<br/>'+
                                     'E-mail : ' + data.email + '<br/>'+
-                                    'Phone number ' + data.phone + '</p>' +
+                                    'Phone number : ' + data.phone + '</p>' +
                                 '</div>' +
                                 '<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
                             '</div>';
