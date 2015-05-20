@@ -210,10 +210,28 @@
     class Delete{
         private $sqlr = array(
             'advert' => 'DELETE FROM adverts WHERE id = :id',
-            'user' => ''
+            'user' => 'DELETE FROM users WHERE id = :id',
         );
 
-        public function user($id){}
+        public function user(){
+            try{
+                global $pdo;
+
+                $stmt = $pdo -> prepare($this -> sqlr['user']);
+
+                /*---------- PDO BIND PARAMS ----------*/
+                $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_INT );   
+
+                /*-------- PDO BIND PARAMS ENDS --------*/
+                
+                $stmt -> execute();
+
+                return array('status' => 200);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
+        }
 
         public function advert(){
             try{
@@ -225,7 +243,7 @@
                 $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_INT );   
 
                 /*-------- PDO BIND PARAMS ENDS --------*/
-                
+
                 $stmt -> execute();
 
                 return array('status' => 200);
