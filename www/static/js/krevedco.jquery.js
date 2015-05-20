@@ -283,11 +283,10 @@
             //Clean search space
             $('#search').html('')
 
-            keys.forEach(function( item, i ){
+            keys.forEach(function( item ){
                 //Generate regexp.
                 var patt = new RegExp( stuff, 'i' );
 
-                // console.log(cache.search[item]);
                 if (patt.test( cache.search[item] )){
                     var outAdvert = models.advert( cache.adverts[item] );
                     $('#search').append( outAdvert );
