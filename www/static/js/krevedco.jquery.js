@@ -194,7 +194,7 @@
 
                             //Save advert to cache
                             cache.adverts[advert.id] = advert;
-                            cache.advSearchStr[advert.id] = advert.title+advert.text+advert.email;
+                            cache.advSearchStr[advert.id] = advert.title+advert.text+advert.email+advert.phone;
                             //Add item
                             this.addAdvert(parent, advert);
                             
