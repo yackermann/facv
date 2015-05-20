@@ -155,7 +155,8 @@
                                 '<div class="large-8 columns">' +
                                     '<small>Published on ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
                                     '<h1>' + data.title + '</h1><br/>' +
-                                    '<p>' + data.text + '</p>' +
+                                    '<p>' + data.text + '</p><br/>' +
+                                    '<p>E-mail : ' + data.email + ' | Phone number ' + data.phone + '</p>' +
                                 '</div>' +
                                 '<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
                             '</div>';
