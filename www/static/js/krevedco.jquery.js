@@ -284,13 +284,15 @@
             //Clean search space
             $('#search').html('')
 
-            keys.forEach(function( item ){
-                //Generate regexp.
-                var patt = new RegExp( stuff, 'i' );
+            keys.forEach(function( item, i ){
+                if( i < 12 ){
+                    //Generate regexp.
+                    var patt = new RegExp( stuff, 'i' );
 
-                if (patt.test( cache.search[item] )){
-                    var outAdvert = models.advert( cache.adverts[item] );
-                    $('#search').append( outAdvert );
+                    if (patt.test( cache.search[item] )){
+                        var outAdvert = models.advert( cache.adverts[item] );
+                        $('#search').append( outAdvert );
+                    }
                 }
             });
         });
