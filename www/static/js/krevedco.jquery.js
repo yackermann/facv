@@ -27,7 +27,7 @@
             cache = {
                 adverts: {},
                 categories: {},
-                advSearchStr: {}
+                search: {}
             },
             
             locale = {},
@@ -193,7 +193,16 @@
 
                             //Save advert to cache
                             cache.adverts[advert.id] = advert;
-                            cache.advSearchStr[advert.id] = advert.title+advert.text+advert.email;
+
+                            cache.search[advert.id] = (function(advert){
+                                var string = '';
+                                var keys = Object.keys(advert);
+                                for(var i = 0; i < keys.length; i++)
+                                    string = string + ' ' + advert[keys[i]];
+
+                                return string;
+                            })(advert)
+                            
                             //Add item
                             this.addAdvert(parent, advert);
                             
@@ -261,6 +270,7 @@
         //Event handler for searching
        $('input[name=search]').on('input', function(){
             //Get input value
+            console.log(cache.search);
             var stuff = $(this).val();
 
             //Open search results tab
@@ -271,11 +281,11 @@
 
             var keys = Object.keys(cache.adverts);
 
-            keys.forEach(function(item,i,arr){
-                var buf = (cache.adverts[item]);
-                var patt = new RegExp('/'+stuff+'/ig');
-                if (patt.test(cache.advSearchStr[item])){
-                    var outAdvert = models.advert( buf );
+            keys.forEach(function( item, i ){
+                var patt = new RegExp('/' + stuff + '/ig');
+                // console.log(cache.search[item]);
+                if (patt.test(cache.search[item])){
+                    var outAdvert = models.advert( cache.adverts[item] );
                     $('#search').append( outAdvert );
                 }
             });
@@ -430,6 +440,7 @@
                 localStorage.setItem('lang', newLang);
 
             }
+
             location.reload();
         });
 
