@@ -270,10 +270,12 @@
 
            var keys = Object.keys(cache.adverts);
 
-           keys.forEach(function(){
-               if (cache.adverts[this].test('/'+stuff+'/ig'))
+           keys.forEach(function(item,i,arr){
+               var buf = (cache.adverts[item]);
+               var patt = new RegExp('/'+stuff+'/ig');
+               if (patt.test(buf))
                {
-                   var outAdvert = models.advert( cache.adverts[this] );
+                   var outAdvert = models.advert(buf );
                    $('#search').append(outAdvert);
                }
            });
