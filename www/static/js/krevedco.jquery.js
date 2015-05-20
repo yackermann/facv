@@ -26,7 +26,8 @@
             //Cache. OMG LOL
             cache = {
                 adverts: {},
-                categories: {}
+                categories: {},
+                advSearchStr: {}
             },
             
             locale = {},
@@ -192,7 +193,7 @@
 
                             //Save advert to cache
                             cache.adverts[advert.id] = advert;
-
+                            cache.advSearchStr[advert.id] = advert.title+advert.text+advert.email;
                             //Add item
                             this.addAdvert(parent, advert);
                             
@@ -273,7 +274,7 @@
             keys.forEach(function(item,i,arr){
                 var buf = (cache.adverts[item]);
                 var patt = new RegExp('/'+stuff+'/ig');
-                if (patt.test(buf)){
+                if (patt.test(cache.advSearchStr[item])){
                     var outAdvert = models.advert( buf );
                     $('#search').append( outAdvert );
                 }
