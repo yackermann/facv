@@ -97,7 +97,7 @@
             'user' => 'INSERT INTO users SET username = :username, hash = :hash, challenge = :challenge'
         );
 
-        public function advert($image){
+        public function advert(){
             try{
                 //Connect $pdo variable from connect.php
                 global $pdo;
@@ -111,7 +111,7 @@
                 $stmt -> bindParam( ':title'        ,    $_POST['title']        ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':text'         ,    $_POST['text']         ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':endDate'      ,    $_POST['endDate']      ,    PDO::PARAM_STR );
-                $stmt -> bindParam( ':image'        ,    $image                 ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':image'        ,    $_POST['imageURL']     ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':email'        ,    $_POST['email']        ,    PDO::PARAM_STR );
                 $stmt -> bindParam( ':phone'        ,    $_POST['phone']        ,    PDO::PARAM_STR );
@@ -154,9 +154,9 @@
                 $stmt = $pdo -> prepare($this -> sqlr['user']);
 
                 /*---------- PDO BIND PARAMS ----------*/
-                $stmt -> bindParam( ':username', $username, PDO::PARAM_STR );
-                $stmt -> bindParam( ':hash', $hash, PDO::PARAM_STR );
-                $stmt -> bindParam( ':challenge', $challenge, PDO::PARAM_STR );
+                $stmt -> bindParam( ':username'     ,    $username              ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':hash'         ,    $hash                  ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':challenge'    ,    $challenge             ,    PDO::PARAM_STR );
                 /*-------- PDO BIND PARAMS ENDS --------*/
 
                 $stmt -> execute();
@@ -169,8 +169,46 @@
         }
     }
 
+    class Update{
+        private $sqlr = array(
+            'advert' => 'UPDATE adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate, image = :image WHERE id=:id',
+            'user' => 'INSERT INTO users SET username = :username, hash = :hash, challenge = :challenge'
+        );
+        public function advert(){
+            try{
+                //Connect $pdo from global variable space
+                global $pdo;
+
+                //Making PDO SQL request
+                $stmt = $pdo -> prepare($this -> sqlr['advert']);
+                $now = date('Y-m-d');
+                
+                /*---------- PDO BIND PARAMS ----------*/
+                $stmt -> bindParam( ':startDate'    ,    $now                   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':title'        ,    $_POST['title']        ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':text'         ,    $_POST['text']         ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':endDate'      ,    $_POST['endDate']      ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':image'        ,    $_POST['imageURL']     ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':categoryId'   ,    $_POST['categoryId']   ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':email'        ,    $_POST['email']        ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':phone'        ,    $_POST['phone']        ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':id'           ,    $_POST['id']           ,    PDO::PARAM_STR );
+
+                /*-------- PDO BIND PARAMS ENDS --------*/
+
+                $stmt -> execute();
+                
+                return array('status' => 200);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
+        }
+
+
+    }
     class Delete{
-         private $sqlr = array(
+        private $sqlr = array(
             'advert' => 'DELETE FROM adverts WHERE id  = :id',
             'user' => ''
         );
