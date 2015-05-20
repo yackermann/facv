@@ -155,7 +155,7 @@
                                 '<div class="large-8 columns">' +
                                     '<small>Published on ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
                                     '<h1>' + data.title + '</h1><br/>' +
-                                    '<p>' + data.text +
+                                    '<p>' + data.text + '<br/>'+
                                     'E-mail : ' + data.email + '<br/>'+
                                     'Phone number ' + data.phone + '</p>' +
                                 '</div>' +
