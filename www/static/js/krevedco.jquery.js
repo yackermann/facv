@@ -301,22 +301,12 @@
         $(document).on( 'ready', function(){
 
             var keys = Object.keys( cache.adverts );
-            var searchStr = "";
             for (var i=0; i<=8 ; i++)
             {
-                var patt = new RegExp( stuff, 'i' );
-                var sum = 0;
-                var check = true;
-                do{
-                    var rand = keys[Math.floor(Math.random() * keys.length)];
-                    var patt = new RegExp( rand, 'i' );
-                    if (patt.test(searchStr)) {
-                        searchStr = searchStr + " " + rand;
-                        var outAdvert = models.advert(cache.adverts[rand]);
-                        $('#main').append(outAdvert);
-                        check = false;
-                    }
-                } while (check && sum < keys.length )
+                var rand = keys[Math.floor(Math.random() * keys.length)];
+                var outAdvert = models.advert(cache.adverts[rand]);
+                $('#main').append(outAdvert);
+
             }
         });
 
