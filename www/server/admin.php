@@ -14,21 +14,21 @@
 
         'users' => '<thead>
                         <tr>
-                            <th width="600">Username</th>
-                            <th width="200">Edit</th>
-                            <th width="200">Delete</th>
+                            <th width="600" class="translateMe" data-tid="username">Username</th>
+                            <th width="200" class="translateMe" data-tid="edit">Edit</th>
+                            <th width="200" class="translateMe" data-tid="delete">Delete</th>
                         </tr>
                     </thead>
                     <tbody>%tableitems%</tbody>',
 
         'adverts' => '<thead>
                         <tr>
-                            <th width="125">Title</th>
-                            <th width="125">Description</th>
-                            <th width="125">End date</th>
-                            <th width="125">Category</th>
-                            <th width="125">Email</th>
-                            <th width="125">Phone</th>
+                            <th width="125" class="translateMe" data-tid="title">Title</th>
+                            <th width="125" class="translateMe" data-tid="description">Description</th>
+                            <th width="125" class="translateMe" data-tid="endDate">End date</th>
+                            <th width="125" class="translateMe" data-tid="category">Category</th>
+                            <th width="125" class="translateMe" data-tid="email">Email</th>
+                            <th width="125" class="translateMe" data-tid="phone">Phone</th>
                             <th width="125"></th>
                             <th width="125"></th>
                         </tr>
@@ -48,8 +48,8 @@
                 extract($value);
                 $item = "<tr>
                             <td>$username</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button translateMe\" data-tid=\"edit\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button translateMe\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
@@ -71,8 +71,8 @@
                             <td>$categoryId</td>
                             <td>$email</td>
                             <td>$phone</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
@@ -81,7 +81,7 @@
         }
 
     }else{
-        $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users">Users</a> || <a href="?open=adverts">Adverts</a></h2></div></div>';
+        $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users" class="translateMe" data-tid="users">Users</a> || <a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></h2></div></div>';
     }
 ?>
 
@@ -119,17 +119,98 @@
                     </div>
                     <div class="large-6 columns">
                         <ul class="inline-list right">
-                            <li><a href="?open=users">Users</a></li>
-                            <li><a href="?open=adverts">Adverts</a></li>
+                            <li><a href="/" class="translateMe" data-tid="backToMain">Main Page</a></li>
+                            <li><a href="?open=users" class="translateMe" data-tid="users">Users</a></li>
+                            <li><a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </footer>
-        <script src="/js/vendor/jquery.js"></script>
-        <script src="/js/foundation.min.js"></script>
+
+        <div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <fieldset>
+                <legend class="translateMe" data-tid="newAdvert">New advert</legend>
+                <div class="large-5 columns dropzone parent">
+                    <div id="drop_zone" class="dropzone centered">
+                        <span class="dropzone text translateMe" data-tid="dropzone">
+                            Drop your files here
+                        </span>
+                    </div>
+                    <input type="file" id="files" class="dropzone" data-eval="false" style="opacity:0"> 
+                </div>
+                <div class="large-7 columns">
+
+                    <div class="large-3 columns tr translateMe" data-tid="title">Title</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Title"  data-type="title" data-sid="title">
+                    </div>
+
+                    <div class="large-3 columns tr translateMe" data-tid="description">Description</div>
+                    <div class="large-9 columns">
+                        <textarea tabindex="0" data-type="text" name="Description" data-sid="text"></textarea>
+                    </div>
+
+                    <div class="large-3 columns tr translateMe" data-tid="endDate">End Date</div>
+                    <div class="large-9 columns">
+                        <div class="row collapse postfix-radius">
+                            <div class="small-9 columns">
+                                <input type="text" tabindex="0" class="endDatePicker" autocomplete="off" name="End Date" data-type="date" data-sid="endDate" readonly>
+                            </div>
+                            <div class="small-3 columns">
+                                <span class="postfix translateMe" data-tid="date">Date</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="large-3 columns tr translateMe" data-tid="category">Category</div>
+                    <div class="large-9 columns">
+                        <select data-type="category" name="Category" data-sid="categoryId">
+                            <option></option>
+                        </select>
+                    </div>
+
+                    <div class="large-3 columns tr translateMe" data-tid="email">Email</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Email" data-type="email" data-sid="email">
+                    </div>
+
+                    <div class="large-3 columns tr translateMe translateMe" data-tid="phone">Phone</div>
+                    <div class="large-9 columns">
+                        <input type="text" tabindex="0" autocomplete="off" name="Number" data-type="number" data-sid="phone">
+                    </div>
+
+                    <div class="large-3 columns tr"></div>
+                    <div class="large-9 columns">
+                        <a href="#" tabindex="0" class="sbmt button expand success translateMe" data-tid="submit">Submit</a>
+                    </div>
+                </div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </fieldset>
+        </div>
+
+         <div id="confirm" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
+            <div class="large-3 columns">
+                <a href="#" class="medium expand success button translateMe" data-tid="no">NO</a>
+            </div>
+            <div class="large-3 columns">                            
+                <a href="#" id="cdeletebtn" class="medium expand alert button CdeleteBtn translateMe" data-tid="yes">Yes</a>
+            </div>
+        </div>
+             
+
+
+        <div class="alert-div"></div>
+
+        <script type="text/javascript" src="/js/vendor/jquery.js"></script>
+        <script type="text/javascript" src="/js/foundation.min.js"></script>
+        <script type="text/javascript" src="/js/foundation-datepicker.js"></script>
+        <script type="text/javascript" src="/js/admin.jquery.js"></script>
+
         <script>
             $(document).foundation();
+            $('.tabs-content').admin();
         </script>
     </body>
 </html>
