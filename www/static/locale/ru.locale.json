@@ -15,7 +15,7 @@
     ],
     "frontend": {
         "header"        :    "Free adverts",
-        "moto"          :    "Free adverts for you. Always.",
+        "moto"          :    "Бесплатные объявления для вас. Всегда.",
         "newAdvert"     :    "Новое объявление",
         "login"         :    "Войти",
         "register"      :    "Зарегистрироваться",

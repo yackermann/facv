@@ -15,7 +15,7 @@
     ],
     "frontend": {
         "header"        :    "Free adverts",
-        "moto"          :    "Free adverts for you. Always.",
+        "moto"          :    "Безкоштовні оголошення для вас. Завжди.",
         "newAdvert"     :    "Нове оголошення",
         "login"         :    "Вхід",
         "register"      :    "Реєстрація",
