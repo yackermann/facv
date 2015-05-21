@@ -1,5 +1,8 @@
 <?php
     include __DIR__.'/includes/sql_requests.php';
+    
+    //Starts session
+    session_start();
 
     header('Content-Type: application/json');
     if( isset( $_SESSION['logged'] ) && $_SESSION['logged']){
