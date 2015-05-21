@@ -71,7 +71,7 @@
 
         }
     }else{
-        echo json_encode( array('status' => 401, 'message' => 'errorMessage' ) );
+        echo json_encode( array('status' => 401, 'errorMessage' => 'Unauthorized' ) );
     }
 
 ?>
