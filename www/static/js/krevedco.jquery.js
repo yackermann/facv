@@ -189,7 +189,6 @@
                     //Iteration through the categories
                     for (var i = 0, f; advert = data[i]; i++) {
 
-
                         // //Checks if advert is not outdated. 
                         if( Date.parse(advert.endDate) > Date.now() ){
 
@@ -207,10 +206,37 @@
 
                             //Add item
                             this.addAdvert(parent, advert);
-                            
                         }
                         
                     };
+
+                    var advertsIDs = Object.keys( cache.adverts );
+                    if( advertsIDs.length < 8 ){f
+                        for(var i = 0; i < advertsIDs.length; i++){
+                            $('#main').append(models.advert(cache.adverts[advertsIDs[i]]));
+                        }
+                    }else{
+                        var rendAdverts = (function(adv){
+                            var temp = [];
+                            var getRand = function(){
+                                return Math.floor(Math.random() * ( adv.length - 1 ));
+                            }
+
+                            while( temp.length < 8 ){
+                                var id = getRand();
+                                if( temp.indexOf( id ) === -1 )
+                                    temp.push( id );
+                            }
+
+                            return temp;
+
+                        })(advertsIDs);
+                        for(var i = 0; i < rendAdverts.length; i++){
+                            var advID = advertsIDs[rendAdverts[i]];
+                            $('#main').append( models.advert( cache.adverts[advID] ) );
+                        }
+                    }
+
                 },
                 addAdvert: function( parent, data ){
                     $( 'section#cat-' + data.categoryId + ' > .items', parent ).append( models.advert(data) );
@@ -224,9 +250,8 @@
                     $('.loading').remove();
                 },
                 languages: function(){
-                    for (var i = 0, f; key = Object.keys(o.locale.available)[i]; i++) {
-                        $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.available[key] + '</a></li>')
-                    }
+                    for (var i = 0, f; key = Object.keys(o.locale.available)[i]; i++)
+                        $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.available[key] + '</a></li>');
                 }
             };
 
@@ -295,19 +320,6 @@
                     }
                 }
             });
-        });
-
-        //Main Page
-        $(document).on( 'ready', function(){
-
-            var keys = Object.keys( cache.adverts );
-            for (var i=0; i<=8 ; i++)
-            {
-                var rand = keys[Math.floor(Math.random() * keys.length)];
-                var outAdvert = models.advert(cache.adverts[rand]);
-                $('#main').append(outAdvert);
-
-            }
         });
 
         //Form validation form
