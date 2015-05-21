@@ -297,6 +297,18 @@
             });
         });
 
+        //Main Page
+        $(document).on( 'ready', function(){
+
+            var keys = Object.keys( cache.adverts );
+            for (var i=0; i<=8 ; i++)
+            {
+                var rand = keys[Math.floor(Math.random() * keys.length)];
+                var outAdvert = models.advert(cache.adverts[rand]);
+                $('#main').append(outAdvert);
+
+            }
+        });
 
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){

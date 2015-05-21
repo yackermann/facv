@@ -14,7 +14,7 @@
         {   "id": 10, "name": "Hobby"                    }
     ],
     "frontend": {
-        "header"        :    "Freeads",
+        "header"        :    "Free adverts",
         "moto"          :    "Free adverts for you. Always.",
         "newAdvert"     :    "New Advert",
         "login"         :    "Login",

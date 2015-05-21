@@ -14,7 +14,7 @@
         {   "id": 10, "name": "Хобби и спорт"            }
     ],
     "frontend": {
-        "header"        :    "Freeads",
+        "header"        :    "Free adverts",
         "moto"          :    "Free adverts for you. Always.",
         "newAdvert"     :    "Новое объявление",
         "login"         :    "Войти",
