@@ -14,7 +14,8 @@
         {   "id": 10, "name": "Хоббі та спорт"          }
     ],
     "frontend": {
-        "header"        :    "Кревед.ко",
+        "header"        :    "Freeads",
+        "moto"          :    "Free adverts for you. Always.",
         "newAdvert"     :    "Нове оголошення",
         "login"         :    "Вхід",
         "register"      :    "Реєстрація",
@@ -24,6 +25,22 @@
         "username"      :    "Ім'я користувача",
         "password"      :    "Пароль",
 
+        "title"         :    "Назва",
+        "description"   :    "Опис",
+        "endDate"       :    "Кінець оголошення",
+        "date"          :    "Дата",
+        "category"      :    "Категорія",
+        "email"         :    "Електронна пошта",
+        "phone"         :    "Номер телефону",
+        "dropzone"      :    "Drop image here",
+        "submit"        :    "Додати"
+    },
+    "admin": {
+        "delete"        :    "Видалити",
+        "edit"          :    "Редагувати",
+        "users"         :    "Користувачі",
+        "adverts"       :    "Оголошення",
+        
         "title"         :    "Назва",
         "description"   :    "Опис",
         "endDate"       :    "Кінець оголошення",

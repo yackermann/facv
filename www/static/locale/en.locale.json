@@ -14,15 +14,33 @@
         {   "id": 10, "name": "Hobby"                    }
     ],
     "frontend": {
-        "header"        :    "Kreved.co",
+        "header"        :    "Freeads",
+        "moto"          :    "Free adverts for you. Always.",
         "newAdvert"     :    "New Advert",
         "login"         :    "Login",
         "register"      :    "Register",
         "backToMain"    :    "Back to main",
         "footer"        :    "Copyright no one at all. Go to town.",
+        "randlist"      :    "Random Listings",
 
         "username"      :    "Username",
         "password"      :    "Password",
+
+        "title"         :    "Title",
+        "description"   :    "Description",
+        "endDate"       :    "End Date",
+        "date"          :    "Date",
+        "category"      :    "Category",
+        "email"         :    "Email",
+        "phone"         :    "Phone",
+        "dropzone"      :    "Drop image here",
+        "submit"        :    "Submit"
+    },
+    "admin": {
+        "delete"        :    "",
+        "edit"          :    "",
+        "users"         :    "",
+        "adverts"       :    "",
 
         "title"         :    "Title",
         "description"   :    "Description",
