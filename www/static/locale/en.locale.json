@@ -21,7 +21,6 @@
         "register"      :    "Register",
         "backToMain"    :    "Back to main",
         "footer"        :    "Copyright no one at all. Go to town.",
-        "randlist"      :    "Random Listings",
 
         "username"      :    "Username",
         "password"      :    "Password",
@@ -37,10 +36,15 @@
         "submit"        :    "Submit"
     },
     "admin": {
-        "delete"        :    "",
-        "edit"          :    "",
-        "users"         :    "",
-        "adverts"       :    "",
+        "delete"        :    "Delete",
+        "edit"          :    "Edit",
+        "users"         :    "Users",
+        "adverts"       :    "Adverts",
+        "backToMain"    :    "Back to main",
+        "username"      :    "Username",
+        "areYouSure"    :    "Are you sure?",
+        "yes"           :    "Yes",
+        "no"            :    "NO",
 
         "title"         :    "Title",
         "description"   :    "Description",

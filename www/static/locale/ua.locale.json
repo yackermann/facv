@@ -19,7 +19,7 @@
         "newAdvert"     :    "Нове оголошення",
         "login"         :    "Вхід",
         "register"      :    "Реєстрація",
-        "backToMain"    :    "На главную",
+        "backToMain"    :    "На головну",
         "footer"        :    "Copyright no one at all. Go to town.",
 
         "username"      :    "Ім'я користувача",
@@ -40,7 +40,12 @@
         "edit"          :    "Редагувати",
         "users"         :    "Користувачі",
         "adverts"       :    "Оголошення",
-        
+        "backToMain"    :    "На головну",
+        "username"      :    "Ім'я користувача",
+        "areYouSure"    :    "Are you sure?",
+        "yes"           :    "Так",
+        "no"            :    "Ні",
+
         "title"         :    "Назва",
         "description"   :    "Опис",
         "endDate"       :    "Кінець оголошення",
