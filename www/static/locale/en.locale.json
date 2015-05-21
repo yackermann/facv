@@ -14,7 +14,7 @@
         {   "id": 10, "name": "Hobby"                    }
     ],
     "frontend": {
-        "header"        :    "Kreved.co",
+        "header"        :    "Free adverts",
         "newAdvert"     :    "New Advert",
         "login"         :    "Login",
         "register"      :    "Register",

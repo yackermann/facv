@@ -14,7 +14,7 @@
         {   "id": 10, "name": "Хобби и спорт"            }
     ],
     "frontend": {
-        "header"        :    "Кревед.ко",
+        "header"        :    "Free adverts",
         "newAdvert"     :    "Новое объявление",
         "login"         :    "Войти",
         "register"      :    "Зарегистрироваться",
