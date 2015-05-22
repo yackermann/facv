@@ -19,7 +19,7 @@
                 source: 'server/adverts.php'
             }, orguments),
 
-            _uploadImage = '';
+            _uploadImage = '',
 
             todo = this,
 
@@ -153,7 +153,7 @@
                                     '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
                                 '</div>' +
                                 '<div class="large-8 columns">' +
-                                    '<small>Published on ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
+                                    '<small><span class="translateMe" data-tid="publish"></span> ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
                                     '<h1>' + data.title + '</h1><br/>' +
                                     '<p>' + data.text + '<br/>'+
                                     'E-mail : ' + data.email + '<br/>'+

@@ -26,6 +26,7 @@
         "password"      :    "Password",
 
         "title"         :    "Title",
+        "publish"       :    "Published on",
         "description"   :    "Description",
         "endDate"       :    "End Date",
         "date"          :    "Date",
