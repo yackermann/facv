@@ -22,8 +22,8 @@
         "backToMain"    :    "На главную",
         "footer"        :    "Copyright no one at all. Go to town.",
 
-        "publishedOn"   :    "Опубликовано :",
-        "endingDate"    :    "Заканчиваеться :",
+        "publishedOn"   :    "Опубликовано",
+        "endingDate"    :    "Заканчиваеться",
 
         "username"      :    "Имя пользователя",
         "password"      :    "Пароль",

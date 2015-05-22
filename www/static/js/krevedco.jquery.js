@@ -153,11 +153,11 @@
                                     '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
                                 '</div>' +
                                 '<div class="large-8 columns">' +
-                                    '<small>' + locale.frontend['publishedOn'] + ' ' + data.startDate + ' | ' + locale.frontend['endingDate'] + ' ' + data.endDate + '</small><br/>' +
+                                    '<small>' + locale.frontend['publishedOn'] + ': ' + data.startDate + ' | ' + locale.frontend['endingDate'] + ': ' + data.endDate + '</small><br/>' +
                                     '<h1>' + data.title + '</h1><br/>' +
                                     '<p>' + data.text + '<br/>'+
-                                    'E-mail : ' + data.email + '<br/>'+
-                                    'Phone number : ' + data.phone + '</p>' +
+                                    locale.frontend['email'] + ' : ' + data.email + '<br/>'+
+                                    locale.frontend['phone'] + ': ' + data.phone + '</p>' +
                                 '</div>' +
                                 '<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
                             '</div>';

@@ -22,8 +22,8 @@
         "backToMain"    :    "Back to main",
         "footer"        :    "Copyright no one at all. Go to town.",
 
-        "published"     :    "Published on",
-        "ending"        :    "Ending date",
+        "publishedOn"   :    "Published on",
+        "endingDate"    :    "Ending date",
 
         "username"      :    "Username",
         "password"      :    "Password",
