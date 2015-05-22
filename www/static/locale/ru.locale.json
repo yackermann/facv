@@ -25,6 +25,8 @@
         "publishedOn"   :    "Опубликовано",
         "endingDate"    :    "Заканчиваеться",
 
+        "loadingAnim"   :    "Загрузка",
+
         "username"      :    "Имя пользователя",
         "password"      :    "Пароль",
 

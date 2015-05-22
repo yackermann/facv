@@ -416,7 +416,7 @@
 
             }).promise().done(function(){
                 if(ok){
-                    var animation = animate.loading(Super, 'Loading');
+                    var animation = animate.loading(Super, locale.frontend['loadingAnim']);
 
                     animation.start();
 

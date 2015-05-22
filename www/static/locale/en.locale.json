@@ -25,6 +25,8 @@
         "publishedOn"   :    "Published on",
         "endingDate"    :    "Ending date",
 
+        "loadingAnim"   :    "Loading",
+
         "username"      :    "Username",
         "password"      :    "Password",
 
