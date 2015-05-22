@@ -153,7 +153,7 @@
                                     '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
                                 '</div>' +
                                 '<div class="large-8 columns">' +
-                                    '<small><span class="translateMe" data-tid="publish"></span> ' + data.startDate + ' | Closing on ' + data.endDate + '</small><br/>' +
+                                    '<small>' + locale.frontend['publishedOn'] + ' ' + data.startDate + ' | ' + locale.frontend['endingDate'] + ' ' + data.endDate + '</small><br/>' +
                                     '<h1>' + data.title + '</h1><br/>' +
                                     '<p>' + data.text + '<br/>'+
                                     'E-mail : ' + data.email + '<br/>'+
@@ -475,7 +475,7 @@
         });
 
         /*----------Drag'n'Drop/File select----------*/
-        function handleFileSelect(evt) {
+        var handleFileSelect = function(evt) {
             evt.stopPropagation();
             evt.preventDefault();
 
@@ -503,7 +503,7 @@
            
         }
 
-        function handleDragOver(evt) {
+        var handleDragOver = function(evt) {
             evt.stopPropagation();
             evt.preventDefault();
             evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.

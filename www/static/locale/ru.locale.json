@@ -22,11 +22,13 @@
         "backToMain"    :    "На главную",
         "footer"        :    "Copyright no one at all. Go to town.",
 
+        "publishedOn"   :    "Опубликовано :",
+        "endingDate"    :    "Заканчиваеться :",
+
         "username"      :    "Имя пользователя",
         "password"      :    "Пароль",
 
         "title"         :    "Название",
-        "publish"       :    "Опубликовано :",
         "description"   :    "Описание",
         "endDate"       :    "Конец объявления",
         "date"          :    "Дата",
@@ -46,7 +48,6 @@
         "areYouSure"    :    "Вы действительно хотите удалить данное объявление?",
         "yes"           :    "Да",
         "no"            :    "НЕТ",
-
 
         "title"         :    "Название",
         "description"   :    "Описание",
