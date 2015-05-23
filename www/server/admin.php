@@ -64,7 +64,7 @@
 
             foreach ($SQLGet -> adverts() as $value) {
                 extract($value);
-                $item = "<tr>
+                $item = "<tr id=\"$id\">
                             <td>$title</td>
                             <td>$text</td>
                             <td>$endDate</td>
@@ -92,6 +92,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Admin<?php if($cdir !== '') echo ' | '.$cdir; ?></title>
         <link rel="stylesheet" href="/css/foundation.css" />
+        <link rel="stylesheet" href="/css/custom.css" />
         <script src="/js/vendor/modernizr.js"></script>
         <style>
             table{
@@ -189,13 +190,14 @@
             </fieldset>
         </div>
 
-         <div id="confirm" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <!--DELETE CONFIRMATION.-->
+        <div id="confirm" class="reveal-modal confirmDelete tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
             <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
             <div class="large-3 columns">
-                <a href="#" class="medium expand success button translateMe" data-tid="no">NO</a>
+                <a href="#" class="medium expand success button submitNo translateMe" data-tid="no">NO</a>
             </div>
             <div class="large-3 columns">                            
-                <a href="#" id="cdeletebtn" class="medium expand alert button CdeleteBtn translateMe" data-tid="yes">Yes</a>
+                <a href="#" class="medium expand alert button CdeleteBtn submitYes translateMe" data-tid="yes">Yes</a>
             </div>
         </div>
              
