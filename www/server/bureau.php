@@ -13,7 +13,7 @@
             if($_POST['method'] === 'get'){
 
                 if(isset($_POST['id']))
-                    echo json_encode( $SQLGet -> advert($_POST['id'])[0] );
+                    echo json_encode( array( 'status' => 200, 'data' => $SQLGet -> advert($_POST['id'])[0] ) );
 
             }else if( in_array($_POST['method'], ['add', 'update']) ){
 

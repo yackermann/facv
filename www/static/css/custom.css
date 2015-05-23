@@ -17,6 +17,7 @@
 
 #newAdvert{
 	top: 50px !important;
+	position: fixed !important;
 }
 
 .alert-div{

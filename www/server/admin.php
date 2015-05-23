@@ -71,7 +71,7 @@
                             <td>$categoryId</td>
                             <td>$email</td>
                             <td>$phone</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button editBtn translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
                             <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
@@ -211,8 +211,14 @@
         <script type="text/javascript" src="/js/admin.jquery.js"></script>
 
         <script>
-            $(document).foundation();
-            $('.tabs-content').admin();
+            $(document).ready(function(){
+                $(document).foundation({
+                    reveal: {
+                        close_on_background_click: false
+                    }
+                });
+                $(document).admin();
+            })
         </script>
     </body>
 </html>

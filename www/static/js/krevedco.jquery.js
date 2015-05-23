@@ -212,9 +212,9 @@
 
                     var advertsIDs = Object.keys( cache.adverts );
                     if( advertsIDs.length < 8 ){f
-                        for(var i = 0; i < advertsIDs.length; i++){
+                        for(var i = 0; i < advertsIDs.length; i++)
                             $('#main').append(models.advert(cache.adverts[advertsIDs[i]]));
-                        }
+
                     }else{
                         var rendAdverts = (function(adv){
                             var temp = [];

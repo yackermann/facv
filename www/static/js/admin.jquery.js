@@ -23,6 +23,9 @@
             todo = this,
             
             locale = {},
+            cache = {
+                categories : {}
+            },
             handlers = {
                 postError: function( error ){
                     var err = '';
@@ -120,10 +123,20 @@
             },
 
             render = {
+                categories: function( data ){
+
+                    for (var i = 0, f; category = data[i]; i++)
+                        $( 'select').append('<option value="' + category.id + '">' + category.name + '</option>');
+
+                },
                 locale: function(){
                     $(o.locale.class).each(function(){
                         var tid = $(this).data('tid');
-                        $(this).text(locale.admin[tid]);
+                        if( $(this).is( 'input' ) ){
+                            $(this).attr('placeholder', locale.admin[tid]);
+                        }else{
+                            $(this).text(locale.admin[tid]);
+                        }
                     })
                     $('.loading').remove();
                 }
@@ -132,27 +145,31 @@
         $.getJSON( '/locale/' + o.locale.selected + '.locale.json' ).done(function( l ){
 
             locale = l;
+            cache.categories = locale.categories;
+            render.categories(locale.categories);
+
             render.locale();
 
         }).fail(handlers.getError);
        
 
 
-        
+        /*----------Delete button.----------*/ 
         $('.deleteBtn').on('click', function(){
             $('.submitYes').data('id', $(this).data('id'));
             $('#confirm').foundation('reveal', 'open');
         })
 
-
+        //SAY NO TO Delete
         $('.submitNo').on('click', function(){
             $('#confirm').foundation('reveal', 'close');
         })
 
+        //DELETE
         $('.submitYes').on('click', function(){
             $(this).foundation('reveal', 'close');
             var _id = $(this).data('id');
-            $.post(o.bureau, {'method': 'delete', 'id': _id }, function( reply ){
+            $.post(o.bureau, { 'method': 'delete', 'id': _id }, function( reply ){
                 if( reply.status === 200 ){
                     m.success(locale.errors.client['successDelete'])
                     $( '#' + _id ).remove();
@@ -161,6 +178,34 @@
                 }
             }).fail(handlers.postError)
         })
+        /*----------Delete button ends.----------*/ 
+
+
+        /*----------Edit.----------*/ 
+        $('.editBtn').on('click', function(){
+
+            var _id = $(this).data('id');
+            $('#newAdvert').data('post', { 'method' : 'update', 'id': _id });
+            $.post( o.bureau, { 'method' : 'get', 'id': _id }, function( data ){
+                if( data.status === 200 ){
+                    var items = Object.keys(data.data);
+                    items.forEach( function( key ){
+                        var field = $('*[data-sid="' + key + '"]');
+                        // if( $(field).is( 'input' ) || $(field).is( 'textarea' ) )
+                            $(field).val(data.data[key])
+                        // else if( $(field).is( 'select' ) )
+
+
+                            
+                    })
+                    $('#newAdvert').foundation('reveal', 'open');
+                }
+            }).fail(handlers.postError)
+
+        })
+
+        /*----------Edit ends.----------*/ 
+
         /*----------HANDLERS----------*/
         //Event handler for modal windows
         $(document).on( 'click', '.modal-reveal', function(){
@@ -181,9 +226,10 @@
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){
 
-            var ok = true;
-            var post = {};
-            var st = $(this).parents().eq(2);
+            var  ok = true
+               , post = {}
+               , st = $(this).parents().eq(2)
+               , method = $('#newAdvert').data('post');
 
             //Resets errors
             $( 'small.error', st ).remove();
@@ -219,10 +265,13 @@
                 
             }).promise().done(function(){
                 if(ok){
-                    post['image'] = _uploadImage;
+                    post['method'] = method['method'];
+                    if(method['method'] === 'update')
+                        post['id'] = method['id'];
+
                     $( o.modal ).foundation('reveal', 'close');
-                    $.post( o.source, post, function( data ){
-                        _uploadImage = '';
+
+                    $.post( o.bureau, post, function( data ){
                         var msg = '';
 
                         if(o.debug){
@@ -231,9 +280,13 @@
                         }
 
                         if(data.status === 200){
-                            cache.adverts[data.advert.id] = data.advert;
-                            render.addAdvert($(todo)[0], data.advert);
+
                             m.success( locale.errors.client.successAdded + msg );
+                           
+                            setTimeout(function(){
+                                location.reload();
+                            }, 1500);
+
                         }else{
                             m.alert( locale.errors.server[data.status] + msg );
                         }
@@ -315,6 +368,8 @@
                 $(this).removeClass('error');
             });
             $('.CdeleteBtn').data('id', '');
+            $('#newAdvert').data('post', '');
+
         });
         
 
