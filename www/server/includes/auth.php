@@ -70,9 +70,5 @@
         public function genFake(){
             return substr($this -> crypto -> H(date('Y'), $this -> username, 'fake'), 0, 44);
         }
-
-        public function register(){
-
-        }
     }
 ?>
