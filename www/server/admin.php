@@ -30,7 +30,7 @@
                             <th width="125" class="translateMe" data-tid="email">Email</th>
                             <th width="125" class="translateMe" data-tid="phone">Phone</th>
                             <th width="125"></th>
-                            <th width="125"></th>
+                            <th width="125"> <a class="small expand success button addAdv">+</a></th>
                         </tr>
                     </thead>
                     <tbody>%tableitems%</tbody>'
@@ -93,6 +93,7 @@
         <title>Admin<?php if($cdir !== '') echo ' | '.$cdir; ?></title>
         <link rel="stylesheet" href="/css/foundation.css" />
         <link rel="stylesheet" href="/css/custom.css" />
+        <link rel="stylesheet" href="/css/foundation-datepicker.css" />
         <script src="/js/vendor/modernizr.js"></script>
         <style>
             table{

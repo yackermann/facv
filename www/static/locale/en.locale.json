@@ -52,6 +52,8 @@
         "yes"           :    "Yes",
         "no"            :    "NO",
 
+        "newAdvert"     :    "New Advert",
+        
         "title"         :    "Title",
         "description"   :    "Description",
         "endDate"       :    "End Date",

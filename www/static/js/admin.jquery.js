@@ -190,13 +190,7 @@
                 if( data.status === 200 ){
                     var items = Object.keys(data.data);
                     items.forEach( function( key ){
-                        var field = $('*[data-sid="' + key + '"]');
-                        // if( $(field).is( 'input' ) || $(field).is( 'textarea' ) )
-                            $(field).val(data.data[key])
-                        // else if( $(field).is( 'select' ) )
-
-
-                            
+                        $('*[data-sid="' + key + '"]').val(data.data[key])                            
                     })
                     $('#newAdvert').foundation('reveal', 'open');
                 }
@@ -204,25 +198,10 @@
 
         })
 
-        /*----------Edit ends.----------*/ 
-
-        /*----------HANDLERS----------*/
-        //Event handler for modal windows
-        $(document).on( 'click', '.modal-reveal', function(){
-
-            //Get items id
-            var id = $(this).data('id');
-
-            //Retrieves advert from cache
-            var info = cache.adverts[id];
-
-            //Generates new modal
-            var modal = models.modal( info )
-
-            //Reveals modal
-            $(modal).foundation( 'reveal', 'open' );
-        });
-
+        $('.addAdv').on('click', function(){
+            $('#newAdvert').data('post', { 'method' : 'add' });
+            $('#newAdvert').foundation('reveal', 'open');
+        })
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){
 
@@ -237,11 +216,11 @@
 
             $( 'input, select, textarea', st ).each(function(){
                 var field = {
-                    value: $(this).val(),
-                    type: $(this).data('type'),
-                    name: $(this).attr('name'),
-                    validate: $(this).data('eval'),
-                    sid: $(this).data('sid')
+                    value:      $(this).val()
+                  , type:       $(this).data('type')
+                  , name:       $(this).attr('name')
+                  , validate:   $(this).data('eval')
+                  , sid:        $(this).data('sid')
                 }
 
                 if(field.validate !== false){
@@ -295,6 +274,26 @@
                 }
             });
         });
+
+        /*----------Edit ends.----------*/ 
+
+        /*----------HANDLERS----------*/
+        //Event handler for modal windows
+        $(document).on( 'click', '.modal-reveal', function(){
+
+            //Get items id
+            var id = $(this).data('id');
+
+            //Retrieves advert from cache
+            var info = cache.adverts[id];
+
+            //Generates new modal
+            var modal = models.modal( info )
+
+            //Reveals modal
+            $(modal).foundation( 'reveal', 'open' );
+        });
+
 
         /*----- LOGIN Challenge-Response -----*/
         $(document).on( 'click', '.login', function(){
@@ -420,15 +419,15 @@
         });
         /*----------HANDLERS ENDS----------*/
 
-        // $( o.datepicker ).fdatepicker({
-        //     onRender: function (date) {
-        //         // console.log(date);
-        //         if( Date.parse(date) <= Date.now()
-        //         ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
-        //              return 'disabled';
-        //         }
-        //     },
-        //     format: 'yyyy-mm-dd'
-        // });        
+        $( o.datepicker ).fdatepicker({
+            onRender: function (date) {
+                // console.log(date);
+                if( Date.parse(date) <= Date.now()
+                ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
+                     return 'disabled';
+                }
+            },
+            format: 'yyyy-mm-dd'
+        });
     }
 })(jQuery)
