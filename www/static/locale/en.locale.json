@@ -74,8 +74,10 @@
         "client":{
             "emptyField"        :    "Field blank.",
             "failedValidate"    :    "The %field% can not be validated",
-            "successAdded"      :    "Successfully added item",
+            "successAdded"      :    "Advert successfully added.",
+            "successDelete"    :     "Advert successfully deleted.",
             "failedSend"        :    "Failed to send request. Please try later again.",
+            "failedDelete"      :    "Failed to delete advert.",
             "imageOnly"         :    "Images only allowed."
         }
     }

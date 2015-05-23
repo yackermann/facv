@@ -3957,10 +3957,10 @@ blockquote p {
 .reveal-modal {
   visibility: hidden;
   display: none;
-  position: fixed;
+  position: absolute;
   z-index: 1005;
   width: 100%;
-  top: 100px !important;
+  top: 0;
   border-radius: 3px;
   left: 0;
   background-color: #FFFFFF;

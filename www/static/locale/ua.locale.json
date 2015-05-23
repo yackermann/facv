@@ -75,7 +75,9 @@
             "emptyField"        :    "Поле не заповнене.",
             "failedValidate"    :    "Поле %field% не може бути ратифіковане.",
             "successAdded"      :    "Оголошення успішно додано.",
+            "successDeleted"    :    "Оголошення успішно видалене.",
             "failedSend"        :    "Помилка при спробі додати оголошення.",
+            "failedDelete"      :    "Помилка при спробі видалити оголошення.",
             "imageOnly"         :    "Images only allowed."
         }
     }

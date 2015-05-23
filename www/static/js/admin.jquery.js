@@ -21,13 +21,6 @@
             _uploadImage = '';
 
             todo = this,
-
-            //Cache. OMG LOL
-            cache = {
-                adverts: {},
-                categories: {},
-                search: {}
-            },
             
             locale = {},
             handlers = {
@@ -139,19 +132,36 @@
         $.getJSON( '/locale/' + o.locale.selected + '.locale.json' ).done(function( l ){
 
             locale = l;
-            cache.categories = locale.categories;
             render.locale();
 
         }).fail(handlers.getError);
        
 
 
-        /*----------HANDLERS----------*/
+        
         $('.deleteBtn').on('click', function(){
-            $('#cdeletebtn').data('id', $(this).data('id'));
+            $('.submitYes').data('id', $(this).data('id'));
             $('#confirm').foundation('reveal', 'open');
         })
 
+
+        $('.submitNo').on('click', function(){
+            $('#confirm').foundation('reveal', 'close');
+        })
+
+        $('.submitYes').on('click', function(){
+            $(this).foundation('reveal', 'close');
+            var _id = $(this).data('id');
+            $.post(o.bureau, {'method': 'delete', 'id': _id }, function( reply ){
+                if( reply.status === 200 ){
+                    m.success(locale.errors.client['successDelete'])
+                    $( '#' + _id ).remove();
+                }else{
+                    m.alert(locale.errors.client['failedDelete'])
+                }
+            }).fail(handlers.postError)
+        })
+        /*----------HANDLERS----------*/
         //Event handler for modal windows
         $(document).on( 'click', '.modal-reveal', function(){
 
@@ -355,15 +365,15 @@
         });
         /*----------HANDLERS ENDS----------*/
 
-        $( o.datepicker ).fdatepicker({
-            onRender: function (date) {
-                // console.log(date);
-                if( Date.parse(date) <= Date.now()
-                ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
-                     return 'disabled';
-                }
-            },
-            format: 'yyyy-mm-dd'
-        });        
+        // $( o.datepicker ).fdatepicker({
+        //     onRender: function (date) {
+        //         // console.log(date);
+        //         if( Date.parse(date) <= Date.now()
+        //         ||  Date.parse(date) >= Date.now() + 30*24*60*60*1000 ){
+        //              return 'disabled';
+        //         }
+        //     },
+        //     format: 'yyyy-mm-dd'
+        // });        
     }
 })(jQuery)

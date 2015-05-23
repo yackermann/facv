@@ -15,11 +15,21 @@
 	text-align: right;
 }
 
+#newAdvert{
+	top: 50px !important;
+}
+
 .alert-div{
+	z-index: 9999;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	width: 25%;
+}
+
+.confirmDelete{
+	position: fixed !important;
+	top: 100px !important;
 }
 
 .loading{
