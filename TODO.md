@@ -70,8 +70,29 @@
 
  - Central config
 
+## Admin
+ - SQL
+     + Bureau
+         * ~~Get~~
+         * ~~Add~~
+         * ~~Update~~
+         * ~~Delete~~
+
+     + Users
+         * Get
+         * Add
+         * Update
+         * Delete
+
+ - Frontend
+     + Bureau
+         * Delete
+         * Get and Update
+         * Add
+
 ## General
  - ~~RENAME TO kreved.co~~
+ - RENAME TO WHATEVER THE FUCK.
 
  - **.htaccess**
     - Request rewrite
