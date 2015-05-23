@@ -245,7 +245,11 @@
                 locale: function(){
                     $(o.locale.class).each(function(){
                         var tid = $(this).data('tid');
-                        $(this).text(locale.frontend[tid]);
+                        if($(this).is("input")){
+                            $(this).attr('placeholder', locale.frontend[tid]);
+                        }else{
+                            $(this).text(locale.frontend[tid]);
+                        }
                     })
                     $('.loading').remove();
                 },
