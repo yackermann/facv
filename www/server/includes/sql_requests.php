@@ -145,8 +145,9 @@
                 
         }
 
-        public function user($username, $hash, $challenge){
+        public function user( $user ){
             try{
+                extract( $user );
                 //Connect $pdo variable from connect.php
                 global $pdo;
 
