@@ -15,8 +15,8 @@
         'users' => '<thead>
                         <tr>
                             <th width="600" class="translateMe" data-tid="username">Username</th>
-                            <th width="200" class="translateMe" data-tid="edit">Edit</th>
-                            <th width="200" class="translateMe" data-tid="delete">Delete</th>
+                            <th width="200"></th>
+                            <th width="200"><a class="small expand success button addUser">+</a></th>
                         </tr>
                     </thead>
                     <tbody>%tableitems%</tbody>',
@@ -30,7 +30,7 @@
                             <th width="125" class="translateMe" data-tid="email">Email</th>
                             <th width="125" class="translateMe" data-tid="phone">Phone</th>
                             <th width="125"></th>
-                            <th width="125"> <a class="small expand success button addAdv">+</a></th>
+                            <th width="125"><a class="small expand success button addAdv">+</a></th>
                         </tr>
                     </thead>
                     <tbody>%tableitems%</tbody>'
@@ -46,10 +46,10 @@
 
             foreach ($SQLGet -> users() as $value) {
                 extract($value);
-                $item = "<tr>
+                $item = "<tr id=\"$id\">
                             <td>$username</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button translateMe\" data-tid=\"edit\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button translateMe\" data-tid=\"delete\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button editBtn user translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
@@ -191,9 +191,42 @@
             </fieldset>
         </div>
 
+         <!--Modal LOGIN form-->
+        <div id="addUser" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <fieldset>
+                <legend class="translateMe" data-tid="newUser">Login</legend>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="text" name="username">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="username">Username</span>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="password" name="password">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="password">Password</span>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input type="password" name="passwordRe">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="rePassword">Repeat password</span>
+                    </div>
+                </div>
+                <a tabindex="0" class="register button expand success translateMe" data-tid="register">Register</a>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </fieldset>
+        </div>
+
         <!--DELETE ADVERT CONFIRMATION.-->
         <div class="reveal-modal confirm adv tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
+            <div class="large-6 columns translateMe" data-tid="areYouSureAdv"></div>
             <div class="large-3 columns">
                 <a href="#" class="medium expand success button submitNo adv translateMe" data-tid="no">NO</a>
             </div>
@@ -202,16 +235,16 @@
             </div>
         </div>
 
-        <!--DELETE ADVERT CONFIRMATION.-->
-       <!--  <div id="confirmUser" class="reveal-modal confirm user tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
+        <!--DELETE USER CONFIRMATION.-->
+        <div class="reveal-modal confirm user tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <div class="large-6 columns translateMe" data-tid="areYouSureUser"></div>
             <div class="large-3 columns">
-                <a href="#" class="medium expand success button submitNo translateMe" data-tid="no">NO</a>
+                <a href="#" class="medium expand success button submitNo user translateMe" data-tid="no">NO</a>
             </div>
             <div class="large-3 columns">                            
-                <a href="#" class="medium expand alert button submitYes translateMe" data-tid="yes">Yes</a>
+                <a href="#" class="medium expand alert button submitYes user translateMe" data-tid="yes">Yes</a>
             </div>
-        </div> -->
+        </div>
 
         <div class="alert-div"></div>
 
@@ -219,7 +252,7 @@
         <script type="text/javascript" src="/js/foundation.min.js"></script>
         <script type="text/javascript" src="/js/foundation-datepicker.js"></script>
         <script type="text/javascript" src="/js/admin.jquery.js"></script>
-
+        <script type="text/javascript" src="/js/sha512.js"></script>
         <script>
             $(document).ready(function(){
                 $(document).foundation({

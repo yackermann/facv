@@ -51,9 +51,11 @@
         "areYouSureAdv" :    "Are you sure?",
         "areYouSureUser":    "Are you sure?",
 
+        "newUser"       :    "New User",
         "username"      :    "Username",
         "password"      :    "Password",
         "rePassword"    :    "Password again",
+        "register"      :    "Register",
 
         "yes"           :    "Yes",
         "no"            :    "NO",

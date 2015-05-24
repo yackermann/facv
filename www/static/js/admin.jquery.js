@@ -15,7 +15,8 @@
                     }
                 },
                 debug: false,
-                bureau: 'bureau'
+                bureau: 'bureau',
+                user: 'user'
             }, orguments),
 
             _uploadImage = '';
@@ -153,7 +154,7 @@
         }).fail(handlers.getError);
        
 
-        /*----------ADVERTS.----------*/ 
+    /*---------------ADVERTS---------------*/
 
         /*----------Delete button.----------*/ 
         $('.deleteBtn.adv').on('click', function(){
@@ -278,66 +279,81 @@
 
         /*----------Edit ends.----------*/ 
 
-        /**/
-        $(document).on( 'click', '.login', function(){
+    /*-------------ADVERTS END-------------*/
 
-            var ok = true;
-            var post = {};
-            var st = $(this).parents().eq(1);
-            var Super = this;
-            
+    /*-------------USERS-------------------*/
 
-            //Resets errors
-            $( 'small.error', st ).remove();
-            $( '.error', st ).removeClass('error');
+        /*----------Delete button.----------*/ 
+        $('.deleteBtn.user').on('click', function(){
+            $('.submitYes.user').data('id', $(this).data('id'));
+            $('.confirm.user').foundation('reveal', 'open');
+        })
 
-            $( 'input', st ).each(function(){
-                var field = {
-                    value: $(this).val(),
-                    name: $(this).attr('name')
+        //SAY NO TO Delete
+        $('.submitNo.user').on('click', function(){
+            $('.confirm.user').foundation('reveal', 'close');
+        })
+
+        //DELETE
+        $('.submitYes.user').on('click', function(){
+            $(this).foundation('reveal', 'close');
+            var _id = $(this).data('id');
+            $.post(o.user, { 'method': 'delete', 'id': _id }, function( reply ){
+                if( reply.status === 200 ){
+                    m.success(locale.errors.client['successDelete'])
+                    $( '#' + _id ).remove();
+                }else{
+                    m.alert(locale.errors.client['failedDelete'])
                 }
+            }).fail(handlers.postError)
+        })
+        /*----------Delete button ends.----------*/ 
 
-                if(!field.value){
-                    ok = false;
-                    $(this).addClass( 'error' );
-                    $(this).after( '<small class="error">' + locale.errors.client.emptyField + '</small>' );
-                }
+        $('.addUser').on('click', function(){
+            $('#addUser').foundation('reveal', 'open');
+        })
 
-                post[field.name] = field.value;
+        $(document).on( 'click', '.register', function(){
+            var Super = $(this);
+            var post = {
+                "username"      :   $('*[name="username"]').val()
+              , "password"      :   $('*[name="password"]').val()
+              , "passwordRe"    :   $('*[name="passwordRe"]').val()
+            };
+            console.log(post);
+           
+            if( post['password'] === post['passwordRe'] ){
 
-            }).promise().done(function(){
-                if(ok){
-                    var animation = animate.loading(Super, 'Loading');
+                var animation = animate.loading(Super, 'Loading');
 
-                    animation.start();
+                animation.start();
 
-                    $.post(o.loginAddress, {'username': post.username}, function( challenge ){
+                $.post(o.user, {'method': 'register','username': post.username}, function( challenge ){
 
-                        var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
 
-                        $.post( o.loginAddress, {'response': response}, function( status ){
-                            animation.stop();
+                    $.post( o.user, {'method': 'register', 'response': response}, function( status ){
+                        animation.stop();
 
-                            if(status.authorized === true){
-                                animation.update('Success');
-                            }else{
-                                animation.update('Failed');
+                        if(status.status === 200){
+                            animation.update('Success');
+                        }else{
+                            animation.update('Failed');
+                        }
+
+                        setTimeout(function(){
+                            animation.reset();
+                            if(status.authorized){
+                                
+                                $('.addUser').foundation('reveal', 'close');
+                                location.reload();
+
                             }
+                        }, 1500);
 
-                            setTimeout(function(){
-                                animation.reset();
-                                if(status.authorized){
-                                    
-                                    $( o.login ).foundation('reveal', 'close');
-                                    window.location.replace('server/admin');
-
-                                }
-                            }, 1500);
-
-                        }).fail(handlers.postError)
                     }).fail(handlers.postError)
-                }
-            });
+                }).fail(handlers.postError)
+            }
         });
 
         /*----------Utilities----------*/
