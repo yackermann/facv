@@ -1,36 +1,60 @@
 <?php
-    include __DIR__.'/includes/sql_requests.php';
     
+    error_reporting(E_ALL); 
+    ini_set( 'display_errors','1');
     //Starts session
     session_start();
 
+
     header('Content-Type: application/json');
-    // if( isset( $_SESSION['logged'] ) && $_SESSION['logged']){
-    //     if($_POST && isset($_POST['method'])){
 
-    //         if($_POST['method'] === 'get'){
+    if( isset( $_SESSION['logged'] ) && $_SESSION['logged']){
+        if($_POST && isset($_POST['method'])){
 
-    //         }else if( in_array($_POST['method'], ['add', 'update']) ){
+            if( $_POST['method'] === 'delete' ){
+                include __DIR__.'/includes/sql_requests.php';
+                $SQLDelete = new SQLRequests\Delete();
 
-    //             if( $ValidateRESP['valid'] ){
+                if( isset($_POST['id']) )
+                    echo json_encode( $SQLDelete -> user() );
 
-    //                 if( $_POST['method'] === 'add' ){
+            }else if( $_POST['method'] === 'register' ){
 
-    //                 }else if( $_POST['method'] === 'update' ){
+                include __DIR__.'/includes/auth.php';
+                $reg;
 
-    //                 }
+                if( isset( $_POST['username'] ) ){
+                    //Stage one, get challenge
+                    //
+                    $reg = new \Auth\Reg($_POST['username']);
 
-    //             }else{
-    //                 echo json_encode( array( 'status' => 412, 'errorMessage' => $ValidateRESP['messages'] ) );
-    //             }
+                    if( $reg -> exist() ){
+                        echo json_encode( array('status' => 409, 'errorMessage' => 'User exists.') );
+                    }else{
 
-    //         }else if($_POST['method'] === 'delete'){
-    //         }
+                        echo json_encode( array( 'challenge' => $reg -> challenge() ) );
+                        $_SESSION['reg'] = serialize( $reg );
+                    }
+                    
 
-    //     }
-    // }else{
-    //     echo json_encode( array('status' => 401, 'errorMessage' => 'Unauthorized' ) );
-    // }
-    echo json_encode( array('status' => 501, 'errorMessage' => 'Not Implemented' ) );
+                }else if( isset($_SESSION['reg']) && isset($_POST['response']) ){ 
+                    
+                    //Stage two verify the response
+
+                    $reg = unserialize($_SESSION['reg']);
+
+                    $reg -> hash($_POST['response']);
+                    echo json_encode( $reg -> register() );
+                    
+                }
+                
+            }
+
+        }
+
+    }else{
+        echo json_encode( array('status' => 401, 'errorMessage' => 'Unauthorized' ) );
+    }
+    // echo json_encode( array('status' => 501, 'errorMessage' => 'Not Implemented' ) );
 
 ?>

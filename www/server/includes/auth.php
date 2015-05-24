@@ -89,7 +89,7 @@
 
             $this -> user      =    array(
                 'username'  =>  $username,
-                'hash'  =>  '',
+                'hash'      =>  '',
                 'challenge' =>  ''
             );
 
@@ -100,11 +100,11 @@
         }
 
         public function register(){
-            return $this -> SQLAdd -> User( $this -> user['username'], $this -> user['hash'], $this -> user['challenge'] );
+            return $this -> SQLAdd -> User( $this -> user );
         }
 
         public function hash($response){
-            $this['hash'] = $this -> crypto -> blowfish();
+            $this -> user['hash'] = $this -> crypto -> blowfish($response);
         }
 
         public function exist(){
@@ -112,8 +112,8 @@
         }
 
         public function challenge(){
-                $this -> user['challenge'] = $this -> crypto -> salt();
-                return $this -> user['challenge'];
+            $this -> user['challenge'] = $this -> crypto -> salt();
+            return $this -> user['challenge'];
         }
     }
 ?>

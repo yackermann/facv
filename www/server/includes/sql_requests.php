@@ -126,7 +126,7 @@
             }
         }
 
-        public function ip($ip){
+        public function ip( $ip ){
             try{
 
                 //Connect $pdo variable from connect.php
