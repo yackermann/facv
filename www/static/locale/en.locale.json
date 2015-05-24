@@ -47,8 +47,14 @@
         "users"         :    "Users",
         "adverts"       :    "Adverts",
         "backToMain"    :    "Back to main",
+
+        "areYouSureAdv" :    "Are you sure?",
+        "areYouSureUser":    "Are you sure?",
+
         "username"      :    "Username",
-        "areYouSure"    :    "Are you sure?",
+        "password"      :    "Password",
+        "rePassword"    :    "Password again",
+
         "yes"           :    "Yes",
         "no"            :    "NO",
 
