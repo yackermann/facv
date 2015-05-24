@@ -71,8 +71,8 @@
                             <td>$categoryId</td>
                             <td>$email</td>
                             <td>$phone</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button editBtn translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button editBtn adv translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn adv translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
@@ -191,18 +191,27 @@
             </fieldset>
         </div>
 
-        <!--DELETE CONFIRMATION.-->
-        <div id="confirm" class="reveal-modal confirmDelete tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <!--DELETE ADVERT CONFIRMATION.-->
+        <div class="reveal-modal confirm adv tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
+            <div class="large-3 columns">
+                <a href="#" class="medium expand success button submitNo adv translateMe" data-tid="no">NO</a>
+            </div>
+            <div class="large-3 columns">                            
+                <a href="#" class="medium expand alert button submitYes adv translateMe" data-tid="yes">Yes</a>
+            </div>
+        </div>
+
+        <!--DELETE ADVERT CONFIRMATION.-->
+       <!--  <div id="confirmUser" class="reveal-modal confirm user tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
             <div class="large-6 columns translateMe" data-tid="areYouSure"></div>
             <div class="large-3 columns">
                 <a href="#" class="medium expand success button submitNo translateMe" data-tid="no">NO</a>
             </div>
             <div class="large-3 columns">                            
-                <a href="#" class="medium expand alert button CdeleteBtn submitYes translateMe" data-tid="yes">Yes</a>
+                <a href="#" class="medium expand alert button submitYes translateMe" data-tid="yes">Yes</a>
             </div>
-        </div>
-             
-
+        </div> -->
 
         <div class="alert-div"></div>
 

@@ -153,20 +153,21 @@
         }).fail(handlers.getError);
        
 
+        /*----------ADVERTS.----------*/ 
 
         /*----------Delete button.----------*/ 
-        $('.deleteBtn').on('click', function(){
-            $('.submitYes').data('id', $(this).data('id'));
-            $('#confirm').foundation('reveal', 'open');
+        $('.deleteBtn.adv').on('click', function(){
+            $('.submitYes.adv').data('id', $(this).data('id'));
+            $('.confirm.adv').foundation('reveal', 'open');
         })
 
         //SAY NO TO Delete
-        $('.submitNo').on('click', function(){
-            $('#confirm').foundation('reveal', 'close');
+        $('.submitNo.adv').on('click', function(){
+            $('.confirm.adv').foundation('reveal', 'close');
         })
 
         //DELETE
-        $('.submitYes').on('click', function(){
+        $('.submitYes.adv').on('click', function(){
             $(this).foundation('reveal', 'close');
             var _id = $(this).data('id');
             $.post(o.bureau, { 'method': 'delete', 'id': _id }, function( reply ){
@@ -182,7 +183,7 @@
 
 
         /*----------Edit.----------*/ 
-        $('.editBtn').on('click', function(){
+        $('.editBtn.adv').on('click', function(){
 
             var _id = $(this).data('id');
             $('#newAdvert').data('post', { 'method' : 'update', 'id': _id });
@@ -195,13 +196,13 @@
                     $('#newAdvert').foundation('reveal', 'open');
                 }
             }).fail(handlers.postError)
-
         })
 
         $('.addAdv').on('click', function(){
             $('#newAdvert').data('post', { 'method' : 'add' });
             $('#newAdvert').foundation('reveal', 'open');
         })
+
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){
 
@@ -277,25 +278,7 @@
 
         /*----------Edit ends.----------*/ 
 
-        /*----------HANDLERS----------*/
-        //Event handler for modal windows
-        $(document).on( 'click', '.modal-reveal', function(){
-
-            //Get items id
-            var id = $(this).data('id');
-
-            //Retrieves advert from cache
-            var info = cache.adverts[id];
-
-            //Generates new modal
-            var modal = models.modal( info )
-
-            //Reveals modal
-            $(modal).foundation( 'reveal', 'open' );
-        });
-
-
-        /*----- LOGIN Challenge-Response -----*/
+        /**/
         $(document).on( 'click', '.login', function(){
 
             var ok = true;
@@ -357,6 +340,8 @@
             });
         });
 
+        /*----------Utilities----------*/
+
 
         $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
             var modal = $(this);
@@ -366,14 +351,13 @@
                 $(this).val('');
                 $(this).removeClass('error');
             });
-            $('.CdeleteBtn').data('id', '');
+            $('.submitYes').data('id', '');
             $('#newAdvert').data('post', '');
-
         });
         
 
         /*----------Drag'n'Drop/File select----------*/
-        function handleFileSelect(evt) {
+        var handleFileSelect = function(evt) {
             evt.stopPropagation();
             evt.preventDefault();
 
@@ -401,7 +385,7 @@
            
         }
 
-        function handleDragOver(evt) {
+        var handleDragOver = function(evt) {
             evt.stopPropagation();
             evt.preventDefault();
             evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
