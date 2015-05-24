@@ -60,7 +60,11 @@
         }
 
         public function challenge(){
-            return $this -> genFake();
+            if( $this -> exist() ){
+                return $this -> u['challenge'];
+            }else{
+                return $this -> genFake();
+            }
         }
 
         public function genFake(){
@@ -68,7 +72,7 @@
         }
     }
 
-     class Reg{
+    class Reg{
         private $crypto;
         private $ip;
         private $SQLGet;
@@ -85,8 +89,8 @@
 
             $this -> user      =    array(
                 'username'  =>  $username,
-                'hash'      =>  '',
-                'challenge' =>  '',
+                'hash'  =>  '',
+                'challenge' =>  ''
             );
 
             $this -> u = $this -> SQLGet -> cred($username);
@@ -96,11 +100,11 @@
         }
 
         public function register(){
-            return $this -> SQLAdd -> User( $this -> user );
+            return $this -> SQLAdd -> User( $this -> user['username'], $this -> user['hash'], $this -> user['challenge'] );
         }
 
         public function hash($response){
-            $this['hash'] = $this -> crypto -> blowfish($response);
+            $this['hash'] = $this -> crypto -> blowfish();
         }
 
         public function exist(){
@@ -109,7 +113,7 @@
 
         public function challenge(){
                 $this -> user['challenge'] = $this -> crypto -> salt();
-                return $this -> user['challenge']
+                return $this -> user['challenge'];
         }
     }
 ?>
