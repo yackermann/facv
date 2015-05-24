@@ -27,6 +27,8 @@
         "endingDate"    :    "Ending date",
 
         "loadingAnim"   :    "Loading",
+        "Success"       :    "Success",
+        "Failed"        :    "Failed",
 
         "username"      :    "Username",
         "password"      :    "Password",

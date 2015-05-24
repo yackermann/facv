@@ -27,6 +27,8 @@
         "endingDate"    :    "Закінчуется",
 
         "loadingAnim"   :    "Загрузка",
+        "Success"       :    "Успіх",
+        "Failed"       :    "Провал",
 
         "username"      :    "Ім'я користувача",
         "password"      :    "Пароль",

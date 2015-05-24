@@ -432,9 +432,9 @@
                             animation.stop();
 
                             if(status.authorized === true){
-                                animation.update('Success');
+                                animation.update(locale.frontend['Success']);
                             }else{
-                                animation.update('Failed');
+                                animation.update(locale.frontend['Failed']);
                             }
 
                             setTimeout(function(){
