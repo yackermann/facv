@@ -49,13 +49,11 @@
                 //Add ip to DB
                 $SQLAdd -> ip($IP -> get());
 
-                $image = '';
-
                 if(isset($_POST['image']) && $_POST['image'] !== ''){
-                    $image = $upload -> upload($_POST['image']);
+                    $_POST['imageURL'] = $upload -> upload($_POST['image']);
                 }
 
-                $response = $SQLAdd -> advert($image);
+                $response = $SQLAdd -> advert();
 
                 if($response['status'] === 200){
                     $response['advert'] = $SQLGet -> advert($response['id'])[0];
