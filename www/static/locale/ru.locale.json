@@ -21,7 +21,7 @@
         "login"         :    "Войти",
         "register"      :    "Зарегистрироваться",
         "backToMain"    :    "На главную",
-        "footer"        :    "Copyright no one at all. Go to town.",
+        "footer"        :    "Вячеслав Шарлей. Все права защищены. 2015",
 
         "publishedOn"   :    "Опубликовано",
         "endingDate"    :    "Заканчиваеться",
@@ -50,6 +50,7 @@
         "adverts"       :    "Объявления",
         "backToMain"    :    "На главную",
         "view"          :    "Посмотреть",
+        "admin"         :    "Админ",
 
         "loading"       :    "Загрузка",
         "success"       :    "Успех",

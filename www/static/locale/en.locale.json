@@ -21,7 +21,7 @@
         "login"         :    "Login",
         "register"      :    "Register",
         "backToMain"    :    "Back to main",
-        "footer"        :    "Copyright no one at all. Go to town.",
+        "footer"        :    "Vyacheslav Sharley. All rights reserved. 2015",
 
         "publishedOn"   :    "Published on",
         "endingDate"    :    "Ending date",
@@ -50,6 +50,7 @@
         "adverts"       :    "Adverts",
         "backToMain"    :    "Back to main",
         "view"          :    "View",
+        "admin"         :    "Admin",
 
         "loading"       :    "Loading",
         "success"       :    "Success",
