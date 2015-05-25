@@ -336,16 +336,17 @@
                         animation.stop();
 
                         if(status.status === 200){
-                            animation.update('Success');
+                            animation.update(locale.admin['success']);
                         }else{
-                            animation.update('Failed');
+                            animation.update(locale.admin['failed']);
                         }
 
                         setTimeout(function(){
                             animation.reset();
-                            if(status.authorized){
+                            if(status.status === 200){
                                 
                                 $('.addUser').foundation('reveal', 'close');
+
                                 location.reload();
 
                             }

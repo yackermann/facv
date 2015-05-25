@@ -27,8 +27,8 @@
         "endingDate"    :    "Ending date",
 
         "loadingAnim"   :    "Loading",
-        "Success"       :    "Success",
-        "Failed"        :    "Failed",
+        "success"       :    "Success",
+        "failed"        :    "Failed",
 
         "username"      :    "Username",
         "password"      :    "Password",
@@ -50,6 +50,10 @@
         "adverts"       :    "Adverts",
         "backToMain"    :    "Back to main",
 
+        "loadingAnim"   :    "Loading",
+        "success"       :    "Success",
+        "failed"        :    "Failed",
+
         "areYouSureAdv" :    "Are you sure?",
         "areYouSureUser":    "Are you sure?",
 
@@ -61,7 +65,6 @@
 
         "yes"           :    "Yes",
         "no"            :    "NO",
-
         "newAdvert"     :    "New Advert",
         
         "title"         :    "Title",
