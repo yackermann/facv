@@ -463,6 +463,17 @@
                 $(this).removeClass('error');
             });
         });
+
+        $('.loginBtn').on('click', function(){
+             // data-reveal-id="loginModal"
+            $.getJSON( '/server/login', function( data ) {
+                if( data.authorized === true )
+                    window.location.replace('server/admin');
+                else
+                    $('#loginModal').foundation('reveal', 'open');
+
+            })
+        })
         
         $(document).on('click', '.lang', function () {
 
