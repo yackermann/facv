@@ -104,7 +104,7 @@
     <body>
         <div class="row">
             <div class="large-12 columns">
-                <a href="admin" class="translateMe" data-tid="admin"><h1>Admin</h1></a>
+                <a href="admin"><h1 class="translateMe" data-tid="admin">Admin</h1></a>
             </div>
         </div>
 
@@ -115,7 +115,7 @@
                 <hr>
                 <div class="row">
                     <div class="large-6 columns">
-                        <p>© Copyright no one at all. Go to town.</p>
+                        <p>&copy; <span class="translateMe" data-tid="footer">Copyright no one at all. Go to town.</span></p>
                     </div>
                     <div class="large-6 columns">
                         <ul class="inline-list right">
