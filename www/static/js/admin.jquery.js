@@ -229,7 +229,7 @@
 
                     $('#drop_zone').data('original', data.data.image);
                     if( data.data.image !== null ){
-                        $('#drop_zone').css('background-image', '/uploads/' + data.data.image );
+                        $('#drop_zone').css('background-image', 'url("/uploads/' + data.data.image + ')');
                     }
                     $('#newAdvert').foundation('reveal', 'open');
                 }
