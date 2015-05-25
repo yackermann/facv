@@ -52,6 +52,7 @@
         "view"          :    "View",
         "admin"         :    "Admin",
         "footer"        :    "Vyacheslav Sharley. All rights reserved. 2015",
+        "logout"        :    "Logout",
 
         "loading"       :    "Loading",
         "success"       :    "Success",

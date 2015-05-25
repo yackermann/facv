@@ -119,6 +119,8 @@
                     </div>
                     <div class="large-6 columns">
                         <ul class="inline-list right">
+                            <li><a href="/server/login?logout" class="translateMe" data-tid="logout">Logout</a></li>
+                            <li>|</li>
                             <li><a href="/" class="translateMe" data-tid="backToMain">Main Page</a></li>
                             <li><a href="?open=users" class="translateMe" data-tid="users">Users</a></li>
                             <li><a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></li>
