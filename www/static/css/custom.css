@@ -1,4 +1,4 @@
-.panel > h1, .panel > p{
+.panel > h1, .panel > p, .panel > h5{
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
