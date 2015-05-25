@@ -44,6 +44,9 @@
                     $reg -> hash($_POST['response']);
                     echo json_encode( $reg -> register() );
                     
+                    unset($_SESSION['reg']);
+
+                    
                 }
                 
             }

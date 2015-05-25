@@ -39,6 +39,7 @@
 				echo json_encode(array( 'authorized' => False));
 
 			}
+			unset($_SESSION['auth']);
 			
 		}
 
