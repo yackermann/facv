@@ -76,7 +76,7 @@
         "email"         :    "Имейл",
         "phone"         :    "Номер телефона",
         "dropzone"      :    "Drop image here",
-        "submit"        :    "Добавить"
+        "submit"        :    "Подтвердить"
     },
     "errors": {
         "server":{
