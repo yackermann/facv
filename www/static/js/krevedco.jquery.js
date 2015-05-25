@@ -313,7 +313,7 @@
             //Clean search space
             $('#search').html('')
             var patt = new RegExp( stuff, 'ig' );
-            console.log(patt);
+
             keys.forEach(function( item, i ){
                 if (patt.test( cache.search[item] )){
                     var outAdvert = models.advert( cache.adverts[item] );
