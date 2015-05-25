@@ -124,6 +124,22 @@
             },
 
             render = {
+                modal: function( data ){
+                    var img = data.image ? 'uploads/' + data.image : '/img/placeholder.png';
+                    return  '<div id="myModal" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">' +
+                                '<div class="large-4 columns">' +
+                                    '<div class="thumb" style="background-image: url(\'' + img + '\')"></div>' +
+                                '</div>' +
+                                '<div class="large-8 columns">' +
+                                    '<small>' + locale.frontend['publishedOn'] + ': ' + data.startDate + ' | ' + locale.frontend['endingDate'] + ': ' + data.endDate + '</small><br/>' +
+                                    '<h1>' + data.title + '</h1><br/>' +
+                                    '<p>' + data.text + '<br/>'+
+                                    locale.frontend['email'] + ' : ' + data.email + '<br/>'+
+                                    locale.frontend['phone'] + ': ' + data.phone + '</p>' +
+                                '</div>' +
+                                '<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
+                            '</div>';
+                },
                 categories: function( data ){
 
                     for (var i = 0, f; category = data[i]; i++)
@@ -155,6 +171,21 @@
        
 
     /*---------------ADVERTS---------------*/
+
+        /*-----------View button.-----------*/ 
+
+        $('.view.adv').on('click', function(){
+            var _id = $(this).data('id');
+            $.post( o.bureau, { 'method' : 'get', 'id': _id }, function( data ){
+                if( data.status === 200 ){
+                    $(render.modal(data.data)).foundation('reveal', 'open');
+                }else{
+                    m.alert(data.errorMessage);
+                }
+            }).fail(handlers.postError)
+
+        })
+        /*------------View ends.------------*/ 
 
         /*----------Delete button.----------*/ 
         $('.deleteBtn.adv').on('click', function(){

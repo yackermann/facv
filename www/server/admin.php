@@ -24,13 +24,12 @@
         'adverts' => '<thead>
                         <tr>
                             <th width="125" class="translateMe" data-tid="title">Title</th>
-                            <th width="125" class="translateMe" data-tid="description">Description</th>
                             <th width="125" class="translateMe" data-tid="endDate">End date</th>
-                            <th width="125" class="translateMe" data-tid="category">Category</th>
                             <th width="125" class="translateMe" data-tid="email">Email</th>
                             <th width="125" class="translateMe" data-tid="phone">Phone</th>
                             <th width="125"></th>
-                            <th width="125"><a class="small expand success button addAdv">+</a></th>
+                            <th width="125"></th>
+                            <th width="125"><a class="small expand button addAdv">+</a></th>
                         </tr>
                     </thead>
                     <tbody>%tableitems%</tbody>'
@@ -66,13 +65,12 @@
                 extract($value);
                 $item = "<tr id=\"$id\">
                             <td>$title</td>
-                            <td>$text</td>
                             <td>$endDate</td>
-                            <td>$categoryId</td>
                             <td>$email</td>
                             <td>$phone</td>
                             <td><a href=\"#$id\" class=\"medium expand success button editBtn adv translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
                             <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn adv translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand button view adv translateMe\" data-id=\"$id\" data-tid=\"view\">Preview</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }

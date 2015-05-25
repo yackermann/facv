@@ -49,6 +49,7 @@
         "users"         :    "Users",
         "adverts"       :    "Adverts",
         "backToMain"    :    "Back to main",
+        "view"          :    "View",
 
         "loading"       :    "Loading",
         "success"       :    "Success",

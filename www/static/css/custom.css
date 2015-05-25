@@ -15,7 +15,7 @@
 	text-align: right;
 }
 
-#newAdvert{
+#newAdvert,#myModal{
 	top: 50px !important;
 	position: fixed !important;
 }
