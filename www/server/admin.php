@@ -104,7 +104,7 @@
     <body>
         <div class="row">
             <div class="large-12 columns">
-                <a href="admin"><h1>Admin</h1></a>
+                <a href="admin" class="translateMe" data-tid="admin"><h1>Admin</h1></a>
             </div>
         </div>
 
@@ -128,16 +128,17 @@
             </div>
         </footer>
 
+        <input type="file" id="files" class="dropzone" data-eval="false" style="opacity:0"> 
         <div id="newAdvert" class="reveal-modal large" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
             <fieldset>
                 <legend class="translateMe" data-tid="newAdvert">New advert</legend>
-                <div class="large-5 columns dropzone parent">
-                    <div id="drop_zone" class="dropzone centered">
+                <div id="drop_zone" class="large-5 columns dropzone parent">
+                    <div class="dropzone centered">
                         <span class="dropzone text translateMe" data-tid="dropzone">
                             Drop your files here
                         </span>
                     </div>
-                    <input type="file" id="files" class="dropzone" data-eval="false" style="opacity:0"> 
+                    
                 </div>
                 <div class="large-7 columns">
 

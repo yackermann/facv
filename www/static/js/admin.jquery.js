@@ -222,9 +222,15 @@
             $.post( o.bureau, { 'method' : 'get', 'id': _id }, function( data ){
                 if( data.status === 200 ){
                     var items = Object.keys(data.data);
+
                     items.forEach( function( key ){
                         $('*[data-sid="' + key + '"]').val(data.data[key])                            
                     })
+
+                    $('#drop_zone').data('original', data.data.image);
+                    if( data.data.image !== null ){
+                        $('#drop_zone').css('background-image', '/uploads/' + data.data.image );
+                    }
                     $('#newAdvert').foundation('reveal', 'open');
                 }
             }).fail(handlers.postError)
@@ -281,6 +287,11 @@
                     if(method['method'] === 'update')
                         post['id'] = method['id'];
 
+                    if( _uploadImage !== '' )
+                        post['image'] = _uploadImage;
+                    else
+                        post['image'] = $('#drop_zone').data('original');
+                    
                     $( o.modal ).foundation('reveal', 'close');
 
                     $.post( o.bureau, post, function( data ){

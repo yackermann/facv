@@ -53,6 +53,10 @@
 		}
 		
 	}else{
-		header('Location: /');
+		if( $_SESSION['logged'] )
+			echo json_encode(array( 'authorized' => True));
+		else
+			echo json_encode(array( 'authorized' => False));
+
 	}
 ?>
