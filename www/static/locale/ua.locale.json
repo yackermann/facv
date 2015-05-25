@@ -41,7 +41,7 @@
         "email"         :    "Електронна пошта",
         "phone"         :    "Номер телефону",
         "dropzone"      :    "Drop image here",
-        "submit"        :    "Підтвердити"
+        "submit"        :    "Додати"
     },
     "admin": {
         "delete"        :    "Видалити",
@@ -76,7 +76,8 @@
         "email"         :    "Електронна пошта",
         "phone"         :    "Номер телефону",
         "dropzone"      :    "Drop image here",
-        "submit"        :    "Додати"
+        "submit"        :    "Підтвердити"
+        
     },
     "errors": {
         "server":{
