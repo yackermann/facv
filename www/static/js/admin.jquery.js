@@ -324,7 +324,7 @@
            
             if( post['password'] === post['passwordRe'] ){
 
-                var animation = animate.loading(Super, 'Loading');
+                var animation = animate.loading(Super, locale.admin['loading']);
 
                 animation.start();
 

@@ -26,7 +26,7 @@
         "publishedOn"   :    "Опубліковано",
         "endingDate"    :    "Закінчуется",
 
-        "loadingAnim"   :    "Загрузка",
+        "loading"       :    "Загрузка",
         "success"       :    "Успіх",
         "failed"        :    "Провал",
 
@@ -50,7 +50,7 @@
         "adverts"       :    "Оголошення",
         "backToMain"    :    "На головну",
 
-        "loadingAnim"   :    "Загрузка",
+        "loading"       :    "Загрузка",
         "success"       :    "Успіх",
         "failed"        :    "Провал",
 

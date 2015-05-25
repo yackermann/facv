@@ -420,7 +420,7 @@
 
             }).promise().done(function(){
                 if(ok){
-                    var animation = animate.loading(Super, locale.frontend['loadingAnim']);
+                    var animation = animate.loading(Super, locale.frontend['loading']);
 
                     animation.start();
 

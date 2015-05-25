@@ -26,7 +26,7 @@
         "publishedOn"   :    "Published on",
         "endingDate"    :    "Ending date",
 
-        "loadingAnim"   :    "Loading",
+        "loading"       :    "Loading",
         "success"       :    "Success",
         "failed"        :    "Failed",
 
@@ -50,7 +50,7 @@
         "adverts"       :    "Adverts",
         "backToMain"    :    "Back to main",
 
-        "loadingAnim"   :    "Loading",
+        "loading"       :    "Loading",
         "success"       :    "Success",
         "failed"        :    "Failed",
 
