@@ -101,3 +101,10 @@
  - hating | I.P. (Fulton, Niemand)
      - JavaScript
      - PHP        | Niemand Done
+ 
+## Bugs
+ - Notifications
+ - Show error when editing admin
+ - Reindex database(deleting expired adverts)
+ - Searching adverts in admin
+ - Поломаная кнопка редактрирования пользователей
