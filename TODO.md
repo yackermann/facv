@@ -108,5 +108,6 @@
  - Reindex database(deleting expired adverts)
  - Searching adverts in admin
  - Поломаная кнопка редактрирования пользователей
+
 ## Extra bonus
  - Domain 
