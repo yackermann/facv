@@ -1,6 +1,4 @@
 <?php
-    error_reporting(E_ALL); 
-    ini_set( 'display_errors','1');
     require __DIR__.'/includes/session.php';
     include __DIR__.'/includes/sql_requests.php';
     $SQLGet = new SQLRequests\Get();
@@ -47,8 +45,8 @@
                 extract($value);
                 $item = "<tr id=\"$id\">
                             <td>$username</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button editBtn user translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand success button changePass user translateMe\" data-username=\"$username\" data-tid=\"changePass\">Edit</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-username=\"$username\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
@@ -221,6 +219,31 @@
                     </div>
                 </div>
                 <a tabindex="0" class="register button expand success translateMe" data-tid="register">Register</a>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </fieldset>
+        </div>
+
+         <!--Modal LOGIN form-->
+        <div id="changePass" class="reveal-modal medium" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <fieldset>
+                <legend class="translateMe" data-tid="changePass">Change Password</legend>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input class="pass" type="password" name="DeltaPassword">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="password">Password</span>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-9 columns">
+                        <input class="pass" type="password" name="DeltaPasswordRe">
+                    </div>
+                    <div class="small-3 columns">
+                        <span class="postfix translateMe" data-tid="rePassword">Repeat password</span>
+                    </div>
+                </div>
+                <a tabindex="0" class="submitChangePass button expand success translateMe" data-tid="update">Update</a>
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </fieldset>
         </div>

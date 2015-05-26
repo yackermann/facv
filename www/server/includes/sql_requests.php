@@ -173,7 +173,7 @@
     class Update{
         private $sqlr = array(
             'advert' => 'UPDATE adverts SET title = :title,  text = :text,  endDate = :endDate,  categoryId = :categoryId,  email = :email,  phone = :phone, startDate = :startDate, image = :image WHERE id=:id',
-            'user' => 'INSERT INTO users SET username = :username, hash = :hash, challenge = :challenge'
+            'user' => 'UPDATE users SET hash = :hash, challenge = :challenge WHERE username = :username'
         );
         public function advert(){
             try{
@@ -206,6 +206,29 @@
             }
         }
 
+        public function user( $user ){
+             try{
+                extract( $user );
+                //Connect $pdo variable from connect.php
+                global $pdo;
+
+                //Making PDO SQL request
+                $stmt = $pdo -> prepare($this -> sqlr['user']);
+
+                /*---------- PDO BIND PARAMS ----------*/
+                $stmt -> bindParam( ':username'     ,    $username              ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':hash'         ,    $hash                  ,    PDO::PARAM_STR );
+                $stmt -> bindParam( ':challenge'    ,    $challenge             ,    PDO::PARAM_STR );
+                /*-------- PDO BIND PARAMS ENDS --------*/
+
+                $stmt -> execute();
+                
+                return array('status' => 200);
+
+            }catch(PDOException $exception){ //to handle error
+                return array('status' => 500, 'errorMessage' => $exception);
+            }
+        }
 
     }
     class Delete{

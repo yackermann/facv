@@ -67,6 +67,9 @@
         "rePassword"    :    "Password again",
         "register"      :    "Register",
 
+        "changePass"    :    "Update password",
+        "update"        :    "Update",
+
         "yes"           :    "Yes",
         "no"            :    "NO",
         "newAdvert"     :    "New Advert",
@@ -90,7 +93,8 @@
             "500" : "SQL Error.",
             "503" : "Error while connecting to SQL server.",
             "409" : "User with this username already exist.",
-            "401" : "Authorization required."
+            "401" : "Authorization required.",
+            "400" : "User with this username NOT exist."
         },
         "client":{
             "successAdded"      :    "Advert successfully added.",
@@ -106,8 +110,10 @@
 
             "imageOnly"         :    "Images only allowed.",
             "passwordNotMatch"  :    "Password does not match.",
+            "emptyField"        :    "Field blank.",
+
             "userExist"         :    "User with this username already exist.",
-            "emptyField"        :    "Field blank."
+            "userNOTExist"      :    "User with this username NOT exist."
         }
     }
 }

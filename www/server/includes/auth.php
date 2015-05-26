@@ -117,6 +117,52 @@
         }
     }
 
+
+    class Update{
+        private $crypto;
+        private $ip;
+        private $SQLGet;
+        private $SQLUpdate;
+        private $username;
+        private $u;
+
+        public function __construct($username){
+            $this -> crypto    =    new Crypto();
+            $this -> ip        =    new \IP();
+            $this -> SQLGet    =    new \SQLRequests\Get();
+            $this -> SQLUpdate =    new \SQLRequests\Update();
+            $this -> username  =    $username;
+
+            $this -> user      =    array(
+                'username'  =>  $username,
+                'hash'      =>  '',
+                'challenge' =>  ''
+            );
+
+            $this -> u = $this -> SQLGet -> cred($username);
+            if( !empty( $this -> u ) ){
+                $this -> u = $this -> u[0];
+            }
+        }
+
+        public function update(){
+            return $this -> SQLUpdate -> User( $this -> user );
+        }
+
+        public function hash($response){
+            $this -> user['hash'] = $this -> crypto -> blowfish($response);
+        }
+
+        public function exist(){
+            if( !empty( $this -> u )) return true;
+        }
+
+        public function challenge(){
+            $this -> user['challenge'] = $this -> crypto -> salt();
+            return $this -> user['challenge'];
+        }
+    }
+
     class Exist{
         private $SQLGet;
         private $isExist = false;

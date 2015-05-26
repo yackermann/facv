@@ -426,6 +426,76 @@
                 }
             }
         });
+    
+        /*----------Delete button ends.----------*/ 
+
+        $('.changePass').on('click', function(){
+            $('#changePass').data('username', $(this).data('username'));
+            $('#changePass').foundation('reveal', 'open');
+            locked = false;
+        })
+
+        $(document).on( 'click', '.submitChangePass', function(){
+            if(!locked){
+                locked = true;
+                var Super = $(this);
+                var post = {
+                    'username'      :   $('#changePass').data('username')
+                  , 'password'      :   $('*[name="DeltaPassword"]')
+                  , 'passwordRe'    :   $('*[name="DeltaPasswordRe"]')
+                };
+               
+                $('.pass').removeClass( 'error' );
+                $('.error').remove();
+                if( post.username !== '' ){
+                    $.post(o.user, {'method': 'exist','username': post.username }, function( reply ){
+                        if( reply.exist ){
+                            if( post['password'].val() === post['passwordRe'].val() && post['passwordRe'].val() !== '' ){
+
+                                var animation = animate.loading(Super, locale.admin['loading']);
+
+                                animation.start();
+
+                                $.post(o.user, {'method': 'update','username': post.username }, function( challenge ){
+
+                                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+
+                                    $.post( o.user, {'method': 'update', 'response': response}, function( status ){
+                                        animation.stop();
+
+                                        if(status.status === 200){
+                                            animation.update(locale.admin['success']);
+                                        }else{
+                                            animation.update(locale.admin['failed']);
+                                        }
+
+                                        setTimeout(function(){
+                                            animation.reset();
+                                            if(status.status === 200){
+                                                
+                                                $('#changePass').foundation('reveal', 'close');
+                                                locked = false;
+
+                                            }
+                                        }, 1500);
+
+                                    }).fail(handlers.postError)
+                                }).fail(handlers.postError)
+
+                            }else{
+                                $('.pass').addClass( 'error' );
+                                $('.pass').after( '<small class="error">' + locale.errors.client['passwordNotMatch'] + '</small>' );
+                                locked = false;
+                            }
+                        }else{
+                            $( post.username ).addClass( 'error' );
+                            $( post.username ).after( '<small class="error">' + locale.errors.client['userExist'] + '</small>' );
+                            locked = false;
+                        }
+                    })
+                }
+            }
+        });
 
         /*----------Utilities----------*/
 

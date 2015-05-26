@@ -53,6 +53,37 @@
                     
                 }
                 
+            }else if( $_POST['method'] === 'update' ){
+
+                include __DIR__.'/includes/auth.php';
+                $update;
+
+                if( isset( $_POST['username'] ) ){
+                    //Stage one, get challenge
+                    $update = new \Auth\Update($_POST['username']);
+
+                    if( $update -> exist() ){
+                        echo json_encode( array( 'challenge' => $update -> challenge() ) );
+                        $_SESSION['update'] = serialize( $update );
+                    }else{
+                        echo json_encode( array('status' => 400, 'errorMessage' => 'User NOT exists.') );
+                        unset($_SESSION['update']);
+                    }
+                    
+
+                }else if( isset($_SESSION['update']) && isset($_POST['response']) ){ 
+                    
+                    //Stage two verify the response
+
+                    $update = unserialize($_SESSION['update']);
+
+                    $update -> hash($_POST['response']);
+                    echo json_encode( $update -> update() );
+                    
+                    unset($_SESSION['update']);
+                    
+                }
+                
             }
 
         }
