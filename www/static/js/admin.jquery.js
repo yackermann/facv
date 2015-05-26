@@ -304,14 +304,17 @@
                         }
 
                         if(data.status === 200){
-
-                            m.success( locale.errors.client.successAdded + msg );
+                            if(method['method'] === 'update')
+                                m.success( locale.errors.client['successUpdate'] + msg );
+                            else
+                                m.success( locale.errors.client['successAdded'] + msg );
                            
                             setTimeout(function(){
                                 location.reload();
                             }, 1500);
 
                         }else{
+
                             m.alert( locale.errors.server[data.status] + msg );
                         }
 

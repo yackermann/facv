@@ -94,6 +94,7 @@
         },
         "client":{
             "successAdded"      :    "Advert successfully added.",
+            "successUpdate"     :    "Advert successfully updated.",
             "successAddedUser"  :    "User successfully added.",
             "successDeletedUser":    "User successfully deleted.",
             "successDelete"     :    "Advert successfully deleted.",
