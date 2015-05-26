@@ -116,4 +116,21 @@
             return $this -> user['challenge'];
         }
     }
+
+    class Exist{
+        private $SQLGet;
+        private $isExist = false;
+        function __construct($username){
+
+            $this -> SQLGet    =    new \SQLRequests\Get();
+            $u = $this -> SQLGet -> cred($username);
+            if( !empty( $u ) ){
+                $this -> isExist = true;
+            }
+        }
+
+        public function exist(){
+            return $this -> isExist;
+        }
+    }
 ?>

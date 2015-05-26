@@ -1,15 +1,20 @@
 <?php
-
     //Starts session
     session_start();
-
 
     header('Content-Type: application/json');
 
     if( isset( $_SESSION['logged'] ) && $_SESSION['logged']){
         if($_POST && isset($_POST['method'])){
+            if( $_POST['method'] === 'exist' ){
 
-            if( $_POST['method'] === 'delete' ){
+                if( isset($_POST['username']) ){
+                    include __DIR__.'/includes/auth.php';
+                    $e = new \Auth\Exist($_POST['username']);
+                    echo json_encode( array( 'exist' => $e -> exist() ) );
+                }
+                    
+            }else if( $_POST['method'] === 'delete' ){
                 include __DIR__.'/includes/sql_requests.php';
                 $SQLDelete = new SQLRequests\Delete();
 
