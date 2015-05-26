@@ -382,7 +382,7 @@
 
                                 $.post(o.user, {'method': 'register','username': post.username.val() }, function( challenge ){
 
-                                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+                                    var response = CryptoJS.SHA512(post['password'].val() + challenge.challenge).toString();
 
                                     $.post( o.user, {'method': 'register', 'response': response}, function( status ){
                                         animation.stop();
@@ -458,7 +458,7 @@
 
                                 $.post(o.user, {'method': 'update','username': post.username }, function( challenge ){
 
-                                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+                                    var response = CryptoJS.SHA512( post['password'].val() + challenge.challenge ).toString();
 
                                     $.post( o.user, {'method': 'update', 'response': response}, function( status ){
                                         animation.stop();
