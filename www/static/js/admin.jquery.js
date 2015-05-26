@@ -343,10 +343,10 @@
             var _id = $(this).data('id');
             $.post(o.user, { 'method': 'delete', 'id': _id }, function( reply ){
                 if( reply.status === 200 ){
-                    m.success(locale.errors.client['successDelete'])
+                    m.success(locale.errors.client['successDeletedUser'])
                     $( '#' + _id ).remove();
                 }else{
-                    m.alert(locale.errors.client['failedDelete'])
+                    m.alert(locale.errors.client['failedDeleteUser'])
                 }
             }).fail(handlers.postError)
         })

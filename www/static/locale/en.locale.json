@@ -91,20 +91,22 @@
             "503" : "Error while connecting to SQL server.",
             "409" : "User with this username already exist.",
             "401" : "Authorization required."
-
         },
         "client":{
-            "emptyField"        :    "Field blank.",
-            "failedValidate"    :    "The %field% can not be validated",
             "successAdded"      :    "Advert successfully added.",
             "successAddedUser"  :    "User successfully added.",
             "successDeletedUser":    "User successfully deleted.",
             "successDelete"     :    "Advert successfully deleted.",
+
             "failedSend"        :    "Failed to send request. Please try later again.",
             "failedDelete"      :    "Failed to delete advert.",
+            "failedDeleteUser"  :    "Failed to delete user.",
+            "failedValidate"    :    "The %field% can not be validated",
+
             "imageOnly"         :    "Images only allowed.",
             "passwordNotMatch"  :    "Password does not match.",
-            "userExist"         :    "User with this username already exist."
+            "userExist"         :    "User with this username already exist.",
+            "emptyField"        :    "Field blank."
         }
     }
 }
