@@ -206,7 +206,7 @@
                 </div>
                 <div class="row collapse">
                     <div class="small-9 columns">
-                        <input type="password" name="password">
+                        <input class="pass" type="password" name="password">
                     </div>
                     <div class="small-3 columns">
                         <span class="postfix translateMe" data-tid="password">Password</span>
@@ -214,7 +214,7 @@
                 </div>
                 <div class="row collapse">
                     <div class="small-9 columns">
-                        <input type="password" name="passwordRe">
+                        <input class="pass" type="password" name="passwordRe">
                     </div>
                     <div class="small-3 columns">
                         <span class="postfix translateMe" data-tid="rePassword">Repeat password</span>

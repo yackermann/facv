@@ -20,7 +20,7 @@
             }, orguments),
 
             _uploadImage = '';
-
+            locked = false;
             todo = this,
             
             locale = {},
@@ -357,46 +357,70 @@
         })
 
         $(document).on( 'click', '.register', function(){
-            var Super = $(this);
-            var post = {
-                "username"      :   $('*[name="username"]').val()
-              , "password"      :   $('*[name="password"]').val()
-              , "passwordRe"    :   $('*[name="passwordRe"]').val()
-            };
-            console.log(post);
-           
-            if( post['password'] === post['passwordRe'] ){
+            if(!locked){
+                locked = true;
+                var Super = $(this);
+                var post = {
+                    'username'      :   $('*[name="username"]')
+                  , 'password'      :   $('*[name="password"]')
+                  , 'passwordRe'    :   $('*[name="passwordRe"]')
+                };
+               
+                $('.pass, *[name="username"]').removeClass( 'error' );
+                $('.error').remove();
+                if( post.username.val() !== '' ){
+                    $.post(o.user, {'method': 'exist','username': post.username.val() }, function( reply ){
+                        if( !reply.exist ){
+                            if( post['password'].val() === post['passwordRe'].val() && post['passwordRe'].val() !== '' ){
 
-                var animation = animate.loading(Super, locale.admin['loading']);
+                                var animation = animate.loading(Super, locale.admin['loading']);
 
-                animation.start();
+                                animation.start();
 
-                $.post(o.user, {'method': 'register','username': post.username}, function( challenge ){
+                                $.post(o.user, {'method': 'register','username': post.username.val() }, function( challenge ){
 
-                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
+                                    var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
 
-                    $.post( o.user, {'method': 'register', 'response': response}, function( status ){
-                        animation.stop();
+                                    $.post( o.user, {'method': 'register', 'response': response}, function( status ){
+                                        animation.stop();
 
-                        if(status.status === 200){
-                            animation.update(locale.admin['success']);
-                        }else{
-                            animation.update(locale.admin['failed']);
-                        }
+                                        if(status.status === 200){
+                                            animation.update(locale.admin['success']);
+                                        }else{
+                                            animation.update(locale.admin['failed']);
+                                        }
 
-                        setTimeout(function(){
-                            animation.reset();
-                            if(status.status === 200){
-                                
-                                $('.addUser').foundation('reveal', 'close');
+                                        setTimeout(function(){
+                                            animation.reset();
+                                            if(status.status === 200){
+                                                
+                                                $('.addUser').foundation('reveal', 'close');
 
-                                location.reload();
+                                                location.reload();
+                                                locked = false;
 
+                                            }
+                                        }, 1500);
+
+                                    }).fail(handlers.postError)
+                                }).fail(handlers.postError)
+
+                            }else{
+                                $('.pass').addClass( 'error' );
+                                $('.pass').after( '<small class="error">' + locale.errors.client['passwordNotMatch'] + '</small>' );
+                                locked = false;
                             }
-                        }, 1500);
-
-                    }).fail(handlers.postError)
-                }).fail(handlers.postError)
+                        }else{
+                            $( post.username ).addClass( 'error' );
+                            $( post.username ).after( '<small class="error">' + locale.errors.client['userExist'] + '</small>' );
+                            locked = false;
+                        }
+                    })
+                }else{
+                    $( post.username ).addClass( 'error' );
+                    $( post.username ).after( '<small class="error">' + locale.errors.client['emptyField'] + '</small>' );
+                    locked = false;
+                }
             }
         });
 

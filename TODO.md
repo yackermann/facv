@@ -104,10 +104,10 @@
  
 ## Bugs
  - ~~Notifications~~
- - Show error when editing admin
+ - ~~Show error when editing admin~~
  - Reindex database(deleting expired adverts)
  - Searching adverts in admin
- - Поломаная кнопка редактрирования пользователей
+ - Недоделаная кнопка редактрирования пользователей
 
 ## Extra bonus
  - Domain 

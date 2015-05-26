@@ -102,7 +102,9 @@
             "successDelete"     :    "Advert successfully deleted.",
             "failedSend"        :    "Failed to send request. Please try later again.",
             "failedDelete"      :    "Failed to delete advert.",
-            "imageOnly"         :    "Images only allowed."
+            "imageOnly"         :    "Images only allowed.",
+            "passwordNotMatch"  :    "Password does not match.",
+            "userExist"         :    "User with this username already exist."
         }
     }
 }
