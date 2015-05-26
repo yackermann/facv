@@ -88,13 +88,18 @@
             "429" : "You have reached maximum of your advert per day.",
             "511" : "Username and/or password are wrong.",
             "500" : "SQL Error.",
-            "503" : "Error while connecting to SQL server."
+            "503" : "Error while connecting to SQL server.",
+            "409" : "User with this username already exist.",
+            "401" : "Authorization required."
+
         },
         "client":{
             "emptyField"        :    "Field blank.",
             "failedValidate"    :    "The %field% can not be validated",
             "successAdded"      :    "Advert successfully added.",
-            "successDelete"     :     "Advert successfully deleted.",
+            "successAddedUser"  :    "User successfully added.",
+            "successDeletedUser":    "User successfully deleted.",
+            "successDelete"     :    "Advert successfully deleted.",
             "failedSend"        :    "Failed to send request. Please try later again.",
             "failedDelete"      :    "Failed to delete advert.",
             "imageOnly"         :    "Images only allowed."

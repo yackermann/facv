@@ -34,9 +34,8 @@
             handlers = {
                 postError: function( error ){
                     var err = '';
-                    if(o.debug){
+                    if(o.debug)
                         err = '<br>' + error.responseText;
-                    }
 
                     console.log( 'POST ERROR: ', error.responseText );
                     m.alert( locale.errors.client.failedSend + err );
@@ -56,9 +55,10 @@
                     function startFun(){
                         A = setInterval(function(){
                             var display = text;
-                            for(n=0; n < i; n++){
+
+                            for(n=0; n < i; n++)
                                 display += '.';
-                            }
+        
                             i = i < 3 ? i + 1 : 0;
                             $(target).html(display);
                         }, 300);
@@ -428,11 +428,10 @@
                         $.post( o.loginAddress, {'response': response}, function( status ){
                             animation.stop();
 
-                            if(status.authorized === true){
+                            if(status.authorized === true)
                                 animation.update(locale.frontend['success']);
-                            }else{
+                            else
                                 animation.update(locale.frontend['failed']);
-                            }
 
                             setTimeout(function(){
                                 animation.reset();

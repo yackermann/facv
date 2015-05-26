@@ -103,7 +103,7 @@
      - PHP        | Niemand Done
  
 ## Bugs
- - Notifications
+ - ~~Notifications~~
  - Show error when editing admin
  - Reindex database(deleting expired adverts)
  - Searching adverts in admin

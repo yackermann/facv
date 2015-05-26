@@ -177,11 +177,11 @@
         $('.view.adv').on('click', function(){
             var _id = $(this).data('id');
             $.post( o.bureau, { 'method' : 'get', 'id': _id }, function( data ){
-                if( data.status === 200 ){
+                if( data.status === 200 )
                     $(render.modal(data.data)).foundation('reveal', 'open');
-                }else{
+                else
                     m.alert(data.errorMessage);
-                }
+
             }).fail(handlers.postError)
 
         })
@@ -204,11 +204,11 @@
             var _id = $(this).data('id');
             $.post(o.bureau, { 'method': 'delete', 'id': _id }, function( reply ){
                 if( reply.status === 200 ){
-                    m.success(locale.errors.client['successDelete'])
+                    m.success(locale.errors.client['successDelete']);
                     $( '#' + _id ).remove();
-                }else{
-                    m.alert(locale.errors.client['failedDelete'])
-                }
+                }else
+                    m.alert(locale.errors.client['failedDelete']);
+
             }).fail(handlers.postError)
         })
         /*----------Delete button ends.----------*/ 
@@ -228,9 +228,10 @@
                     })
 
                     $('#drop_zone').data('original', data.data.image);
-                    if( data.data.image !== null ){
+                    
+                    if( data.data.image !== null )
                         $('#drop_zone').css('background-image', 'url("/uploads/' + data.data.image + ')');
-                    }
+
                     $('#newAdvert').foundation('reveal', 'open');
                 }
             }).fail(handlers.postError)

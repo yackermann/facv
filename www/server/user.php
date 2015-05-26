@@ -45,7 +45,6 @@
                     echo json_encode( $reg -> register() );
                     
                     unset($_SESSION['reg']);
-
                     
                 }
                 
@@ -56,6 +55,4 @@
     }else{
         echo json_encode( array('status' => 401, 'errorMessage' => 'Unauthorized' ) );
     }
-    // echo json_encode( array('status' => 501, 'errorMessage' => 'Not Implemented' ) );
-
 ?>
