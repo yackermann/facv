@@ -277,11 +277,6 @@
             }).fail(handlers.getError);
 
         }).fail(handlers.getError);
-       
-
-        $(document).on('click', '*[role=tab]', function(){
-            $('input[name=search]').val('');
-        })
 
         /*----------HANDLERS----------*/
 
