@@ -326,6 +326,10 @@
             });
         });
 
+        $(document).on('click', '*[role=tab]', function(){
+            $('input[name=search]').val('');
+        })
+
         //Form validation form
         $(document).on( 'click', '.sbmt', function(){
 
