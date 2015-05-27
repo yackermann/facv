@@ -10,7 +10,11 @@
 
             $SQLGet = new SQLRequests\Get();
 
-            if($_POST['method'] === 'get'){
+            if($_POST['method'] === 'all'){
+
+                echo json_encode(array( 'status' => 200,'adverts' => $SQLGet -> adverts() ));
+                
+            }else if($_POST['method'] === 'get'){
 
                 if(isset($_POST['id']))
                     echo json_encode( array( 'status' => 200, 'data' => $SQLGet -> advert($_POST['id'])[0] ) );
