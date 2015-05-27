@@ -46,7 +46,7 @@
                 $item = "<tr id=\"$id\">
                             <td>$username</td>
                             <td><a href=\"#$id\" class=\"medium expand success button changePass user translateMe\" data-username=\"$username\" data-tid=\"changePass\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-username=\"$username\" data-tid=\"delete\">Delete</a></td>
+                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
                         </tr>%tableitems%";
                 $content = str_replace( '%tableitems%' , $item , $content );
             }
