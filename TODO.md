@@ -105,9 +105,9 @@
 ## Bugs
  - ~~Notifications~~
  - ~~Show error when editing admin~~
- - Reindex database(deleting expired adverts) - later
+ - ~~Reindex database(deleting expired adverts) - later~~
  - ~~Searching adverts in admin~~
  - ~~Недоделаная кнопка редактрирования пользователей Форма открывается, но не работает. Регистрация тоже не работает. Не правильно генерирует пароль предполагаю~~
 
 ## Extra bonus
- - Domain 
+ - ~~Domain ~~
