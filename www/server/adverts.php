@@ -19,15 +19,7 @@
     $SQLAdd = new SQLRequests\Add();
     
     if (!$_POST) { //IF GET
-
-        //Getting info
-        $content = array(
-            'status'     =>  200,
-            'adverts'    =>  $SQLGet -> adverts()
-        );
-
-        //Returning JSON
-        echo json_encode($content);
+        echo json_encode(array( 'status' => 200,'adverts' => $SQLGet -> adverts() ));
 
     }else{ 
     //IF POST
