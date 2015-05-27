@@ -61,7 +61,7 @@
 
             foreach ($SQLGet -> adverts() as $value) {
                 extract($value);
-                $item = "<tr id=\"$id\">
+                $item = "<tr id=\"$id\" class=\"advertItem\">
                             <td>$title</td>
                             <td>$endDate</td>
                             <td>$email</td>
@@ -104,6 +104,12 @@
             <div class="large-12 columns">
                 <a href="admin"><h1 class="translateMe" data-tid="admin">Admin</h1></a>
             </div>
+            <?php  if( $_GET['open'] === 'adverts' ){ ?>
+            <div class="large-12 columns">
+                <input type="text" class="translateMe" data-tid="search" name="search" placeholder="Search">
+            </div>
+            <?php } ?>
+            
         </div>
 
         <?php echo $content; ?>

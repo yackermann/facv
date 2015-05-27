@@ -48,6 +48,7 @@
         "edit"          :    "Edit",
         "users"         :    "Users",
         "adverts"       :    "Adverts",
+        "search"        :    "Search",
         "backToMain"    :    "Back to main",
         "view"          :    "View",
         "admin"         :    "Admin",

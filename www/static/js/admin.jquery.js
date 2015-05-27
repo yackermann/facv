@@ -25,7 +25,9 @@
             
             locale = {},
             cache = {
-                categories : {}
+                adverts: {},
+                categories: {},
+                search: {}
             },
             handlers = {
                 postError: function( error ){
@@ -166,10 +168,52 @@
             render.categories(locale.categories);
 
             render.locale();
-
         }).fail(handlers.getError);
        
+        $.post( o.bureau, { 'method' : 'all' }, function( data ){
+            if( data.status === 200 ){
+                for( var i = 0, advert; advert = data.adverts[i]; i++ ){
+                    
+                    cache.adverts[advert.id] = advert;
 
+                    cache.search[advert.id] = (function(advert){
+                        var string = '';
+                        var keys = Object.keys(advert);
+                        for(var i = 0; i < keys.length; i++)
+                            string = string + ' ' + advert[keys[i]];
+
+                        return string;
+                    })(advert)
+                }
+            }
+        })
+
+
+        //Event handler for searching
+        $('input[name=search]').on('input', function(){
+            //Get input value
+            var input = $(this).val();
+            if( input === '' ){
+                $('.advertItem').show();
+            }else{
+                //Open search results tab
+                $('.advertItem').hide();
+
+                //Perform search
+                var keys = Object.keys( cache.adverts );
+
+                //Clean search space
+                $('#search').html('')
+                var patt = new RegExp( input, 'ig' );
+
+                keys.forEach(function( item, i ){
+                    if (patt.test( cache.search[item] )){
+                        $('#' + item).show();
+                    }
+
+                });
+            }
+        });
     /*---------------ADVERTS---------------*/
 
         /*-----------View button.-----------*/ 
@@ -183,7 +227,6 @@
                     m.alert(data.errorMessage);
 
             }).fail(handlers.postError)
-
         })
         /*------------View ends.------------*/ 
 
