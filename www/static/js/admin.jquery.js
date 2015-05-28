@@ -374,6 +374,7 @@
 
         /*----------Delete button.----------*/ 
         $('.deleteBtn.user').on('click', function(){
+            console.log($(this).data('id'));
             $('.submitYes.user').data('id', $(this).data('id'));
             $('.confirm.user').foundation('reveal', 'open');
         })
@@ -387,6 +388,7 @@
         $('.submitYes.user').on('click', function(){
             $(this).foundation('reveal', 'close');
             var _id = $(this).data('id');
+            console.log(_id)
             $.post(o.user, { 'method': 'delete', 'id': _id }, function( reply ){
                 if( reply.status === 200 ){
                     m.success(locale.errors.client['successDeletedUser'])
