@@ -8,7 +8,7 @@
 
     //Set header to JSON
     header('Content-Type: application/json');
-    
+    //advert limit per IP per DAY
     $maxRequestPerDay = 5;
 
     //Add SQL methods
@@ -19,6 +19,8 @@
     $SQLAdd = new SQLRequests\Add();
     
     if (!$_POST) { //IF GET
+
+        //return adverts
         echo json_encode(array( 'status' => 200,'adverts' => $SQLGet -> adverts() ));
 
     }else{ 
@@ -31,6 +33,8 @@
         $IP = new IP();
 
         $ValidatePOST = new Validate\POST();
+
+        //run validation
         $ValidateRESP = $ValidatePOST -> advert();
 
         if( $ValidateRESP['valid'] ){
@@ -41,25 +45,30 @@
                 //Add ip to DB
                 $SQLAdd -> ip($IP -> get());
 
+                //if image isset add to DB
                 if(isset($_POST['image']) && $_POST['image'] !== ''){
                     $_POST['imageURL'] = $upload -> upload($_POST['image']);
                 }
 
+                //save response
                 $response = $SQLAdd -> advert();
 
+                //check if response status is 200(OK)
                 if($response['status'] === 200){
                     $response['advert'] = $SQLGet -> advert($response['id'])[0];
                 }
 
+                //Return advert
                 echo json_encode( $response );
                 
             }else{
-
+                //return MAX_ADVERTS_PER_IP error
                 echo json_encode( array( 'status' => 429, 'errorMessage' => 'You have reached maximum of your advert per day' ) );
 
             }
 
         }else{
+            //return POST_VALIDATION error
             echo json_encode( array( 'status' => 412, 'errorMessage' => $ValidateRESP['messages'] ) );
         }
     }
