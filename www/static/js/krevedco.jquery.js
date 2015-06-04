@@ -23,7 +23,7 @@
 
             todo = this,
 
-            //Cache. OMG LOL
+            //Cache
             cache = {
                 adverts: {},
                 categories: {},
@@ -31,6 +31,7 @@
             },
             
             locale = {},
+            //Error Handlers
             handlers = {
                 postError: function( error ){
                     var err = '';
@@ -45,7 +46,7 @@
                     console.log('ERROR: ', error.responseText);
                 }
             },
-
+            //loading animation
             animate = {
                 loading: function( target, text ){
                     var original = $(target).html();
@@ -82,6 +83,7 @@
                     }
                 }
             },
+            //rendering alert/success message
             m = {
                 alert: function(msg){
                     $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
@@ -92,7 +94,7 @@
                     $(document).foundation('alert', 'reflow');
                 }
             }
-
+            //Validating "Add" form
             validate = {
                 email: function( value ) {
                     return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test( value );
@@ -258,7 +260,7 @@
                         $('.languages').append('<li><a href="#" class="lang" data-lang="' + key + '">' + o.locale.available[key] + '</a></li>');
                 }
             };
-
+        //Gettinf JSON from server
         $.getJSON( 'locale/' + o.locale.selected + '.locale.json' ).done(function( l ){
             locale = l;
             cache.categories = locale.categories;
@@ -320,7 +322,7 @@
 
             });
         });
-
+        //Clean search place when exit searching
         $(document).on('click', '*[role=tab]', function(){
             $('input[name=search]').val('');
         })
