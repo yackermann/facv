@@ -2,7 +2,9 @@
     require __DIR__.'/includes/session.php';
     include __DIR__.'/includes/sql_requests.php';
     $SQLGet = new SQLRequests\Get();
-
+    /*
+     * View models
+     */
     $templates = array(
         'table' => '<div class="row">
                         <div class="large-12 columns">
@@ -35,12 +37,21 @@
     $content = '';
     $cdir = '';
 
+    /*
+     * if GET is open, and open method does exist
+     */
     if($_GET && isset($_GET['open']) && in_array($_GET['open'], ['users', 'adverts'])){
+        /*
+         * if users
+         */
         if( $_GET['open'] === 'users' ){
             $cdir = 'Users';
 
             $content = str_replace( '%content%' , $templates['users'] , $templates['table'] );
 
+            /*
+             * get users from db and generate the table
+             */
             foreach ($SQLGet -> users() as $value) {
                 extract($value);
                 $item = "<tr id=\"$id\">
@@ -53,12 +64,18 @@
 
             $content =  str_replace( '%tableitems%' , '' , $content );
 
+        /*
+         * if adverts
+         */
         }else if( $_GET['open'] === 'adverts' ){
 
             $cdir = 'Adverts';
 
             $content = str_replace( '%content%' , $templates['adverts'] , $templates['table'] );
 
+            /*
+             * get adverts from db and generate the table
+             */
             foreach ($SQLGet -> adverts() as $value) {
                 extract($value);
                 $item = "<tr id=\"$id\" class=\"advertItem\">
@@ -77,6 +94,9 @@
         }
 
     }else{
+        /*
+         * is no GET or unknown ?open, show select
+         */
         $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users" class="translateMe" data-tid="users">Users</a> || <a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></h2></div></div>';
     }
 ?>
