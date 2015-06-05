@@ -2,7 +2,7 @@
     mb_internal_encoding("UTF-8");
     try{
         $pdo = new PDO(
-            'mysql:host=localhost;dbname=krevedco', 
+            'mysql:host=localhost;dbname=facv', 
             'root', 
             'root',
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") 
