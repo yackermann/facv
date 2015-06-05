@@ -23,14 +23,19 @@
 
             todo = this,
 
-            //Cache. OMG LOL
+            /*
+             * items cache
+             */
             cache = {
                 adverts: {},
                 categories: {},
                 search: {}
             },
-            
             locale = {},
+
+            /*
+             * AJAX errors handlers
+             */
             handlers = {
                 postError: function( error ){
                     var err = '';
@@ -38,7 +43,7 @@
                         err = '<br>' + error.responseText;
 
                     console.log( 'POST ERROR: ', error.responseText );
-                    m.alert( locale.errors.client.failedSend + err );
+                    m.alert( locale.errors.client['failedSend'] + err );
                 },
 
                 getError: function( error ){
@@ -46,6 +51,23 @@
                 }
             },
 
+            /*
+             * UI messages
+             */
+            m = {
+                alert: function(msg){
+                    $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
+                    $(document).foundation('alert', 'reflow');
+                },
+                success: function(msg){
+                    $( o.alert ).append('<div data-alert class="alert-box success">' + msg + '<a href="#" class="close">&times;</a></div>');
+                    $(document).foundation('alert', 'reflow');
+                }
+            }
+
+            /*
+             * Button animation
+             */
             animate = {
                 loading: function( target, text ){
                     var original = $(target).html();
@@ -82,17 +104,10 @@
                     }
                 }
             },
-            m = {
-                alert: function(msg){
-                    $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
-                    $(document).foundation('alert', 'reflow');
-                },
-                success: function(msg){
-                    $( o.alert ).append('<div data-alert class="alert-box success">' + msg + '<a href="#" class="close">&times;</a></div>');
-                    $(document).foundation('alert', 'reflow');
-                }
-            }
 
+            /*
+             * Regexp validating functions
+             */
             validate = {
                 email: function( value ) {
                     return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test( value );
@@ -127,7 +142,12 @@
                 }
             },
 
-            //Models for Adverts, Categories and Modal window.
+            /*
+             * Templates
+             * * advert
+             * * modal window
+             * * category
+             */
             models = {
                 advert: function( data ){
                     var img = data.image ? 'uploads/' + data.image : 'img/placeholder.png';
@@ -164,7 +184,14 @@
                 }
             };
 
-
+            /*
+             * Rendering function
+             * * advert
+             * * modal window
+             * * category
+             * * locales
+             * * languages
+             */
             render = {
                 categories: function( parent, data ){
                         //Iteration through the categories
@@ -259,21 +286,32 @@
                 }
             };
 
+        /*
+         * locale DATA loader
+         */
         $.getJSON( 'locale/' + o.locale.selected + '.locale.json' ).done(function( l ){
             locale = l;
             cache.categories = locale.categories;
+
             todo.each(function(){
                 render.categories(this, locale.categories);
                 render.locale();
                 render.languages();
             })
 
+            /*
+             * adverts DATA loader
+             * @param  {[type]} data ){                          if(data.status [description]
+             * @return {[type]}      [description]
+             */
             $.getJSON( o.source ).done(function( data ){
+
                 if(data.status === 200){
                     todo.each(function(){
                         render.adverts(this, data.adverts);  
                     })
                 }else m.alert(locale.errors.server[data.status]);
+
             }).fail(handlers.getError);
 
         }).fail(handlers.getError);
@@ -321,11 +359,16 @@
             });
         });
 
+        /*
+         * search input cleaner
+         */
         $(document).on('click', '*[role=tab]', function(){
             $('input[name=search]').val('');
         })
 
-        //Form validation form
+        /*
+         * Form validation for advert adding
+         */
         $(document).on( 'click', '.sbmt', function(){
 
             var ok = true;
@@ -344,11 +387,18 @@
                     validate: $(this).data('eval'),
                     sid: $(this).data('sid')
                 }
-
-                if(field.validate !== false){
-                    if(field.value){
-
-                        if(!validate[field.type](field.value)){
+                /*
+                 * If field is to be validated
+                 */
+                if( field.validate ){
+                    /*
+                     * if field is not empty
+                     */
+                    if( field.value ){
+                        /*
+                         * if valid
+                         */
+                        if( ! validate[field.type](field.value)){
                             ok = false;
                             $(this).addClass( 'error' );
                             $(this).after( '<small class="error">' + locale.errors.client.failedValidate.replace('%field%', field.name) + '</small>' );
@@ -365,21 +415,50 @@
                 
                 
             }).promise().done(function(){
+                /*
+                 * if valid
+                 */
                 if(ok){
-                    post['image'] = _uploadImage;
-                    $( o.modal ).foundation('reveal', 'close');
-                    $.post( o.source, post, function( data ){
-                        _uploadImage = '';
-                        var msg = '';
 
+                    /*
+                     * saving image
+                     */
+                    post['image'] = _uploadImage;
+                     _uploadImage = '';
+
+                    /*
+                     * closing modal
+                     */
+                    $( o.modal ).foundation('reveal', 'close');
+
+                    /*
+                     * performing post request to add out advert
+                     */
+                    $.post( o.source, post, function( data ){
+                        var msg = '';
+                        /*
+                         * if debug
+                         */
                         if(o.debug){
                             msg = '<br>' + data;
                             console.log('POST SUCCESS: ', data);
                         }
 
+                        /*
+                         * if response OK
+                         */
                         if(data.status === 200){
+                            /*
+                             * add to cache
+                             */
                             cache.adverts[data.advert.id] = data.advert;
+                            /*
+                             * render
+                             */
                             render.addAdvert($(todo)[0], data.advert);
+                            /*
+                             * success message
+                             */
                             m.success( locale.errors.client.successAdded + msg );
                         }else{
                             m.alert( locale.errors.server[data.status] + msg );
@@ -403,6 +482,9 @@
             $( 'small.error', st ).remove();
             $( '.error', st ).removeClass('error');
 
+            /*
+             * Validating login form
+             */
             $( 'input', st ).each(function(){
                 var field = {
                     value: $(this).val(),
@@ -418,23 +500,46 @@
                 post[field.name] = field.value;
 
             }).promise().done(function(){
+                /*
+                 * if valid
+                 */
                 if(ok){
+                    /*
+                     * start loading animation
+                     */
                     var animation = animate.loading(Super, locale.frontend['loading']);
-
                     animation.start();
 
+                    /*
+                     * getting challenge
+                     */
                     $.post(o.loginAddress, {'username': post.username}, function( challenge ){
 
+                        /*
+                         * generating response ( sha512(password + challenge) )
+                         */
                         var response = CryptoJS.SHA512(post.password + challenge.challenge).toString();
 
+                        /*
+                         * sending response
+                         */
                         $.post( o.loginAddress, {'response': response}, function( status ){
+                            /*
+                             * stopping loading animation
+                             */
                             animation.stop();
 
-                            if(status.authorized === true)
+                            /*
+                             * if logged in
+                             */
+                            if( status.authorized )
                                 animation.update(locale.frontend['success']);
                             else
                                 animation.update(locale.frontend['failed']);
 
+                            /*
+                             * showing success and redirecting to admin.
+                             */
                             setTimeout(function(){
                                 animation.reset();
                                 if(status.authorized){
@@ -451,7 +556,9 @@
             });
         });
 
-
+        /*
+         * clearing inputs when modals are closing
+         */
         $(document).on('closed.fndtn.reveal', '[data-reveal]', function () {
             var modal = $(this);
             $('.dropzone.parent', modal).css('background-image', '');
@@ -462,6 +569,10 @@
             });
         });
 
+        /*
+         * checking if user is logged in, if yes redirecting to admin
+         * otherwise login modal
+         */
         $('.loginBtn').on('click', function(){
              // data-reveal-id="loginModal"
             $.getJSON( '/server/login', function( data ) {
@@ -473,6 +584,9 @@
             })
         })
         
+        /*
+         * change language
+         */
         $(document).on('click', '.lang', function () {
 
             var newLang = $(this).data('lang');
@@ -515,7 +629,10 @@
 
            
         }
-
+       
+        /*
+         * Drag and drop
+         */
         var handleDragOver = function(evt) {
             evt.stopPropagation();
             evt.preventDefault();
@@ -528,6 +645,9 @@
         dropZone.addEventListener('drop', handleFileSelect, false);
         document.getElementById('files').addEventListener('change', handleFileSelect, false);
         
+        /*
+         * area event handler for file promt
+         */
         $("#drop_zone").click(function(e){
             e.preventDefault();
             $("#files").trigger('click');
