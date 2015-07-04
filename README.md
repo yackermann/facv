@@ -36,7 +36,7 @@ freeadvertscv - The notice board
      * GET
         * MIME: `application/json`
         * Structure:
-            ```js
+        ```js
             {
                 "status": 200/404,
                 "adverts": [
@@ -50,11 +50,10 @@ freeadvertscv - The notice board
                         "image": String,
                         "email": String,
                         "phone": String
-                    },
-                    ...
+                    }
                 ]
             }
-            ```
+        ```
 
 ### Server API responses 
 
