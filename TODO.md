@@ -20,7 +20,7 @@
         * ~~Alerts~~
         * Captcha
     
-    + Front end search 
+    + ~~Frontend search~~
 
 - ~~Localization | I.P. (Niemand)~~
     + ~~Language detection~~
@@ -79,24 +79,29 @@
          * ~~Delete~~
 
      + Users
-         * Get
-         * Add
-         * Update
-         * Delete
+         * ~~Get~~
+         * ~~Add~~
+         * ~~Update~~
+         * ~~Delete~~
 
  - Frontend
      + Bureau
-         * Delete
-         * Get and Update
-         * Add
+         * ~~Delete~~
+         * ~~Get and Update~~
+         * ~~Add~~
+
+     + Users
+         * ~~Delete~~
+         * ~~Get and Update~~
+         * ~~Add~~
 
 ## General
  - ~~RENAME TO kreved.co~~
- - RENAME TO WHATEVER THE FUCK.
+ - ~~RENAME TO facv~~
 
  - **.htaccess**
-    - Request rewrite
-    - Restrict folder view(no listing)
+    - ~~Request rewrite~~
+    - ~~Restrict folder view(no listing)~~
 
  - hating | I.P. (Fulton, Niemand)
      - JavaScript
