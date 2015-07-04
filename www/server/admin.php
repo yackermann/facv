@@ -1,104 +1,5 @@
 <?php
-    require __DIR__.'/includes/session.php';
-    include __DIR__.'/includes/sql_requests.php';
-    $SQLGet = new SQLRequests\Get();
-    /*
-     * View models
-     */
-    $templates = array(
-        'table' => '<div class="row">
-                        <div class="large-12 columns">
-                            <table role="grid">%content%</table>
-                        </div>
-                    </div>',
-
-        'users' => '<thead>
-                        <tr>
-                            <th width="600" class="translateMe" data-tid="username">Username</th>
-                            <th width="200"></th>
-                            <th width="200"><a class="small expand success button addUser">+</a></th>
-                        </tr>
-                    </thead>
-                    <tbody>%tableitems%</tbody>',
-
-        'adverts' => '<thead>
-                        <tr>
-                            <th width="125" class="translateMe" data-tid="title">Title</th>
-                            <th width="125" class="translateMe" data-tid="endDate">End date</th>
-                            <th width="125" class="translateMe" data-tid="email">Email</th>
-                            <th width="125" class="translateMe" data-tid="phone">Phone</th>
-                            <th width="125"></th>
-                            <th width="125"></th>
-                            <th width="125"><a class="small expand button addAdv">+</a></th>
-                        </tr>
-                    </thead>
-                    <tbody>%tableitems%</tbody>'
-    );
-    $content = '';
-    $cdir = '';
-
-    /*
-     * if GET is open, and open method does exist
-     */
-    if($_GET && isset($_GET['open']) && in_array($_GET['open'], ['users', 'adverts'])){
-        /*
-         * if users
-         */
-        if( $_GET['open'] === 'users' ){
-            $cdir = 'Users';
-
-            $content = str_replace( '%content%' , $templates['users'] , $templates['table'] );
-
-            /*
-             * get users from db and generate the table
-             */
-            foreach ($SQLGet -> users() as $value) {
-                extract($value);
-                $item = "<tr id=\"$id\">
-                            <td>$username</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button changePass user translateMe\" data-username=\"$username\" data-tid=\"changePass\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn user translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
-                        </tr>%tableitems%";
-                $content = str_replace( '%tableitems%' , $item , $content );
-            }
-
-            $content =  str_replace( '%tableitems%' , '' , $content );
-
-        /*
-         * if adverts
-         */
-        }else if( $_GET['open'] === 'adverts' ){
-
-            $cdir = 'Adverts';
-
-            $content = str_replace( '%content%' , $templates['adverts'] , $templates['table'] );
-
-            /*
-             * get adverts from db and generate the table
-             */
-            foreach ($SQLGet -> adverts() as $value) {
-                extract($value);
-                $item = "<tr id=\"$id\" class=\"advertItem\">
-                            <td>$title</td>
-                            <td>$endDate</td>
-                            <td>$email</td>
-                            <td>$phone</td>
-                            <td><a href=\"#$id\" class=\"medium expand success button editBtn adv translateMe\" data-id=\"$id\" data-tid=\"edit\">Edit</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand alert button deleteBtn adv translateMe\" data-id=\"$id\" data-tid=\"delete\">Delete</a></td>
-                            <td><a href=\"#$id\" class=\"medium expand button view adv translateMe\" data-id=\"$id\" data-tid=\"view\">Preview</a></td>
-                        </tr>%tableitems%";
-                $content = str_replace( '%tableitems%' , $item , $content );
-            }
-
-            $content =  str_replace( '%tableitems%' , '' , $content );
-        }
-
-    }else{
-        /*
-         * is no GET or unknown ?open, show select
-         */
-        $content = '<div class="row"><div class="large-12 columns"><h2 style="text-align: center;"><a href="?open=users" class="translateMe" data-tid="users">Users</a> || <a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></h2></div></div>';
-    }
+require __DIR__.'/includes/session.php';
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +7,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Admin<?php if($cdir !== '') echo ' | '.$cdir; ?></title>
+        <title>Admin</title>
         <link rel="stylesheet" href="/css/foundation.css" />
         <link rel="stylesheet" href="/css/custom.css" />
         <link rel="stylesheet" href="/css/foundation-datepicker.css" />
@@ -124,15 +25,61 @@
             <div class="large-12 columns">
                 <a href="admin"><h1 class="translateMe" data-tid="admin">Admin</h1></a>
             </div>
-            <?php  if( $_GET['open'] === 'adverts' ){ ?>
-            <div class="large-12 columns">
-                <input type="text" class="translateMe" data-tid="search" name="search" placeholder="Search">
-            </div>
-            <?php } ?>
-            
         </div>
 
-        <?php echo $content; ?>
+        <div class="row">
+            <div class="tabs-content">
+
+                <section role="tabpanel" aria-hidden="false" class="content active" id="main">
+                    <h2 style="text-align: center;">
+                        <a href="#users" class="translateMe" data-tid="users">Users</a> || <a href="#adb" class="translateMe" data-tid="adverts">Adverts</a>
+                    </h2>
+                </section>
+
+                <section role="tabpanel" aria-hidden="false" class="content" id="adb">
+                    <div class="large-12 columns">
+                        <input type="text" class="translateMe" data-tid="search" name="search" placeholder="Search">
+                    </div>
+                    <div class="large-12 columns">
+                        <table role="grid">
+                            <thead>
+                                <tr>
+                                    <th width="125" class="translateMe" data-tid="title">Title</th>
+                                    <th width="125" class="translateMe" data-tid="endDate">End date</th>
+                                    <th width="125" class="translateMe" data-tid="email">Email</th>
+                                    <th width="125" class="translateMe" data-tid="phone">Phone</th>
+                                    <th width="125"></th>
+                                    <th width="125"></th>
+                                    <th width="125"><a class="small expand button addAdv">+</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section role="tabpanel" aria-hidden="false" class="content" id="users">
+                    <div class="large-12 columns">
+                        <table role="grid">
+                            <thead>
+                                <tr>
+                                    <th width="600" class="translateMe" data-tid="username">Username</th>
+                                    <th width="200"></th>
+                                    <th width="200"><a class="small expand success button addUser">+</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+        
 
         <footer class="row">
             <div class="large-12 columns">
@@ -146,8 +93,8 @@
                             <li><a href="/server/login?logout" class="translateMe" data-tid="logout">Logout</a></li>
                             <li>|</li>
                             <li><a href="/" class="translateMe" data-tid="backToMain">Main Page</a></li>
-                            <li><a href="?open=users" class="translateMe" data-tid="users">Users</a></li>
-                            <li><a href="?open=adverts" class="translateMe" data-tid="adverts">Adverts</a></li>
+                            <li><a href="#users" class="translateMe" data-tid="users">Users</a></li>
+                            <li><a href="#adb" class="translateMe" data-tid="adverts">Adverts</a></li>
                         </ul>
                     </div>
                 </div>
@@ -311,6 +258,24 @@
                     }
                 });
                 $(document).admin();
+
+                if(window.location.hash && window.location.hash !== '#'){
+                    $('.tabs-content > section.content').removeClass('active')
+                    $(window.location.hash).addClass('active')
+                }else{
+                    $('.tabs-content > section.content').removeClass('active')
+                    $('#main').addClass('active')
+                }
+
+                $(window).on('hashchange', function() {
+                    if(window.location.hash !== '#'){
+                        $('.tabs-content > section.content').removeClass('active')
+                        $(window.location.hash).addClass('active')
+                    }else{
+                        $('.tabs-content > section.content').removeClass('active')
+                        $('#main').addClass('active')
+                    }
+                });
             })
         </script>
     </body>

@@ -80,6 +80,7 @@
                     }
                 }
             },
+
             m = {
                 alert: function(msg){
                     $( o.alert ).append('<div data-alert class="alert-box alert">' + msg + '<a href="#" class="close">&times;</a></div>');
@@ -91,6 +92,28 @@
                 }
             }
 
+            models = {
+                table : {
+                    advert : function(item){
+                        return '<tr id=\"' + item.id + '\" class=\"advertItem\">'
+                                 + '<td>' + item.title   + '</td>'
+                                 + '<td>' + item.endDate + '</td>'
+                                 + '<td>' + item.email   + '</td>'
+                                 + '<td>' + item.phone   + '</td>'
+                                 + '<td><a href=\"#' + item.id + '\" class=\"medium expand success button editBtn adv translateMe\" data-id=\"' + item.id + '\" data-tid=\"edit\">Edit</a></td>'
+                                 + '<td><a href=\"#' + item.id + '\" class=\"medium expand alert button deleteBtn adv translateMe\" data-id=\"' + item.id + '\" data-tid=\"delete\">Delete</a></td>'
+                                 + '<td><a href=\"#' + item.id + '\" class=\"medium expand button view adv translateMe\" data-id=\"' + item.id + '\" data-tid=\"view\">Preview</a></td>'
+                             + '</tr>';
+                    },
+                    user : function(item){
+                        return '<tr id=\"' + item.id + '\">'
+                                    + '<td>'  + item.username + '</td>'
+                                    + '<td><a href=\"#' + item.id + '\" class=\"medium expand success button changePass user translateMe\" data-username=\"$username\" data-tid=\"changePass\">Edit</a></td>'
+                                    + '<td><a href=\"#' + item.id + '\" class=\"medium expand alert button deleteBtn user translateMe\" data-id=\"' + item.id + '\" data-tid=\"delete\">Delete</a></td>'
+                                + '</tr>';
+                    }
+                }
+            }
             validate = {
                 email: function( value ) {
                     return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test( value );
@@ -142,6 +165,7 @@
                                 '<a class="close-reveal-modal" aria-label="Close">&#215;</a>' +
                             '</div>';
                 },
+
                 categories: function( data ){
 
                     for (var i = 0, f; category = data[i]; i++)
@@ -172,10 +196,16 @@
        
         $.post( o.bureau, { 'method' : 'all' }, function( data ){
             if( data.status === 200 ){
+                var advertsTable = '';
                 for( var i = 0, advert; advert = data.adverts[i]; i++ ){
-                    
+                    /*
+                     * Caching adverts
+                     */
                     cache.adverts[advert.id] = advert;
 
+                    /*
+                     * Creating search strings
+                     */
                     cache.search[advert.id] = (function(advert){
                         var string = '';
                         var keys = Object.keys(advert);
@@ -184,7 +214,24 @@
 
                         return string;
                     })(advert)
+
+                    advertsTable += models.table['advert'](advert);
                 }
+
+                $('#adb').find('tbody').html(advertsTable)
+
+            }
+        })
+
+         $.post( o.user, { 'method' : 'all' }, function( data ){
+            if( data.status === 200 ){
+                var userTable = '';
+                for( var i = 0, user; user = data.users[i]; i++ ){
+                    userTable += models.table['user'](user);
+                }
+                
+                $('#users').find('tbody').html(userTable)
+
             }
         })
 
