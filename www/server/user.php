@@ -118,7 +118,7 @@
                      */
                     include __DIR__.'/includes/sql_requests.php';
                     $SQLGet = new SQLRequests\Get();
-                    echo json_encode(array( 'status' => 200,'adverts' => $SQLGet -> users() ));
+                    echo json_encode(array( 'status' => 200, 'users' => $SQLGet -> users() ));
                 break;
 
             }
