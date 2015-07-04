@@ -31,29 +31,30 @@ freeadvertscv - The notice board
 ## API
 
 ### `adverts.php`
- + Requests: 
+ + Requests:
  + Response:
-    + MIME: `application/json`
-    + Structure:
-    ```js
-    {
-        "status": 200/404,
-        "adverts": [
+     * GET
+        * MIME: `application/json`
+        * Structure:
+            ```js
             {
-                "id": Integer,
-                "title": String,
-                "text": String,
-                "startDate": Date,
-                "endDate": Date,
-                "categoryId": Integer,
-                "image": String,
-                "email": String,
-                "phone": String
-            },
-            ...
-        ]
-    }
-    ```
+                "status": 200/404,
+                "adverts": [
+                    {
+                        "id": Integer,
+                        "title": String,
+                        "text": String,
+                        "startDate": Date,
+                        "endDate": Date,
+                        "categoryId": Integer,
+                        "image": String,
+                        "email": String,
+                        "phone": String
+                    },
+                    ...
+                ]
+            }
+            ```
 
 ### Server API responses 
 
