@@ -1,7 +1,7 @@
 #freeadvertscv
 The MIT License (MIT)
 
-Copyright (c) 2015 Vyacheslav Sharley
+Copyright (c) 2015 Vyacheslav Sharley, Yuriy Ackermann
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -105,4 +105,3 @@ All files located in the node_modules and external directories are
 externally maintained libraries used by this software which have their
 own licenses; we recommend you read them, as their terms may differ from
 the terms above.
-
