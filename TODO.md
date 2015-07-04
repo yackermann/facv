@@ -103,10 +103,6 @@
     - ~~Request rewrite~~
     - ~~Restrict folder view(no listing)~~
 
- - hating | I.P. (Fulton, Niemand)
-     - JavaScript
-     - PHP        | Niemand Done
- 
 ## Bugs
  - ~~Notifications~~
  - ~~Show error when editing admin~~
@@ -115,4 +111,4 @@
  - ~~Недоделаная кнопка редактрирования пользователей Форма открывается, но не работает. Регистрация тоже не работает. Не правильно генерирует пароль предполагаю~~
 
 ## Extra bonus
- - ~~Domain ~~
+ - ~~Domain~~
